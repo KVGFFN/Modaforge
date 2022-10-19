@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'modaforge.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
