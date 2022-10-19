@@ -24,6 +24,8 @@ steps:
     versionSpec: '$(PYTHON_VERSION)'
     architecture: 'x64'
 
+
+
 - task: PythonScript@0
   displayName: 'Export project path'
   inputs:
@@ -43,6 +45,7 @@ steps:
 - script: |
     python -m pip install --upgrade pip setuptools wheel
     python -m pip install Django
+    pip install mysqlclient
     pip install -r requirements.txt
     pip install unittest-xml-reporting
   displayName: 'Install prerequisites'
