@@ -13,4 +13,8 @@
     <Folder Include="Repositories\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ModaForge.API\ModaForge.API.csproj" />
+  </ItemGroup>
+
 </Project>

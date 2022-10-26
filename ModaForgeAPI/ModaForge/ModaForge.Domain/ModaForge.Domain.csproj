@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ModaForge.Application\ModaForge.Application.csproj" />
+    <ProjectReference Include="..\ModaForge.Infrastructure\ModaForge.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

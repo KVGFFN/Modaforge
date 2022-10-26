@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "1CK4FsxAP+bXrH7yTKX4Iyzoji0r6BfemNatz40wwFnTlTDKFAEh9mK9XHB4BUsExqper8P5Suk7+xamYXsvfQ==",
+  "dgSpecHash": "8HiF/WpK0bfUp5lDoijgzzKLptYLH6shC5E8YWUfdSyJ6cnL7K+ojISoGtQPKaTfFr5cJ/o1t/MwrjU8d9vHQQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Application\\ModaForge.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\comma\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\comma\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\comma\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\comma\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\comma\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\comma\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
   "logs": []
 }
