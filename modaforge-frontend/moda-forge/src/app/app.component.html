@@ -2,9 +2,19 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
+        <!--Create Logo using image-->
+        <ion-item>
+          <ion-img style="width: auto; height: 50px" src="assets/images/modaforge-logo.png"></ion-img>
+          <ion-text 
+          style="margin-left: 30px; font-size: 25px"
+          >
+          Modaforge
+        </ion-text>
+        </ion-item>
         <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+          
+          <!-- <ion-list-header>Inbox</ion-list-header>
+          <ion-note>hi@ionicframework.com</ion-note> -->
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
