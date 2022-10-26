@@ -7,16 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  users = [];
+
+  constructor() { 
+    this.users = [];
+  }
 
   ngOnInit() {
     this.getAllUsers()
   }
 
+  
+
   async getAllUsers() {
-    const response = await fetch('http://localhost:3000/users');
+    const response = await fetch('https://localhost:7271', {method: 'GET'});
     const data = await response.json();
     console.log(data);
+    this.users = data;
   }
 
 }
