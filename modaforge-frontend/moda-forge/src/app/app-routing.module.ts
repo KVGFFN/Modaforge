@@ -1,17 +1,27 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LibraryComponent } from './library/library.component';
+import { HomePage } from './home/home.page';
+import { LibraryPage } from './library/library.page';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    component: HomePage
   },
   {
     path: 'library',
-    component: LibraryComponent
+    component: LibraryPage
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'library',
+    loadChildren: () => import('./library/library.module').then( m => m.LibraryPageModule)
   }
+
+
 ];
 
 @NgModule({
