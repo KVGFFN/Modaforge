@@ -1,13 +1,6 @@
-C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.API.deps.json
-C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.API.runtimeconfig.json
-C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\appsettings.json
-C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.API.exe
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Infrastructure.deps.json
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Infrastructure.dll
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Infrastructure.pdb
-C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.API.dll
-C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.API.pdb
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.csproj.AssemblyReference.cache
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.AssemblyInfoInputs.cache
@@ -18,3 +11,9 @@ C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaFor
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\refint\ModaForge.Infrastructure.dll
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.pdb
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ref\ModaForge.Infrastructure.dll
+C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Application.dll
+C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Domain.dll
+C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Application.pdb
+C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Domain.pdb
+C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Infrastructure.runtimeconfig.json
+C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.genruntimeconfig.cache
