@@ -7,7 +7,8 @@ import { HomeComponent } from '../home/home.component';
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    loadChildren: () =>
+      import('../home/home.component').then(m => m.HomeComponent)
   },
   
 ];
