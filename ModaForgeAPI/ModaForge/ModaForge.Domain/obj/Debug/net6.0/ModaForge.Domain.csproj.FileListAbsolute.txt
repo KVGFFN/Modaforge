@@ -12,3 +12,17 @@ C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaFor
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\obj\Debug\net6.0\ref\ModaForge.Domain.dll
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\bin\Debug\net6.0\ModaForge.Domain.runtimeconfig.json
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\obj\Debug\net6.0\ModaForge.Domain.genruntimeconfig.cache
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\bin\Debug\net6.0\ModaForge.Domain.deps.json
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\bin\Debug\net6.0\ModaForge.Domain.runtimeconfig.json
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\bin\Debug\net6.0\ModaForge.Domain.dll
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\bin\Debug\net6.0\ModaForge.Domain.pdb
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\obj\Debug\net6.0\ModaForge.Domain.csproj.AssemblyReference.cache
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\obj\Debug\net6.0\ModaForge.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\obj\Debug\net6.0\ModaForge.Domain.AssemblyInfoInputs.cache
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\obj\Debug\net6.0\ModaForge.Domain.AssemblyInfo.cs
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\obj\Debug\net6.0\ModaForge.Domain.csproj.CoreCompileInputs.cache
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\obj\Debug\net6.0\ModaForge.Domain.dll
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\obj\Debug\net6.0\refint\ModaForge.Domain.dll
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\obj\Debug\net6.0\ModaForge.Domain.pdb
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\obj\Debug\net6.0\ModaForge.Domain.genruntimeconfig.cache
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Domain\obj\Debug\net6.0\ref\ModaForge.Domain.dll

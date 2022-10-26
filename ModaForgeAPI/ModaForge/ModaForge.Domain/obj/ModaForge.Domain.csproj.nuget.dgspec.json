@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj": {}
+    "C:\\Users\\KVG\\Documents\\_SCHOOL\\project startup\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj": {
+    "C:\\Users\\KVG\\Documents\\_SCHOOL\\project startup\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\KVG\\Documents\\_SCHOOL\\project startup\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj",
         "projectName": "ModaForge.Domain",
-        "projectPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj",
-        "packagesPath": "C:\\Users\\comma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\obj\\",
+        "projectPath": "C:\\Users\\KVG\\Documents\\_SCHOOL\\project startup\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj",
+        "packagesPath": "C:\\Users\\KVG\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\KVG\\Documents\\_SCHOOL\\project startup\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\comma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\KVG\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -70,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

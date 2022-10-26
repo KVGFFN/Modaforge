@@ -2266,23 +2266,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\comma\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\KVG\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Infrastructure\\ModaForge.Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\KVG\\Documents\\_SCHOOL\\project startup\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Infrastructure\\ModaForge.Infrastructure.csproj",
       "projectName": "ModaForge.Infrastructure",
-      "projectPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Infrastructure\\ModaForge.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\comma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\KVG\\Documents\\_SCHOOL\\project startup\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Infrastructure\\ModaForge.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\KVG\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\KVG\\Documents\\_SCHOOL\\project startup\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\comma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\KVG\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2296,11 +2292,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Application\\ModaForge.Application.csproj": {
-              "projectPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Application\\ModaForge.Application.csproj"
+            "C:\\Users\\KVG\\Documents\\_SCHOOL\\project startup\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Application\\ModaForge.Application.csproj": {
+              "projectPath": "C:\\Users\\KVG\\Documents\\_SCHOOL\\project startup\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Application\\ModaForge.Application.csproj"
             },
-            "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj": {
-              "projectPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj"
+            "C:\\Users\\KVG\\Documents\\_SCHOOL\\project startup\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj": {
+              "projectPath": "C:\\Users\\KVG\\Documents\\_SCHOOL\\project startup\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj"
             }
           }
         }
@@ -2356,7 +2352,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

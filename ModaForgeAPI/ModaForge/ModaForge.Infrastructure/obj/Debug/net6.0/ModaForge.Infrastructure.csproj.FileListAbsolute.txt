@@ -17,3 +17,22 @@ C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaFor
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Domain.pdb
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Infrastructure.runtimeconfig.json
 C:\Users\comma\Desktop\AppValley\Github\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.genruntimeconfig.cache
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Infrastructure.deps.json
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Infrastructure.runtimeconfig.json
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Infrastructure.dll
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Infrastructure.pdb
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Application.dll
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Domain.dll
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Application.pdb
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\bin\Debug\net6.0\ModaForge.Domain.pdb
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.AssemblyInfo.cs
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.csproj.CopyComplete
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.dll
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\refint\ModaForge.Infrastructure.dll
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.pdb
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ModaForge.Infrastructure.genruntimeconfig.cache
+C:\Users\KVG\Documents\_SCHOOL\project startup\ModaForge\ModaForgeAPI\ModaForge\ModaForge.Infrastructure\obj\Debug\net6.0\ref\ModaForge.Infrastructure.dll
