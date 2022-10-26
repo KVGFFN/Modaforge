@@ -4,14 +4,88 @@
     "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Infrastructure\\ModaForge.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.API\\ModaForge.API.csproj": {
+    "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Application\\ModaForge.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.API\\ModaForge.API.csproj",
-        "projectName": "ModaForge.API",
-        "projectPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.API\\ModaForge.API.csproj",
+        "projectUniqueName": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Application\\ModaForge.Application.csproj",
+        "projectName": "ModaForge.Application",
+        "projectPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Application\\ModaForge.Application.csproj",
         "packagesPath": "C:\\Users\\comma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.API\\obj\\",
+        "outputPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\comma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj": {
+                "projectPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj",
+        "projectName": "ModaForge.Domain",
+        "projectPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj",
+        "packagesPath": "C:\\Users\\comma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -43,6 +117,12 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -60,9 +140,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
@@ -98,8 +175,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.API\\ModaForge.API.csproj": {
-                "projectPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.API\\ModaForge.API.csproj"
+              "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Application\\ModaForge.Application.csproj": {
+                "projectPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Application\\ModaForge.Application.csproj"
+              },
+              "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj": {
+                "projectPath": "C:\\Users\\comma\\Desktop\\AppValley\\Github\\ModaForge\\ModaForgeAPI\\ModaForge\\ModaForge.Domain\\ModaForge.Domain.csproj"
               }
             }
           }
@@ -113,6 +193,32 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.10, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
