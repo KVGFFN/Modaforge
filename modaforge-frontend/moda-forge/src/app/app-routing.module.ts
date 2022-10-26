@@ -19,7 +19,23 @@ const routes: Routes = [
   {
     path: 'library',
     loadChildren: () => import('./library/library.module').then( m => m.LibraryPageModule)
+  },  {
+    path: 'print-posts',
+    loadChildren: () => import('./print-posts/print-posts.module').then( m => m.PrintPostsPageModule)
+  },
+  {
+    path: 'printers',
+    loadChildren: () => import('./printers/printers.module').then( m => m.PrintersPageModule)
+  },
+  {
+    path: 'near-you',
+    loadChildren: () => import('./near-you/near-you.module').then( m => m.NearYouPageModule)
+  },
+  {
+    path: 'your-prints',
+    loadChildren: () => import('./your-prints/your-prints.module').then( m => m.YourPrintsPageModule)
   }
+
 
 
 ];
