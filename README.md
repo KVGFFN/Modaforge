@@ -8,17 +8,9 @@ Modaforge is a 3D Printing service where users can connect with other users to p
 - Ajdin Gaco
 
 ### Run project
-```
-pip install virtualenv
-virtualenv venv
-```
-Folder structure should look like:
-- modaforge
-    - modaforge_workspace
-    - venv
-```
-venv\Scripts\activate
-pip install Django
-python manage.py migrate
-python manage.py runserver
-```
+#### Front-End
+1. cd modaforge-frontend
+2. cd modaforge
+3. ionic serve
+
+#### Back-End
