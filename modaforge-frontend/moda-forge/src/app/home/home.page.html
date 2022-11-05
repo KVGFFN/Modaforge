@@ -1,13 +1,24 @@
+<!--
+
 <ion-header>
   <ion-toolbar>
     <ion-title>home</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-grid [fixed]="true">
-  <ion-row>
-    <!--MAP-->
-    <ion-col></ion-col>
-    <ion-col size="auto"></ion-col>
+-->
+
+<!--set ion-grid to fixed-->
+<ion-grid 
+  style="width: 100%; position:fixed"
+
+  fixed>
+  <ion-row class="ion-no-padding ion-no-margin">
+    <ion-col>
+      <app-request-bar></app-request-bar>
+    </ion-col>
+    <ion-col>
+      <app-map></app-map>
+    </ion-col>
   </ion-row>
 </ion-grid>
