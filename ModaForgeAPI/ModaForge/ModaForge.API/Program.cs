@@ -24,6 +24,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<ModaForgeContext>(options => options.UseSqlServer("name=ConnectionStrings:ModaForgeDB"));
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IRequestService, RequestService>();
+builder.Services.AddScoped<IRequestRepository, RequestRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
