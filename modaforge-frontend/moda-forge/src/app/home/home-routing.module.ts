@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage
+  },
+  {
+    path: 'request-bar',
+    loadChildren: () => import('./request-bar/request-bar.module').then( m => m.RequestBarPageModule)
   }
 ];
 
