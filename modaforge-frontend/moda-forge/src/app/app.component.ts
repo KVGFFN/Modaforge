@@ -14,6 +14,6 @@ export class AppComponent {
     { title: 'Near you', url: '/near-you', icon: 'cube' },
     { title: 'Your prints', url: '/your-prints', icon: 'cube' },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public labels = ['Favorite Clients'];
   constructor() {}
 }
