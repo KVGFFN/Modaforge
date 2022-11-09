@@ -4,14 +4,14 @@ import { HomePage } from './home/home.page';
 import { LibraryPage } from './library/library.page';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    component: HomePage
-  },
-  {
-    path: 'library',
-    component: LibraryPage
-  },
+  // {
+  //   path: 'home',
+  //   component: HomePage
+  // },
+  // {
+  //   path: 'library',
+  //   component: LibraryPage
+  // }
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
@@ -19,7 +19,8 @@ const routes: Routes = [
   {
     path: 'library',
     loadChildren: () => import('./library/library.module').then( m => m.LibraryPageModule)
-  },  {
+  },
+  {
     path: 'print-posts',
     loadChildren: () => import('./print-posts/print-posts.module').then( m => m.PrintPostsPageModule)
   },
