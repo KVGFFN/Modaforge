@@ -7,8 +7,13 @@ const routes: Routes = [
   {
     path: '',
     component: RequestBarPage
+  },
+  {
+    path: 'request',
+    loadChildren: () => import('./request/request.component').then( m => m.RequestComponent)
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

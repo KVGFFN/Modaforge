@@ -9,6 +9,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { RequestBarPage } from './request-bar/request-bar.page';
 import { MapComponent } from './map/map.component';
+import { RequestComponent } from './request-bar/request/request.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { MapComponent } from './map/map.component';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage, RequestBarPage, MapComponent]
+  declarations: [HomePage, RequestBarPage, MapComponent, RequestComponent]
 })
 export class HomePageModule {}

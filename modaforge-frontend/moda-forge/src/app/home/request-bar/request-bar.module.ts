@@ -8,13 +8,15 @@ import { RequestBarPageRoutingModule } from './request-bar-routing.module';
 
 import { RequestBarPage } from './request-bar.page';
 
+import { RequestComponent } from './request/request.component';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RequestBarPageRoutingModule
+    RequestBarPageRoutingModule,
   ],
-  declarations: [RequestBarPage]
+  declarations: [RequestBarPage, RequestComponent]
 })
 export class RequestBarPageModule {}
