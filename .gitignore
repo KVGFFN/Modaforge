@@ -396,10 +396,3 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-ModaForgeAPI/ModaForge/ModaForge.API/obj/
-
-ModaForgeAPI/ModaForge/ModaForge.Application/obj/
-
-ModaForgeAPI/ModaForge/ModaForge.Domain/obj/
-
-ModaForgeAPI/ModaForge/ModaForge.Infrastructure/obj/
