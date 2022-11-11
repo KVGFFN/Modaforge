@@ -396,3 +396,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+ModaForgeAPI/ModaForge/.vs/ModaForge/v17/.suo
+*.json
+*.dll
+*.pdb
