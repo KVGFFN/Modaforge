@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { $ } from 'protractor';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -15,5 +16,33 @@ export class AppComponent {
     { title: 'Your prints', url: '/your-prints', icon: 'cube' },
   ];
   public labels = ['Favorite Clients'];
+
+  
+
+  users = [];
+  profilepicture: any;
+  avatar: any;
+
+
+
+
+
   constructor() {}
+
+  ngOnInit()
+  {
+    this.users = 
+    [
+      {
+        id: 1,
+        name: 'John Doe',
+        avatar: '',
+      },
+      {
+        id: 2,
+        name: 'Jane Doe',
+        avatar: '',
+      }
+    ]
+  }
 }

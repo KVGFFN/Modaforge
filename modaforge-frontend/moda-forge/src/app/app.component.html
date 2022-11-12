@@ -33,11 +33,24 @@
           </ion-item>
         </ion-list>
       </ion-content>
+      <!--User Profile-->
       <ion-footer>
         <ion-toolbar>
-          <ion-avatar>
-            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-          </ion-avatar>
+
+          <!-- PROFILE FOOTER -->
+          <div id="user-profile">
+            <!--Name next to avatar-->
+            <ion-item>
+              <ion-avatar>
+                <img id="user-profilepicture" src="https://ionicframework.com/docs/img/demos/avatar.svg" /> 
+              </ion-avatar>
+              <ion-label id="profilepicture-name">
+                {{ users[0]["name"] }}
+              </ion-label>
+            </ion-item>
+            
+          </div>
+          
         </ion-toolbar>
       </ion-footer>
     </ion-menu>
