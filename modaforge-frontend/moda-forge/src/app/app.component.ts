@@ -26,6 +26,9 @@ export class AppComponent {
   profilepicture: any;
   avatar: any;
 
+  email: string;
+  password: string;
+
   isLoggedIn: boolean = loginHelper.isLoggedIn;
 
 
@@ -51,4 +54,16 @@ export class AppComponent {
       }
     ]
   }
+
+  // USER LOGIN
+  logUserIn()
+    {
+      try
+      {
+        
+      } catch (error) 
+      {
+        console.log(error);
+      }
+    }
 }
