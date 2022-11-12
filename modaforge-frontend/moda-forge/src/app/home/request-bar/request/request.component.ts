@@ -9,6 +9,7 @@ export class RequestComponent implements OnInit {
 
   @Input() nameModel: any;
   @Input() namePrinter: any;
+  @Input() description: any;
 
 
 
