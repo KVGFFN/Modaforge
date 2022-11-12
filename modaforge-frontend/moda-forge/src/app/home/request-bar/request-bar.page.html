@@ -10,5 +10,13 @@
 [namePrinter]="'Jane Doe'"
 ></app-request> -->
 
-<!--foreach app-request-->
+<!--error message-->
+<p 
+    *ngIf=!isApiAvailable
+    style="color: red; text-align: center;"
+    >API is not running.
+</p>
+
+
+<!--display requests-->
 <app-request *ngFor="let request of requests; index as i;" [nameModel]="request.title" [description]="request.description"></app-request>
