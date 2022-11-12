@@ -1,9 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>library</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
 
-</ion-content>
+<ion-searchbar placeholder="Search a model..."></ion-searchbar>
+<ion-grid>
+  <ion-row>
+
+
+
+    <ion-col size-md="2" *ngFor="let model of models; let i = index">
+      <app-model 
+        [modeltitle]=model.title
+        [modeldescription]=model.description
+        [modelimage]=model.imageurl
+        ></app-model>
+    </ion-col>
+    
+
+  </ion-row>
+
+
+</ion-grid>

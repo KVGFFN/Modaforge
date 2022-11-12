@@ -8,13 +8,15 @@ import { LibraryPageRoutingModule } from './library-routing.module';
 
 import { LibraryPage } from './library.page';
 
+import { ModelComponent } from './model/model.component';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LibraryPageRoutingModule
+    LibraryPageRoutingModule,
   ],
-  declarations: [LibraryPage]
+  declarations: [LibraryPage, ModelComponent]
 })
 export class LibraryPageModule {}
