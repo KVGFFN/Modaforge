@@ -1,6 +1,6 @@
 <center><br/>Incoming Requests</center>
 
-<app-request 
+<!-- <app-request 
 [nameModel]="'Action Figure'"
 [namePrinter]="'John Doe'"
 ></app-request>
@@ -8,4 +8,7 @@
 <app-request 
 [nameModel]="'Phone Case'"
 [namePrinter]="'Jane Doe'"
-></app-request>
+></app-request> -->
+
+<!--foreach app-request-->
+<app-request *ngFor="let request of requests; index as i;" [nameModel]="request.title" [description]="request.description"></app-request>

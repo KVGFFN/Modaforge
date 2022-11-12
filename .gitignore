@@ -401,3 +401,11 @@ ModaForgeAPI/ModaForge/.vs/ModaForge/v17/.suo
 *.dll
 *.pdb
 ModaForgeAPI/ModaForge/ModaForge.Infrastructure/Migrations
+
+ModaForgeAPI/ModaForge/ModaForge.API/bin/Debug/
+
+ModaForgeAPI/ModaForge/ModaForge.Application/bin/Debug/
+
+ModaForgeAPI/ModaForge/ModaForge.Infrastructure/bin/Debug/
+
+ModaForgeAPI/ModaForge/ModaForge.Domain/bin/Debug/
