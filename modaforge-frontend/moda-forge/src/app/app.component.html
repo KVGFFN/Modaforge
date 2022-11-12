@@ -1,4 +1,5 @@
 <ion-app>
+  <div *ngIf="isLoggedIn">
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
@@ -55,4 +56,11 @@
       
     </ion-router-outlet>
   </ion-split-pane>
+</div>
+<div *ngIf="!isLoggedIn">
+  <ion-router-outlet></ion-router-outlet>
+</div>
+
+
 </ion-app>
+

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { $ } from 'protractor';
+import { loginHelper } from './loginHelper';
+import { Routes, RouterModule, Router } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -11,8 +14,8 @@ export class AppComponent {
     { title: 'Library', url: '/library', icon: 'library' },
     //{ title: 'Feedback', url: '/folder/Feedback', icon: 'cube' },
     { title: 'Print posts', url: '/print-posts', icon: 'cube' },
-    { title: 'Printers', url: '/printers', icon: 'cube' },
-    { title: 'Near you', url: '/near-you', icon: 'cube' },
+    { title: 'Printers', url: '/printers', icon: 'telescope' },
+    { title: 'Near you', url: '/near-you', icon: 'location' },
     { title: 'Your prints', url: '/your-prints', icon: 'cube' },
   ];
   public labels = ['Favorite Clients'];
@@ -23,14 +26,17 @@ export class AppComponent {
   profilepicture: any;
   avatar: any;
 
+  isLoggedIn: boolean = loginHelper.isLoggedIn;
 
 
-
-
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit()
   {
+    if (!this.isLoggedIn)
+    {
+      this.router.navigate(['/login']);
+    }
     this.users = 
     [
       {
