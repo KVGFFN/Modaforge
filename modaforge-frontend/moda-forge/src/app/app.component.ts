@@ -42,22 +42,33 @@ export class AppComponent {
 
   app = initializeApp(environment.firebaseConfig);
   auth = getAuth(this.app);
-  user = this.auth.currentUser;
+  user = this.auth.currentUser
 
-  
+  username: string;
+
+  logout()
+  {
+    console.log("LOGGING OUT");
+    this.auth.signOut();
+    this.router.navigate(['/login']);
+  }
+
   ngOnInit()
   {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         const uid = user.uid;
         this._loginHelper.isLoggedIn = true;
+        console.log(user.email);
+        console.log(user.displayName);
+        this.username = user.displayName;
         this.router.navigate(['/home']);
       } else {
         this._loginHelper.isLoggedIn = false;
         this.router.navigate(['/login']);
       }
-      console.log("logged in state onAuthStateChange " + this._loginHelper.isLoggedIn);
     });
+
 
     this.users = 
     [

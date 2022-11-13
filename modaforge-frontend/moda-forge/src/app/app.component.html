@@ -43,8 +43,11 @@
                   <img id="user-profilepicture" src="https://ionicframework.com/docs/img/demos/avatar.svg" /> 
                 </ion-avatar>
                 <ion-label id="profilepicture-name">
-                  {{ users[0]["name"] }}
+                  {{ username }}
                 </ion-label>
+                <ion-button (click)="logout()">
+                  <ion-icon style="color: black" name="exit"></ion-icon>
+                </ion-button>
               </ion-item>
               
             </div>

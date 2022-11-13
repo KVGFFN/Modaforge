@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { FirebaseApp, initializeApp } from "firebase/app";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class HomePage implements OnInit {
 
   users = [];
+  
+
 
   constructor() { 
     this.users = [];

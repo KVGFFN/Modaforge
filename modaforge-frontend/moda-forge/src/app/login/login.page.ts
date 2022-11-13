@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { Router } from '@angular/router';
 import { loginHelper } from '../loginHelper';
 import { environment } from 'src/environments/environment';
@@ -27,8 +27,22 @@ export class LoginPage implements OnInit {
   
   constructor(private router: Router) {}
 
+  name: string;
   email: string;
   password: string;
+
+  async updateUserName(name: string)
+  {
+    this.user = this.auth.currentUser;
+    await updateProfile(this.user, {
+      displayName: name
+    }).then(() => {
+      console.log("Name updated to " + name);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
 
   login()
   {
@@ -36,30 +50,25 @@ export class LoginPage implements OnInit {
     createUserWithEmailAndPassword(this.auth, this.email, this.password)
     .then((userCredential) => {
       this.user = userCredential.user;
-      console.log(">>USER: " + this.email + " created");
-      console.log(">>USER MADE; LOGGING IN");
+      this.updateUserName(this.name);
+      console.log("VV USERINFO VV");
+      console.log("NAME: " + this.user.displayName);
+      console.log("EMAIL: " + this.user.email);
+
       this.router.navigate(['/home']);
+      
     })
+    
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      // ..
     });
-    
-    
+
   }
 
 
   ngOnInit() 
   {
-    /*
-    if (this.user != null)
-    {
-      this._loginhelper.isLoggedIn = true;
-      this.router.navigate(['/home']);
-    }
-    */
-
     if (this.user)
     {
       console.log(">> USER IS LOGGED IN");;
