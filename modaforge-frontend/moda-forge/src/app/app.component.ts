@@ -54,16 +54,4 @@ export class AppComponent {
       }
     ]
   }
-
-  // USER LOGIN
-  logUserIn()
-    {
-      try
-      {
-        
-      } catch (error) 
-      {
-        console.log(error);
-      }
-    }
 }
