@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FirebaseApp, initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { Router } from '@angular/router';
+import { loginHelper } from '../loginHelper';
+import { environment } from 'src/environments/environment';
+import { NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -7,9 +14,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
 
-  ngOnInit() {
+
+  app = initializeApp(environment.firebaseConfig);
+  analytics = getAnalytics(this.app);
+  auth = getAuth(this.app);
+  _loginhelper = loginHelper;
+
+
+
+  constructor(private router: Router) {}
+
+  email: string;
+  password: string;
+
+  login()
+  {
+    console.log("EXECUTED LOGIN METHOD LOGIN.PAGE.TS");
+    createUserWithEmailAndPassword(this.auth, this.email, this.password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(">>USER: " + this.email + " created");
+      console.log(">>USER MADE; LOGGING IN");
+
+      this._loginhelper.isLoggedIn = true;
+      this.router.navigate(['/home']);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
+    
+    
+  }
+
+
+  ngOnInit() 
+  {
+
   }
 
 }
