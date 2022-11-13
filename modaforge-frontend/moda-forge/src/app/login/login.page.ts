@@ -21,8 +21,10 @@ export class LoginPage implements OnInit {
   auth = getAuth(this.app);
   _loginhelper = loginHelper;
 
+  user: any;
 
 
+  
   constructor(private router: Router) {}
 
   email: string;
@@ -33,7 +35,7 @@ export class LoginPage implements OnInit {
     console.log("EXECUTED LOGIN METHOD LOGIN.PAGE.TS");
     createUserWithEmailAndPassword(this.auth, this.email, this.password)
     .then((userCredential) => {
-      const user = userCredential.user;
+      this.user = userCredential.user;
       console.log(">>USER: " + this.email + " created");
       console.log(">>USER MADE; LOGGING IN");
 
@@ -52,7 +54,24 @@ export class LoginPage implements OnInit {
 
   ngOnInit() 
   {
+    /*
+    if (this.user != null)
+    {
+      this._loginhelper.isLoggedIn = true;
+      this.router.navigate(['/home']);
+    }
+    */
 
+    if (this.user)
+    {
+      console.log(">> USER IS LOGGED IN");;
+      this.router.navigate(['/home']);
+    }
+    else
+    {
+      console.log(">> USER IS NOT LOGGED IN");
+      this.router.navigate(['/login']);
+    }
   }
 
 }

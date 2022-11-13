@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { $ } from 'protractor';
 import { loginHelper } from './loginHelper';
 import { Routes, RouterModule, Router } from '@angular/router';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { FirebaseApp, initializeApp } from "firebase/app";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -29,17 +32,34 @@ export class AppComponent {
   email: string;
   password: string;
 
-  isLoggedIn: boolean = loginHelper.isLoggedIn;
+  loggedInState: boolean;
 
 
   constructor(private router: Router) {}
 
+  app = initializeApp(environment.firebaseConfig);
+  auth = getAuth(this.app);
+  user = this.auth.currentUser;
+
+  
   ngOnInit()
   {
-    if (!this.isLoggedIn)
-    {
-      this.router.navigate(['/login']);
-    }
+    onAuthStateChanged(this.auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        sessionStorage.setItem('isLogged', 'true');
+        const uid = user.uid;
+        this.loggedInState = true;
+        this.router.navigate(['/home']);
+      } else {
+        // User is signed out
+        sessionStorage.setItem('isLogged', 'false');
+        this.loggedInState = false;
+        this.router.navigate(['/login']);
+      }
+    });
+
     this.users = 
     [
       {
