@@ -38,8 +38,6 @@ export class LoginPage implements OnInit {
       this.user = userCredential.user;
       console.log(">>USER: " + this.email + " created");
       console.log(">>USER MADE; LOGGING IN");
-
-      this._loginhelper.isLoggedIn = true;
       this.router.navigate(['/home']);
     })
     .catch((error) => {

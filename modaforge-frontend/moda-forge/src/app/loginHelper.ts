@@ -1,4 +1,4 @@
-export class loginHelper
+export var loginHelper =
 {
-    public static isLoggedIn: boolean;
+    isLoggedIn: false
 }

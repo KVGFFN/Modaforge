@@ -32,7 +32,10 @@ export class AppComponent {
   email: string;
   password: string;
 
-  loggedInState: boolean;
+  // declare new loginHelper
+  
+  _loginHelper = loginHelper;
+
 
 
   constructor(private router: Router) {}
@@ -46,18 +49,14 @@ export class AppComponent {
   {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        sessionStorage.setItem('isLogged', 'true');
         const uid = user.uid;
-        this.loggedInState = true;
+        this._loginHelper.isLoggedIn = true;
         this.router.navigate(['/home']);
       } else {
-        // User is signed out
-        sessionStorage.setItem('isLogged', 'false');
-        this.loggedInState = false;
+        this._loginHelper.isLoggedIn = false;
         this.router.navigate(['/login']);
       }
+      console.log("logged in state onAuthStateChange " + this._loginHelper.isLoggedIn);
     });
 
     this.users = 
@@ -73,5 +72,6 @@ export class AppComponent {
         avatar: '',
       }
     ]
+    console.log("logged in state: " + this._loginHelper.isLoggedIn);
   }
 }
