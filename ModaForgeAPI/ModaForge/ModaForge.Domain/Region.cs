@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace ModaForge.Domain
 {
-    public class User
+    public class Region
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public string Verified { get; set; }
-        public string Email { get; set; }
-
-        public Region RegionID { get; set; }
+        public int ZipCode { get; set; }
     }
 }
