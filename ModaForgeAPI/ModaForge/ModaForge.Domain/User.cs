@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ModaForge.Domain
+﻿namespace ModaForge.Domain
 {
     public class User
     {
@@ -12,5 +6,7 @@ namespace ModaForge.Domain
         public string Name { get; set; }
         public bool Verified { get; set; }
         public string Email { get; set; }
+
+        public Region RegionID { get; set; }
     }
 }
