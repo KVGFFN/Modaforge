@@ -17,6 +17,8 @@ namespace ModaForge.Infrastructure.Contexts
         public DbSet<User> users { get; set; }
         public DbSet<Request> requests { get; set; }
 
+        public DbSet<Model> models { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configuration werkt niet, ik weet niet waarom

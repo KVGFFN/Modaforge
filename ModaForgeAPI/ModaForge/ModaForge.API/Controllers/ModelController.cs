@@ -1,21 +1,19 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ModaForge.Application.Inferfaces;
-using ModaForge.Application.Services;
 using ModaForge.Domain;
 using Newtonsoft.Json;
 
 namespace ModaForge.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UserController : ControllerBase
+    public class ModelController : ControllerBase
     {
-        private IUserService service;
-        public UserController(IUserService service)
+        public IModelService service;
+        public ModelController(IModelService service)
         {
             this.service = service;
         }
+
+        [Route("api/[controller]")]
         [HttpGet]
         public IActionResult GetAllUser()
         {
@@ -23,17 +21,17 @@ namespace ModaForge.API.Controllers
             if (service.GetAll().ToList().Count < 1)
             {
                 string jsonusers = @"[
-	{
-		""name"": ""Kato"",
-        ""email"": ""lol@gmail.com"",
-        ""verified"": true,
-
-	}]";
+	                {
+		                ""Name"": ""Kat"",
+                        ""UserId"": 1,
+                        ""FileURL"": ""https://www.google.com"",
+	                },
+                ]";
 
                 //Populate sql database for examples
-                List<User> userslist = JsonConvert.DeserializeObject<List<User>>(jsonusers);
+                List<Model> userslist = JsonConvert.DeserializeObject<List<Model>>(jsonusers);
 
-                foreach (User item in userslist)
+                foreach (Model item in userslist)
                 {
                     service.Create(item);
                 }
@@ -45,29 +43,32 @@ namespace ModaForge.API.Controllers
             return Ok(service.GetAll());
         }
 
-        [Route("{ id}")]
+        [Route("{id}")]
         [HttpGet]
-        public IActionResult GetUser([FromRoute] int id )
+        public IActionResult GetUser([FromRoute] int id)
         {
             return Ok(service.GetById(id));
         }
         [HttpPost]
-        public IActionResult CreateUser([FromBody] User user )
+        public IActionResult CreateUser([FromBody] Model user)
         {
             return Ok(service.Create(user));
         }
         [Route("{id}")]
         [HttpPut]
-        public IActionResult UpdateUser([FromRoute] int id, [FromBody] User user )
+        public IActionResult UpdateUser([FromRoute] int id, [FromBody] Model user)
         {
             return Ok(service.Update(id, user));
         }
         [Route("{id}")]
         [HttpDelete]
-        public IActionResult DeleteUser([FromRoute] int id )
+        public IActionResult DeleteUser([FromRoute] int id)
         {
             service.Delete(id);
             return Ok();
         }
+
+
+
     }
 }
