@@ -1,0 +1,35 @@
+<div id="overarch">
+  <img src="assets/images/modaforge_logo_long.png" id="logo" />
+  <div id="loginform">
+    
+    <form>
+      <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input 
+          type="name"  
+          name="name"
+          [(ngModel)]="name"
+          ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input 
+          type="email"  
+          name="email"
+          [(ngModel)]="email"
+          ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+      </ion-item>
+
+      <ion-button 
+        (click)="login()"
+        expand="block">Login</ion-button>
+    </form>
+
+  </div>
+</div>

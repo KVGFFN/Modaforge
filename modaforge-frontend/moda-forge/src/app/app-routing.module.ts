@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { LibraryPage } from './library/library.page';
+import { LoginPage } from './login/login.page';
+
 
 const routes: Routes = [
   // {
@@ -12,6 +14,11 @@ const routes: Routes = [
   //   path: 'library',
   //   component: LibraryPage
   // }
+
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
@@ -35,7 +42,14 @@ const routes: Routes = [
   {
     path: 'your-prints',
     loadChildren: () => import('./your-prints/your-prints.module').then( m => m.YourPrintsPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   }
+
+
+
 
 
 

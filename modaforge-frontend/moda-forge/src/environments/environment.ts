@@ -4,8 +4,17 @@
 
 export const environment = {
   production: false,
-  MAPBOX_KEY: 'pk.eyJ1Ijoia3ZnZmZuIiwiYSI6ImNsYTllZnp4bjA4MzEzb3Q1cTRzd3p1dTkifQ.chZOTzZmBBdLANvjZyxENw'
-
+  MAPBOX_KEY: 'pk.eyJ1Ijoia3ZnZmZuIiwiYSI6ImNsYTllZnp4bjA4MzEzb3Q1cTRzd3p1dTkifQ.chZOTzZmBBdLANvjZyxENw',
+  firebaseConfig:
+  {
+    apiKey: "AIzaSyDfiBSyLL5QY-b3vRvnR2kK0ntFXoQBLhw",
+    authDomain: "modaforge.firebaseapp.com",
+    projectId: "modaforge",
+    storageBucket: "modaforge.appspot.com",
+    messagingSenderId: "276860436541",
+    appId: "1:276860436541:web:565ba2ab0af9eec8402a54",
+    measurementId: "G-PHK1NNDHFT"
+  },
 };
 
 /*

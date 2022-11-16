@@ -25,6 +25,7 @@
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@ionic/angular": "^6.1.9",
+    "firebase": "^9.14.0",
     "ionicons": "^6.0.3",
     "mapbox-gl": "^2.10.0",
     "ngx-mapbox-gl": "^9.1.0",
