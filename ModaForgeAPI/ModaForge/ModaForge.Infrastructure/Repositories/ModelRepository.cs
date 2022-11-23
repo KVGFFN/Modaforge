@@ -38,8 +38,7 @@ namespace ModaForge.Infrastructure.Repositories
 
         public Model GetById(int id)
         {
-            Model Model = context.models.Where(t => t.Id == id).FirstOrDefault();
-            return Model;
+            return context.models.FirstOrDefault(x => x.Id == id);
         }
         
         public Model Update(int id, Model Model)

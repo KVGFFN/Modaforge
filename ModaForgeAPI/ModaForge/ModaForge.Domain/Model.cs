@@ -2,8 +2,8 @@ namespace ModaForge.Domain;
 
 public class Model
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
     public string Name { get; set; }
-    public User UserID { get; set; }
+    public User UserId { get; set; }
     public string FileURL { get; set; }
 }

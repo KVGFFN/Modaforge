@@ -33,11 +33,7 @@ namespace ModaForge.Infrastructure.Contexts
 
         public DbSet<Tag_Request> tags_requests { get; set; }
         public DbSet<Tag_Topic> tags_topics { get; set; }
-
-
-
-        public DbSet<Model> models { get; set; }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configuration werkt niet, ik weet niet waarom
