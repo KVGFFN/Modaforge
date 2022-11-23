@@ -20,6 +20,7 @@ export class AppComponent {
     { title: 'Printers', url: '/printers', icon: 'telescope' },
     { title: 'Near you', url: '/near-you', icon: 'location' },
     { title: 'Your prints', url: '/your-prints', icon: 'cube' },
+    { title: 'TESTING PAGE', url: '/test', icon: 'alert' },
   ];
   public labels = ['Favorite Clients'];
 

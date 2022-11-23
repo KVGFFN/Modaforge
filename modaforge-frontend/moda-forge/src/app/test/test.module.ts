@@ -8,6 +8,8 @@ import { TestPageRoutingModule } from './test-routing.module';
 
 import { TestPage } from './test.page';
 
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,7 @@ import { TestPage } from './test.page';
     IonicModule,
     TestPageRoutingModule
   ],
-  declarations: [TestPage]
+  declarations: [TestPage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class TestPageModule {}

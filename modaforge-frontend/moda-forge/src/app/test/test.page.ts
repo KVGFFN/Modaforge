@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestPage implements OnInit {
 
+  
+
   constructor() { }
 
   ngOnInit() {
+
+    
   }
+
 
 }

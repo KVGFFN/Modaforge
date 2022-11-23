@@ -20,11 +20,8 @@ export class LoginPage implements OnInit {
   analytics = getAnalytics(this.app);
   auth = getAuth(this.app);
   _loginhelper = loginHelper;
-
   user: any;
 
-
-  
   constructor(private router: Router) {}
 
   name: string;

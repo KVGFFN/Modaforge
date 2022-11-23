@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { LibraryPage } from './library/library.page';
 import { LoginPage } from './login/login.page';
+import { TestPage } from './test/test.page';
 
 
 const routes: Routes = [
@@ -46,11 +47,12 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },  {
+  },
+  {
     path: 'test',
+    component: TestPage,
     loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
-  }
-
+  },
 
 
 
