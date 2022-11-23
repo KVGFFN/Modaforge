@@ -42,7 +42,7 @@ namespace ModaForge.Application.Services
 
         public User Update(int id, User User)
         {
-            User.ID = id;
+            User.Id = id;
             return repository.Update(id, User);
         }
     }

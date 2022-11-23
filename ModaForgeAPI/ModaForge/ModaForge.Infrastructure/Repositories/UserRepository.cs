@@ -38,7 +38,7 @@ namespace ModaForge.Infrastructure.Repositories
 
         public User GetById(int id)
         {
-            User User = context.users.Where(t => t.ID == id).FirstOrDefault();
+            User User = context.users.Where(t => t.Id == id).FirstOrDefault();
             return User;
         }
 

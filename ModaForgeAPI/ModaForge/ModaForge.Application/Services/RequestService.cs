@@ -33,7 +33,7 @@ namespace ModaForge.Application.Services
 
         public Request Update(int id, Request request)
         {
-            request.ID = id;
+            request.Id = id;
             return repository.Update(id, request);
         }
     }

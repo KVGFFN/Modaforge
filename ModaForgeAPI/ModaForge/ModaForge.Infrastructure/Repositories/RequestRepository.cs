@@ -38,7 +38,7 @@ namespace ModaForge.Infrastructure.Repositories
 
         public Request GetById(int id)
         {
-            Request request = context.requests.Where(t => t.ID == id).FirstOrDefault();
+            Request request = context.requests.Where(t => t.Id == id).FirstOrDefault();
             return request;
         }
 
