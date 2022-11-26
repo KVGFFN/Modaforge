@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 
 namespace ModaForge.API.Controllers
 {
+    [Route("api/[controller]")]
     public class ModelController : ControllerBase
     {
         public IModelService service;
@@ -17,29 +18,6 @@ namespace ModaForge.API.Controllers
         [HttpGet]
         public IActionResult GetAllUser()
         {
-            //Temp way to populate sql
-            if (service.GetAll().ToList().Count < 1)
-            {
-                string jsonusers = @"[
-	                {
-		                ""Name"": ""Kat"",
-                        ""UserId"": 1,
-                        ""FileURL"": ""https://www.google.com"",
-	                },
-                ]";
-
-                //Populate sql database for examples
-                List<Model> userslist = JsonConvert.DeserializeObject<List<Model>>(jsonusers);
-
-                foreach (Model item in userslist)
-                {
-                    service.Create(item);
-                }
-
-            }
-
-
-
             return Ok(service.GetAll());
         }
 
