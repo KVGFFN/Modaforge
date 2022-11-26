@@ -19,27 +19,27 @@ namespace ModaForge.Domain
         
         // Id of Requester
         [ForeignKey(nameof(Requester))]
-        public int RequesterId { get; set; }
+        public int? RequesterId { get; set; }
         
         // TODO: Provider causes "multiple cascade paths"
         // Id of Model Provider
         [ForeignKey(nameof(Provider))]
-        public int ProviderId { get; set; }
+        public int? ProviderId { get; set; }
 
         
         // Id of Model
         [ForeignKey(nameof(Model))]
-        public int ModelId { get; set; }
+        public int? ModelId { get; set; }
         
         // Id of Region
         [ForeignKey(nameof(Region))]
-        public int RegionId { get; set; }
+        public int? RegionId { get; set; }
         
         //virtual declarations
-        public virtual Requester Requester { get; set; }
-        public virtual Provider Provider { get; set; }
-        public virtual Model Model { get; set; }
-        public virtual Region Region { get; set; }
+        public virtual Requester? Requester { get; set; }
+        public virtual Provider? Provider { get; set; }
+        public virtual Model? Model { get; set; }
+        public virtual Region? Region { get; set; }
         
 
 
