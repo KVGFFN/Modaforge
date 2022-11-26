@@ -36,9 +36,9 @@ namespace ModaForge.Infrastructure.Contexts
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Configuration werkt niet, ik weet niet waarom
-            //TODO: Fix configuration bug
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new RequestConfiguration());
+            modelBuilder.ApplyConfiguration(new ModelConfiguration());
         }
     }
 

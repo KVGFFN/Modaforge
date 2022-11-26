@@ -19,29 +19,6 @@ namespace ModaForge.API.Controllers
         [HttpGet]
         public IActionResult GetAllUser()
         {
-            //Temp way to populate sql
-            if (service.GetAll().ToList().Count < 1)
-            {
-                string jsonusers = @"[
-	{
-		""name"": ""Kato"",
-        ""email"": ""lol@gmail.com"",
-        ""verified"": true,
-
-	}]";
-
-                //Populate sql database for examples
-                List<User> userslist = JsonConvert.DeserializeObject<List<User>>(jsonusers);
-
-                foreach (User item in userslist)
-                {
-                    service.Create(item);
-                }
-
-            }
-
-
-
             return Ok(service.GetAll());
         }
 
