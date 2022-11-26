@@ -6,13 +6,13 @@ namespace ModaForge.Domain.Bridges
     {
         public int Id { get; set; }
         [ForeignKey(nameof(Tag))]
-        public int TagID { get; set; }
+        public int? TagID { get; set; }
 
         [ForeignKey(nameof(Request))]
-        public int RequestID { get; set; }
+        public int? RequestID { get; set; }
         
         // virtual declarations
-        public virtual Request Request { get; set; }
-        public virtual Tag Tag { get; set; }
+        public virtual Request? Request { get; set; }
+        public virtual Tag? Tag { get; set; }
     }
 }

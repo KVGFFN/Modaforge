@@ -12,10 +12,10 @@ public class Model
     public string FileURL { get; set; }
     
     [ForeignKey(nameof(User))]
-    public int UserId { get; set; }
+    public int? UserId { get; set; }
     
     // virtual declarations
-    public virtual User User { get; set; }
+    public virtual User? User { get; set; }
     
     
 }

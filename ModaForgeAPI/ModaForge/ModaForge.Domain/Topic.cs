@@ -20,14 +20,14 @@ namespace ModaForge.Domain
         public int UserId { get; set; }
 
         [ForeignKey(nameof(Request))]
-        public int RequestId { get; set; }
+        public int? RequestId { get; set; }
         
         // TODO: Check if list of posts is necessary
-        public List<Post> Posts { get; set; }
+        public List<Post>? Posts { get; set; }
         
         // virtual declarations
-        public virtual Request Request { get; set; }
-        public virtual User User { get; set; }
+        public virtual Request? Request { get; set; }
+        public virtual User? User { get; set; }
         
         
 

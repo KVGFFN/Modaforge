@@ -13,6 +13,22 @@ namespace ModaForge.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.HasData(
+                new User
+                {
+                    Id = 420,
+                    Name = "TestUser",
+                    Email = "TestUser@example.org",
+                    Verified = false
+                },
+                new User
+                {
+                    Id = 534,
+                    Name = "TestProvider",
+                    Email = "TestProvider@example.org",
+                    Verified = true
+                }
+                );
         }
     }
 }

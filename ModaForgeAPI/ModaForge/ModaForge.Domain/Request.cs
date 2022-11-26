@@ -14,8 +14,8 @@ namespace ModaForge.Domain
         public string Description { get; set; }
         public int Status { get; set; }
         public DateTime CreationDate { get; set; }
-        public DateTime AcceptedDate { get; set; }
-        public DateTime DoneDate { get; set; }
+        public DateTime? AcceptedDate { get; set; }
+        public DateTime? DoneDate { get; set; }
         
         // Id of Requester
         [ForeignKey(nameof(Requester))]

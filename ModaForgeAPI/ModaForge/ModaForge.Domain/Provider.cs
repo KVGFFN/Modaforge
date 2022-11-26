@@ -13,9 +13,9 @@ namespace ModaForge.Domain
         
         // Id of User
         [ForeignKey(nameof(User))]
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         
         // virtual attributes
-        public virtual User User { get; set; }
+        public virtual User? User { get; set; }
     }
 }

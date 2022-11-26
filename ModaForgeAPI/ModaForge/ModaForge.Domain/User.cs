@@ -14,9 +14,9 @@ namespace ModaForge.Domain
         public string Email { get; set; }
 
         [ForeignKey(nameof(Region))]
-        public int RegionId { get; set; }
+        public int? RegionId { get; set; }
         
         // virtual declarations
-        public virtual Region Region { get; set; }
+        public virtual Region? Region { get; set; }
     }
 }
