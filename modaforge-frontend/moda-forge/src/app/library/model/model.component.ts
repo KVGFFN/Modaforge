@@ -13,18 +13,12 @@ export class ModelComponent implements OnInit {
 
   ngOnInit() {
     console.log("CHILD COMPONENT: MODEL");
-    console.log(this.allModels);
+    console.log(this.child_modelurls);
   }
 
-  @Input() allModels = [];
-  @Input() singleModel: string;
-
-  // return sanitized model url from library
-
-  // transform(url) {
-  //   return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-  // }
-
+  // library.page -> model.component variables
+  @Input() child_modelurls = [];
+  @Input() child_modelnames = [];
 
 }
 

@@ -11,17 +11,22 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class LibraryPage implements OnInit {
 
 
-  constructor(private modelService: ModelService, private sanitizer: DomSanitizer, private ref: ChangeDetectorRef) { }
+  constructor(private modelService: ModelService, 
+    private sanitizer: DomSanitizer, 
+    private ref: ChangeDetectorRef,
+    private http: HttpClient
+    ) { }
 
   // variables
   realModel?: string
   hasLoaded = false;
   modelIsAssigned = false;
   library = [];
-  libraryTillFive = [];
-  allModelUrls = [];
-  allModelUids = [];
-  oneModel: string;
+
+  parent_modelurls = [];
+  parent_modelnames = [];
+
+  searchTerm: string;
 
   // transform url
   transform(url) {
@@ -35,31 +40,45 @@ export class LibraryPage implements OnInit {
     if (!this.hasInitialized)
     {
       this.getAllModels();
+      this.hasInitialized = true;
     }
   }
 
-  // get all models from api
-  // stop method after 5 models
   getAllModels() {
     this.modelService.getAllModels().subscribe({
       next: (data) => {
         this.library = data.results;
-        this.libraryTillFive = this.library.slice(0, 5);
-        this.libraryTillFive.forEach(element => {
-          this.transform(element.embedUrl);
-          this.allModelUrls.push(element.embedUrl);
-          console.log("EMBEDURL: " + element.embedUrl);
-          this.allModelUids.push(element.uid);
+        this.library.forEach(element => {
+          this.parent_modelurls.push(element.embedUrl);
+          this.parent_modelnames.push(element.name);
         });
 
         this.hasLoaded = true;
-        console.log("LIBRARY: >>> " + this.libraryTillFive[0]['embedUrl']);
-
       },
       error: (error) => {
         console.log(error);
       }
     });
+  }
+
+  searchAllModels(searchTerm)
+  {
+    this.library = [];
+    this.parent_modelurls = [];
+    this.parent_modelnames = [];
+    this.http.get(`https://api.sketchfab.com/v3/search?type=models&q=${searchTerm}&archives_flavours=false`)
+    .subscribe({
+      next: (data) => {
+        this.library = data['results']
+        this.library.forEach(element => {
+          this.parent_modelurls.push(element.embedUrl);
+          this.parent_modelnames.push(element.name);
+        });
+
+        this.hasLoaded = true;
+      }
+    });
+    
   }
 
 

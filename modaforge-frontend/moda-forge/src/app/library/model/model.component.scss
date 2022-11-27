@@ -1,0 +1,14 @@
+// display all grid elements next to eachother
+ion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 5fr));
+  grid-gap: 10px;
+  grid-auto-rows: minmax(25px, auto);
+}
+
+.card-style
+{
+  width: 100%;
+  height: 100%;
+}
+
