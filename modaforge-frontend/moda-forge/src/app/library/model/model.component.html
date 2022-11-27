@@ -1,12 +1,19 @@
-<ion-card>
-  <img [src]=modelimage style="width: 100%; height: 150px;"/>
-  <ion-card-header>
-    <ion-card-title>
-      {{modeltitle}}
-    </ion-card-title>
-  </ion-card-header>
-
-  <ion-card-content>
-    {{modeldescription}}
-  </ion-card-content>
-</ion-card>
+<div *ngFor="let model of allModels; let i = index;">
+  <div class="sketchfab-embed-wrapper">
+    <p>{{ model }}</p>
+    <iframe  
+      frameborder="0" 
+      allowfullscreen=""
+      mozallowfullscreen="true"
+      loading="lazy"
+      webkitallowfullscreen="true" 
+      allow="autoplay; fullscreen; xr-spatial-tracking" 
+      xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share
+      [className]="allModels[i]['uid']"
+      [src]="model | safe">
+      width="250"
+      height="250"
+      > 
+    </iframe>
+  </div>
+</div>

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef, Component, Injector, OnInit } from '@angular/core';
+import { ModelService } from '../services/model.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-library',
@@ -7,85 +10,62 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LibraryPage implements OnInit {
 
-  
 
-  models = [];
+  constructor(private modelService: ModelService, private sanitizer: DomSanitizer, private ref: ChangeDetectorRef) { }
 
+  // variables
+  realModel?: string
+  hasLoaded = false;
+  modelIsAssigned = false;
+  library = [];
+  libraryTillFive = [];
+  allModelUrls = [];
+  allModelUids = [];
+  oneModel: string;
 
-
-  constructor() { }
-
-  ngOnInit() {
-    this.models = [
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/1ba08a69b808c54a0a53ac78a4eea5f8/large.jpg",
-        title: "HOPKINS & ALLEN - POLICE STD 32 CALIBER",
-        description: "This was a request . Obsolete model from 1910. Not perfect but neither were the drawings. full solidworks (2018) files and IGES file."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/1ba08a69b808c54a0a53ac78a4eea5f8/large.jpg",
-        title: "HOPKINS & ALLEN - POLICE STD 32 CALIBER",
-        description: "This was a request . Obsolete model from 1910. Not perfect but neither were the drawings. full solidworks (2018) files and IGES file."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/1ba08a69b808c54a0a53ac78a4eea5f8/large.jpg",
-        title: "HOPKINS & ALLEN - POLICE STD 32 CALIBER",
-        description: "This was a request . Obsolete model from 1910. Not perfect but neither were the drawings. full solidworks (2018) files and IGES file."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      
-    ]
-
-    console.log(this.models);
+  // transform url
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
+  hasInitialized = false;
+  
+  ngOnInit()
+  {
+    if (!this.hasInitialized)
+    {
+      this.getAllModels();
+    }
+  }
+
+  // get all models from api
+  // stop method after 5 models
+  getAllModels() {
+    this.modelService.getAllModels().subscribe({
+      next: (data) => {
+        this.library = data.results;
+        this.libraryTillFive = this.library.slice(0, 5);
+        this.libraryTillFive.forEach(element => {
+          this.transform(element.embedUrl);
+          this.allModelUrls.push(element.embedUrl);
+          console.log("EMBEDURL: " + element.embedUrl);
+          this.allModelUids.push(element.uid);
+        });
+
+        this.hasLoaded = true;
+        console.log("LIBRARY: >>> " + this.libraryTillFive[0]['embedUrl']);
+
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+
+
+    
 }
+
+
+
+
