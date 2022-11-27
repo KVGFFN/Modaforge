@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectorRef, Component, Injector, OnInit } from '@angular/core';
+import { ModelService } from '../services/model.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-library',
@@ -7,85 +10,81 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LibraryPage implements OnInit {
 
-  
 
-  models = [];
+  constructor(private modelService: ModelService, 
+    private sanitizer: DomSanitizer, 
+    private ref: ChangeDetectorRef,
+    private http: HttpClient
+    ) { }
 
+  // variables
+  realModel?: string
+  hasLoaded = false;
+  modelIsAssigned = false;
+  library = [];
 
+  parent_modelurls = [];
+  parent_modelnames = [];
 
-  constructor() { }
+  searchTerm: string;
 
-  ngOnInit() {
-    this.models = [
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/1ba08a69b808c54a0a53ac78a4eea5f8/large.jpg",
-        title: "HOPKINS & ALLEN - POLICE STD 32 CALIBER",
-        description: "This was a request . Obsolete model from 1910. Not perfect but neither were the drawings. full solidworks (2018) files and IGES file."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/1ba08a69b808c54a0a53ac78a4eea5f8/large.jpg",
-        title: "HOPKINS & ALLEN - POLICE STD 32 CALIBER",
-        description: "This was a request . Obsolete model from 1910. Not perfect but neither were the drawings. full solidworks (2018) files and IGES file."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/1ba08a69b808c54a0a53ac78a4eea5f8/large.jpg",
-        title: "HOPKINS & ALLEN - POLICE STD 32 CALIBER",
-        description: "This was a request . Obsolete model from 1910. Not perfect but neither were the drawings. full solidworks (2018) files and IGES file."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      {
-        imageurl: "https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/298d3fa285f9fac94740bc5e4b19408b/large.JPG",
-        title: "FIRE FIGHTER Fireboat",
-        description: "The famous NYFD fireboat from 1938. Drawn in the as-launched condition; the fireboat is a museum today and is pretty much original, but a number of details have changed over the years."
-      },
-      
-    ]
-
-    console.log(this.models);
+  // transform url
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
+  hasInitialized = false;
+  
+  ngOnInit()
+  {
+    if (!this.hasInitialized)
+    {
+      this.getAllModels();
+      this.hasInitialized = true;
+    }
+  }
+
+  getAllModels() {
+    this.modelService.getAllModels().subscribe({
+      next: (data) => {
+        this.library = data.results;
+        this.library.forEach(element => {
+          this.parent_modelurls.push(element.embedUrl);
+          this.parent_modelnames.push(element.name);
+        });
+
+        this.hasLoaded = true;
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+
+  searchAllModels(searchTerm)
+  {
+    this.library = [];
+    this.parent_modelurls = [];
+    this.parent_modelnames = [];
+    this.http.get(`https://api.sketchfab.com/v3/search?type=models&q=${searchTerm}&archives_flavours=false`)
+    .subscribe({
+      next: (data) => {
+        this.library = data['results']
+        this.library.forEach(element => {
+          this.parent_modelurls.push(element.embedUrl);
+          this.parent_modelnames.push(element.name);
+        });
+
+        this.hasLoaded = true;
+      }
+    });
+    
+  }
+
+
+    
 }
+
+
+
+

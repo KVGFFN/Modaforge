@@ -1,21 +1,24 @@
+<div class="heading-style">
+  <h1 style="text-align: center;">Search a model you like</h1>
+  <ion-searchbar class="sb-style" color="light" [(ngModel)]="searchTerm" (keydown.enter)="searchAllModels(searchTerm)"></ion-searchbar>
+</div>
 
 
-<ion-searchbar placeholder="Search a model..."></ion-searchbar>
-<ion-grid>
-  <ion-row>
+<ion-content>
+  <app-model 
+    [child_modelurls]="parent_modelurls"
+    [child_modelnames]="parent_modelnames"
+  ></app-model>
+</ion-content>
 
+<!--TODO:-->
+<!--
 
+  1. Be able to go to next page / previous page of results
+  2. Button on the card where you can view all user's information
+    (Maybe just redirect to sketchfab userpage?)
+  3. Be able to download 3D models
+  4. Be able to select a model and add to wishlist
+    (User can send request to existing user in site IF he is 3D printer)
 
-    <ion-col size-md="2" *ngFor="let model of models; let i = index">
-      <app-model 
-        [modeltitle]=model.title
-        [modeldescription]=model.description
-        [modelimage]=model.imageurl
-        ></app-model>
-    </ion-col>
-    
-
-  </ion-row>
-
-
-</ion-grid>
+-->

@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { SafePipe } from 'src/app/app.component';
 
 @Component({
   selector: 'app-model',
@@ -7,12 +9,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ModelComponent implements OnInit {
 
-  @Input() modeltitle: any;
-  @Input() modeldescription: any;
-  @Input() modelimage: any;
+  constructor(private sanitizer: DomSanitizer) { }
 
-  constructor() { }
+  ngOnInit() {
+    console.log("CHILD COMPONENT: MODEL");
+    console.log(this.child_modelurls);
+  }
 
-  ngOnInit() {}
+  // library.page -> model.component variables
+  @Input() child_modelurls = [];
+  @Input() child_modelnames = [];
 
 }
+
