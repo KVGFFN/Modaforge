@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, Injector, OnInit } from '@angular/core';
 import { ModelService } from '../services/model.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { APIstate } from 'src/helpers/APIstate';
 
 @Component({
   selector: 'app-library',
@@ -37,6 +38,8 @@ export class LibraryPage implements OnInit {
   
   ngOnInit()
   {
+    console.log("LIBRARY.PAGE.TS: APISTATE IS " + APIstate.isActive);
+
     if (!this.hasInitialized)
     {
       this.getAllModels();

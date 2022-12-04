@@ -12,4 +12,8 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
   }
 
+  name: string;
+  email: string;
+  pic: string;
+
 }

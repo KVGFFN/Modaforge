@@ -10,6 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { User } from 'src/modules/interfaces/user.interface';
 import { Region } from 'src/modules/interfaces/user.interface';
+import { IP } from 'src/helpers/IP';
+import { APIstate } from 'src/helpers/APIstate';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -24,6 +27,8 @@ export class RegisterPage implements OnInit {
   auth = getAuth(this.app);
   _loginhelper = loginHelper;
   user: any;
+  apistate = APIstate.isActive;
+  IP = IP.local;
 
   constructor(private router: Router, private userService: UserService) {}
 
@@ -37,18 +42,19 @@ export class RegisterPage implements OnInit {
   regionZipcode: number;
 
   USER_DATA: User = {
-    id: undefined,
-    name: undefined,
+    id:       undefined,
+    name:     undefined,
     verified: undefined,
-    email: undefined,
+    email:    undefined,
+    picture:  undefined,
     regionId: undefined,
-    region: undefined
+    region:   undefined
   }
 
   REGION_DATA: Region = {
-    id: undefined,
-    name: undefined,
-    zipcode: undefined
+    id:       undefined,
+    name:     undefined,
+    zipcode:  undefined
   }
 
   async updateUserName(name: string)
@@ -63,6 +69,7 @@ export class RegisterPage implements OnInit {
       console.log(error);
     });
   }
+
 
   register()
   {
@@ -85,6 +92,7 @@ export class RegisterPage implements OnInit {
       this.USER_DATA.email = this.email;
       this.USER_DATA.name = this.name
       this.USER_DATA.verified = false;
+      this.USER_DATA.picture = "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"; // default picture
       this.USER_DATA.regionId = 0;
       this.USER_DATA.region = this.REGION_DATA;
 

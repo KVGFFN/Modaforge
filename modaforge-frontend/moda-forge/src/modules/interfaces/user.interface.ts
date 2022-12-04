@@ -3,6 +3,7 @@ export interface User {
     name:     string;
     verified: boolean;
     email:    string;
+    picture:  string;
     regionId: number;
     region:   Region;
 }

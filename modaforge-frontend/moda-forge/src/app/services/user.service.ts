@@ -18,7 +18,7 @@ export class UserService {
   // Get all users
   getAllUsers()
   {
-    return this.http.get<User[]>(`${this.API}/User`);
+    return this.http.get<User[]>(`${this.API}/api/User`);
   }
 
   // Add user
@@ -26,7 +26,13 @@ export class UserService {
   {
     const headers = { 'content-type': 'application/json'}
     const body = JSON.stringify(user);
-    return this.http.post<User>(`${this.API}/User`, body, {'headers': headers});
+    return this.http.post<User>(`${this.API}/api/User`, body, {'headers': headers});
+  }
+
+  // Get specific user
+  getUser(id: number): Observable<User>
+  {
+    return this.http.get<User>(`${this.API}/api/User/${id}`);
   }
 
 }

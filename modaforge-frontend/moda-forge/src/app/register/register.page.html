@@ -1,4 +1,20 @@
-<div id="overarch">
+<div *ngIf="!apistate" class="noAPI">
+  <ion-card color="warning">
+    <ion-card-header>
+      <ion-card-title>API not found</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        You cannot register if the API is not running.
+        <br>
+        <b>Check if {{IP}} is running.</b>
+      </p>
+    </ion-card-content>
+  </ion-card>
+</div>
+
+
+<div *ngIf="apistate" id="overarch">
   <img src="assets/images/modaforge_logo_long.png" id="logo" />
   <div id="loginform">
 
@@ -56,6 +72,8 @@
     </form>
 
     </ion-card>
+    
+    
     
     
   </div>

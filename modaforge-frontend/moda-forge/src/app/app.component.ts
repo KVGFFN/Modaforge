@@ -7,6 +7,9 @@ import { FirebaseApp, initializeApp } from "firebase/app";
 import { environment } from 'src/environments/environment';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { APIstate } from 'src/helpers/APIstate';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { IP } from 'src/helpers/IP';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -49,7 +52,7 @@ export class AppComponent {
 
 
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   app = initializeApp(environment.firebaseConfig);
   auth = getAuth(this.app);
@@ -72,6 +75,14 @@ export class AppComponent {
 
   ngOnInit()
   {
+    this.http.get(IP.local + '/api/User').subscribe((data: any) => {
+      APIstate.isActive = true;
+      console.log("API IS RUNNING");
+    }, (error) => {
+      APIstate.isActive = false;
+      alert("API is not running at " + IP.local);
+    });
+
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         const uid = user.uid;
