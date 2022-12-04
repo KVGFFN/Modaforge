@@ -10,5 +10,5 @@ export interface User {
 export interface Region {
     id:      number;
     name:    string;
-    zipCode: number;
+    zipcode: number;
 }
