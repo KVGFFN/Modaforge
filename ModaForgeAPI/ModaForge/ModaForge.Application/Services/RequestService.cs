@@ -21,9 +21,9 @@ namespace ModaForge.Application.Services
             return repository.Create(request);
         }
 
-        public IEnumerable<Request> GetAll()
+        public IEnumerable<Request> GetAll(SearchParameters searchParameters)
         {
-            return repository.GetAll();
+            return repository.GetAll(searchParameters);
         }
 
         public Request GetById(int id)

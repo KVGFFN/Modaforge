@@ -30,9 +30,13 @@ namespace ModaForge.Infrastructure.Repositories
             context.SaveChanges();
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetAll(SearchParameters searchParameters)
         {
-            return context.users;
+            return context.users
+                .OrderBy(User => User.Name) //TODO Needs some changes like add searchable tags
+                .Skip((searchParameters.PageNumber - 1) * searchParameters.PageSize)
+                .Take(searchParameters.PageSize)
+                .ToList();
         }
 
 
