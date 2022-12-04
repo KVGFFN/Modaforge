@@ -34,7 +34,7 @@ export class AppComponent {
   ];
   public labels = ['Favorite Clients'];
 
-  
+
 
   users = [];
   profilepicture: any;
@@ -44,7 +44,7 @@ export class AppComponent {
   password: string;
 
   // declare new loginHelper
-  
+
   _loginHelper = loginHelper;
 
 
@@ -61,7 +61,7 @@ export class AppComponent {
   {
     console.log("LOGGING OUT");
     this.auth.signOut();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/register']);
   }
 
   ngOnInit()
@@ -76,12 +76,12 @@ export class AppComponent {
         this.router.navigate(['/home']);
       } else {
         this._loginHelper.isLoggedIn = false;
-        this.router.navigate(['/login']);
+        this.router.navigate(['/register']);
       }
     });
 
 
-    this.users = 
+    this.users =
     [
       {
         id: 1,
