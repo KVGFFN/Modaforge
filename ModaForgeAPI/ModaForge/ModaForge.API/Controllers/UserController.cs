@@ -22,7 +22,7 @@ namespace ModaForge.API.Controllers
             return Ok(service.GetAll(searchParameters));
         }
 
-        [Route("{ id}")]
+        [Route("{id}")]
         [HttpGet]
         public IActionResult GetUser([FromRoute] int id )
         {
