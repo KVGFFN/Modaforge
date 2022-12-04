@@ -11,11 +11,11 @@ import { UserService } from '../services/user.service';
 import { User } from 'src/modules/interfaces/user.interface';
 import { Region } from 'src/modules/interfaces/user.interface';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class RegisterPage implements OnInit {
 
 
 
@@ -88,15 +88,15 @@ export class LoginPage implements OnInit {
       this.USER_DATA.regionId = 0;
       this.USER_DATA.region = this.REGION_DATA;
 
-      
+
       this.userService.addUser(this.USER_DATA).subscribe((data: any) => {
-        console.log("--> userService.addUser login.page.ts:77")
+        console.log("--> userService.addUser register.page.ts:77")
         console.log(data);
       });
       this.router.navigate(['/home']);
-      
+
     })
-    
+
     .catch((error) => {
       const errorMessage = error.message;
       console.log("ERROR: " + errorMessage);
@@ -105,7 +105,7 @@ export class LoginPage implements OnInit {
   }
 
 
-  ngOnInit() 
+  ngOnInit()
   {
     if (this.user)
     {
@@ -115,7 +115,7 @@ export class LoginPage implements OnInit {
     else
     {
       console.log(">> USER IS NOT LOGGED IN");
-      this.router.navigate(['/login']);
+      this.router.navigate(['/register']);
     }
   }
 

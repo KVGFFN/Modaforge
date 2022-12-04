@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { LibraryPage } from './library/library.page';
-import { LoginPage } from './login/login.page';
+import { RegisterPage } from './register/register.page';
 import { TestPage } from './test/test.page';
 
 
@@ -17,8 +17,8 @@ const routes: Routes = [
   // }
 
   {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then(m => m.LoginPageModule)
   },
   {
     path: 'home',
@@ -45,8 +45,8 @@ const routes: Routes = [
     loadChildren: () => import('./your-prints/your-prints.module').then( m => m.YourPrintsPageModule)
   },
   {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then(m => m.LoginPageModule)
   },
   {
     path: 'test',
