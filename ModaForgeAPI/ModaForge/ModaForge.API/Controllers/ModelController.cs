@@ -14,33 +14,32 @@ namespace ModaForge.API.Controllers
             this.service = service;
         }
 
-        [Route("api/[controller]")]
         [HttpGet]
-        public IActionResult GetAllUser()
+        public IActionResult GetAllModels([FromQuery] SearchParameters searchParameters)
         {
-            return Ok(service.GetAll());
+            return Ok(service.GetAll(searchParameters));
         }
 
         [Route("{id}")]
         [HttpGet]
-        public IActionResult GetUser([FromRoute] int id)
+        public IActionResult GetModel([FromRoute] int id)
         {
             return Ok(service.GetById(id));
         }
         [HttpPost]
-        public IActionResult CreateUser([FromBody] Model user)
+        public IActionResult CreateModel([FromBody] Model model)
         {
-            return Ok(service.Create(user));
+            return Ok(service.Create(model));
         }
         [Route("{id}")]
         [HttpPut]
-        public IActionResult UpdateUser([FromRoute] int id, [FromBody] Model user)
+        public IActionResult UpdateModel([FromRoute] int id, [FromBody] Model model)
         {
-            return Ok(service.Update(id, user));
+            return Ok(service.Update(id, model));
         }
         [Route("{id}")]
         [HttpDelete]
-        public IActionResult DeleteUser([FromRoute] int id)
+        public IActionResult DeleteModel([FromRoute] int id)
         {
             service.Delete(id);
             return Ok();

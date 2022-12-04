@@ -9,7 +9,7 @@ namespace ModaForge.Application.Inferfaces
 {
     public interface IModelRepository
     {
-        IEnumerable<Model> GetAll();
+        IEnumerable<Model> GetAll(SearchParameters searchParameters);
         Model GetById(int id);
         Model Create(Model model);
         Model Update(int id, Model model);

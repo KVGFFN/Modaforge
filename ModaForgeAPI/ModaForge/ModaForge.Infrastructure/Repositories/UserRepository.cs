@@ -1,11 +1,11 @@
-﻿using ModaForge.Application.Inferfaces;
-using ModaForge.Infrastructure.Contexts;
+﻿using ModaForge.Infrastructure.Contexts;
 using ModaForge.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ModaForge.Application.Inferfaces;
 
 namespace ModaForge.Infrastructure.Repositories
 {

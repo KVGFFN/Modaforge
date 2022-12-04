@@ -30,9 +30,13 @@ namespace ModaForge.Infrastructure.Repositories
             context.SaveChanges();
         }
 
-        public IEnumerable<Model> GetAll()
+        public IEnumerable<Model> GetAll(SearchParameters searchParameters)
         {
-            return context.models;
+            return context.models
+                .OrderBy(Model => Model.Name) //TODO Needs some changes like add searchable tags
+                .Skip((searchParameters.PageNumber - 1) * searchParameters.PageSize)
+                .Take(searchParameters.PageSize)
+                .ToList();
         }
 
 
@@ -40,7 +44,7 @@ namespace ModaForge.Infrastructure.Repositories
         {
             return context.models.FirstOrDefault(x => x.Id == id);
         }
-        
+
         public Model Update(int id, Model Model)
         {
             context.models.Update(Model);
