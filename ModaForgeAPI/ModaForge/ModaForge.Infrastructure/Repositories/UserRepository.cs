@@ -1,11 +1,11 @@
-﻿using ModaForge.Application.Inferfaces;
-using ModaForge.Infrastructure.Contexts;
+﻿using ModaForge.Infrastructure.Contexts;
 using ModaForge.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ModaForge.Application.Inferfaces;
 
 namespace ModaForge.Infrastructure.Repositories
 {
@@ -30,9 +30,13 @@ namespace ModaForge.Infrastructure.Repositories
             context.SaveChanges();
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetAll(SearchParameters searchParameters)
         {
-            return context.users;
+            return context.users
+                .OrderBy(User => User.Name) //TODO Needs some changes like add searchable tags
+                .Skip((searchParameters.PageNumber - 1) * searchParameters.PageSize)
+                .Take(searchParameters.PageSize)
+                .ToList();
         }
 
 

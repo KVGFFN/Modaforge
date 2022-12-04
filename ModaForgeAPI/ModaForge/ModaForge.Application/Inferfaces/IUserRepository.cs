@@ -8,7 +8,7 @@ namespace ModaForge.Application.Inferfaces
 {
     public interface IUserRepository
     {
-        IEnumerable<User> GetAll();
+        IEnumerable<User> GetAll(SearchParameters searchParameters);
         User GetById(int id);
         User Create(User user);
         User Update(int id, User user);

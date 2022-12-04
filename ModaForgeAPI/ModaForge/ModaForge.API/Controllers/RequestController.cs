@@ -17,9 +17,9 @@ namespace ModaForge.API.Controllers
             this.service = service;
         }
         [HttpGet]
-        public IActionResult GetAllRequests()
+        public IActionResult GetAllRequests([FromQuery] SearchParameters searchParameters)
         {
-            return Ok(service.GetAll());
+            return Ok(service.GetAll(searchParameters));
         }
 
         [Route("{id}")]

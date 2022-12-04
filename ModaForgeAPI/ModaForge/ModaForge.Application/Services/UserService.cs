@@ -30,9 +30,9 @@ namespace ModaForge.Application.Services
             repository.Delete(user);
         }
 
-        public IEnumerable<User> GetAll()
+        public IEnumerable<User> GetAll(SearchParameters searchParameters)
         {
-            return repository.GetAll();
+            return repository.GetAll(searchParameters);
         }
 
         public User GetById(int id)

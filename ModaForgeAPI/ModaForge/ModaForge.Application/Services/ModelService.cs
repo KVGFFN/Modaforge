@@ -17,9 +17,9 @@ namespace ModaForge.Application.Services
             this.repository = repository;
         }
 
-        public IEnumerable<Model> GetAll()
+        public IEnumerable<Model> GetAll(SearchParameters searchParameters)
         {
-            return repository.GetAll();
+            return repository.GetAll(searchParameters);
         }
 
         public Model GetById(int id)

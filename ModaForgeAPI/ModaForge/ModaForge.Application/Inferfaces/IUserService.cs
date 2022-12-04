@@ -9,7 +9,7 @@ namespace ModaForge.Application.Inferfaces
 {
     public interface IUserService
     {
-        public IEnumerable<User> GetAll();
+        public IEnumerable<User> GetAll(SearchParameters searchParameters);
         public User GetById(int id);
         public User Create(User user);
         public User Update(int id, User user);

@@ -9,7 +9,7 @@ namespace ModaForge.Application.Inferfaces
 {
     public interface IRequestService
     {
-        IEnumerable<Request> GetAll();
+        IEnumerable<Request> GetAll(SearchParameters searchParameters);
         public Request GetById(int id);
         public Request Create(Request request);
         public Request Update(int id, Request request);
