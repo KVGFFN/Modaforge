@@ -19,6 +19,7 @@ namespace ModaForge.Infrastructure.Configurations
                     Id = 420,
                     Name = "TestUser",
                     Email = "TestUser@example.org",
+                    Picture = "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
                     Verified = false
                 },
                 new User
@@ -26,6 +27,7 @@ namespace ModaForge.Infrastructure.Configurations
                     Id = 534,
                     Name = "TestProvider",
                     Email = "TestProvider@example.org",
+                    Picture = "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png",
                     Verified = true
                 }
                 );

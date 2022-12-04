@@ -12,6 +12,8 @@ namespace ModaForge.Domain
         public string Name { get; set; }
         public bool Verified { get; set; }
         public string Email { get; set; }
+        
+        public string Picture { get; set; }
 
         [ForeignKey(nameof(Region))]
         public int? RegionId { get; set; }
