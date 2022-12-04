@@ -35,4 +35,12 @@ export class UserService {
     return this.http.get<User>(`${this.API}/api/User/${id}`);
   }
 
+  // Update user
+  updateUser(user: User): Observable<User>
+  {
+    const headers = { 'content-type': 'application/json'}
+    const body = JSON.stringify(user);
+    return this.http.put<User>(`${this.API}/api/User/${user.id}`, body, {'headers': headers});
+  }
+
 }
