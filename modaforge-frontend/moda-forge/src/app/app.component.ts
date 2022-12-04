@@ -64,6 +64,12 @@ export class AppComponent {
     this.router.navigate(['/register']);
   }
 
+  goToProfile()
+  {
+    this.router.navigate(['/profile']);
+  }
+
+
   ngOnInit()
   {
     onAuthStateChanged(this.auth, (user) => {
@@ -79,6 +85,7 @@ export class AppComponent {
         this.router.navigate(['/register']);
       }
     });
+
 
 
     this.users =

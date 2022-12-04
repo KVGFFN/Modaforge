@@ -52,7 +52,11 @@ const routes: Routes = [
     path: 'test',
     component: TestPage,
     loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
+  },  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
+
 
 
 

@@ -38,18 +38,19 @@
             <!-- PROFILE FOOTER -->
             <div id="user-profile">
               <!--Name next to avatar-->
-              <ion-item>
-                <ion-avatar>
-                  <img id="user-profilepicture" src="https://ionicframework.com/docs/img/demos/avatar.svg" /> 
-                </ion-avatar>
-                <ion-label id="profilepicture-name">
-                  {{ username }}
-                </ion-label>
-                <ion-button (click)="logout()">
-                  <ion-icon style="color: black" name="exit"></ion-icon>
-                </ion-button>
-              </ion-item>
-              
+              <div class="clickable-profile" (click)="goToProfile()">
+                <ion-item>
+                  <ion-avatar>
+                    <img id="user-profilepicture" src="https://ionicframework.com/docs/img/demos/avatar.svg" /> 
+                  </ion-avatar>
+                  <ion-label id="profilepicture-name">
+                    {{ username }}
+                  </ion-label>
+                  <ion-button (click)="logout()">
+                    <ion-icon style="color: black" name="exit"></ion-icon>
+                  </ion-button>
+                </ion-item>
+              </div>
             </div>
             
           </ion-toolbar>
