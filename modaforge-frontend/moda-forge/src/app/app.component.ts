@@ -10,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { APIstate } from 'src/helpers/APIstate';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IP } from 'src/helpers/IP';
+import { currentUser } from 'src/helpers/CurrentUser';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -90,6 +91,8 @@ export class AppComponent {
         console.log(user.email);
         console.log(user.displayName);
         this.username = user.displayName;
+        currentUser.username = user.displayName;
+        currentUser.email = user.email;
         this.router.navigate(['/home']);
       } else {
         this._loginHelper.isLoggedIn = false;

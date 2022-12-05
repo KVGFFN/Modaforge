@@ -19,11 +19,11 @@
             <ion-list>
               <ion-item>
                 <ion-avatar slot="start">
-                  <img src="https://api.adorable.io/avatars/150/johndoe.png">
+                  <img [src]="picture">
                 </ion-avatar>
                 <ion-label>
-                  <h2>John Doe</h2>
-                  <p>johndoe@example.com</p>
+                  <h2>{{ name }}</h2>
+                  <p>{{ email }}</p>
                 </ion-label>
               </ion-item>
             </ion-list>
