@@ -4,6 +4,66 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-card>
-  
-</ion-card>
+<!-- The profile page container -->
+<ion-content>
+
+  <!-- The profile page dashboard -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>My Details</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <img src="https://api.adorable.io/avatars/150/johndoe.png">
+                </ion-avatar>
+                <ion-label>
+                  <h2>John Doe</h2>
+                  <p>johndoe@example.com</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+
+    <!-- The dashboard requests -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Recent Requests</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-icon name="time" slot="start"></ion-icon>
+                <ion-label>Request 1</ion-label>
+                <ion-badge color="primary">Pending</ion-badge>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="time" slot="start"></ion-icon>
+                <ion-label>Request 2</ion-label>
+                <ion-badge color="primary">Pending</ion-badge>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+                <ion-label>Request 3</ion-label>
+                <ion-badge color="success">Completed</ion-badge>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
