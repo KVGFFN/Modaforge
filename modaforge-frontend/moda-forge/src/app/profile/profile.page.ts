@@ -14,6 +14,7 @@ export class ProfilePage implements OnInit {
   ) { }
 
   // variables
+  id: number;
   name: string;
   email: string;
   picture: string;
@@ -46,12 +47,17 @@ export class ProfilePage implements OnInit {
       for (let i = 0; i < this.userdata.length; i++) {
         console.log(this.userdata[i].name);
         if (this.userdata[i].name == currentUser.username && this.userdata[i].email == currentUser.email) {
+          this.id = this.userdata[i].id;
           this.name = this.userdata[i].name;
           this.email = this.userdata[i].email;
           this.picture = this.userdata[i].picture;
         }
       }
     }
+  }
+
+  updateToProvider(id : number) {
+    
   }
 
 
