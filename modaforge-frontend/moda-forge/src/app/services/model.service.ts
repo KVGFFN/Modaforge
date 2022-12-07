@@ -12,6 +12,7 @@ export class ModelService {
 
   // variables
   getAll: string = 'https://api.sketchfab.com/v3/models?archives_flavours=false'
+  modelById: string = 'https://api.sketchfab.com/v3/models/'
 
   // get all models from api
   getAllModels() {
