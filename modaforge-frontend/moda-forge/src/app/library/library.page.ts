@@ -26,6 +26,7 @@ export class LibraryPage implements OnInit {
 
   parent_modelurls = [];
   parent_modelnames = [];
+  parent_modeluids = [];
 
   searchTerm: string;
 
@@ -54,6 +55,7 @@ export class LibraryPage implements OnInit {
         this.library.forEach(element => {
           this.parent_modelurls.push(element.embedUrl);
           this.parent_modelnames.push(element.name);
+          this.parent_modeluids.push(element.uid);
         });
 
         this.hasLoaded = true;

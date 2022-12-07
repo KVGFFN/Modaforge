@@ -19,6 +19,11 @@ export class ModelService {
     return this.http.get<Model>(this.getAll);
   }
 
+  // get model by id
+  getModelById(id: string) {
+    return this.http.get<Model>(this.modelById + id);
+  }
+
 
 
 
