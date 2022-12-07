@@ -19,7 +19,7 @@ export class LibraryPage implements OnInit {
     ) { }
 
   // variables
-  realModel?: string
+  realModel?: any;
   hasLoaded = false;
   modelIsAssigned = false;
   library = [];
@@ -84,6 +84,15 @@ export class LibraryPage implements OnInit {
       }
     });
     
+  }
+
+  goToModel(model) {
+    
+  }
+
+  redirectToModel(index: number)
+  {
+    console.log("MODEL: " + this.library[index].uid + " WAS CLICKED ")
   }
 
 
