@@ -39,6 +39,7 @@ namespace ModaForge.Infrastructure.Contexts
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new RequestConfiguration());
             modelBuilder.ApplyConfiguration(new ModelConfiguration());
+            modelBuilder.ApplyConfiguration(new ProviderConfiguration());
         }
     }
 
