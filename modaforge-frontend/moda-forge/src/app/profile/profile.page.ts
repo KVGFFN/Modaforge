@@ -20,16 +20,18 @@ export class ProfilePage implements OnInit {
 
   // variables
   id: number;
-  name: string;
+  name: string = "";
+  services: string = "";
   email: string;
   picture: string;
   userdata = [];
   userIsLoaded: boolean = false;
+  showSignUpForm: boolean = false;
 
   provider: Provider = {
     id: 0,
-    name: "test",
-    services: "Ik kan heel goed printen met mijn HP multi color printer",
+    name: this.name,
+    services: this.services,
     userId: 420,
     user: {
       id: 0,
@@ -90,6 +92,10 @@ export class ProfilePage implements OnInit {
       console.log(error);
     });
     
+  }
+
+  toggleSignUpForm() {
+    this.showSignUpForm = !this.showSignUpForm;;
   }
 
 
