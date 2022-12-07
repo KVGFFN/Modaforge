@@ -1,9 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>model-detail</ion-title>
+    <ion-title>Model Detail</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <!-- Model -->
+    <iframe 
+      frameborder="0" 
+      allowfullscreen="" 
+      loading="lazy" 
+      allow="autoplay; xr-spatial-tracking" xr-spatial-tracking
+      execution-while-out-of-viewport execution-while-not-rendered web-share [src]="embedUrl | safe" 
+      width="100%"
+      style="height: 50vh;"
+      >
+    </iframe>
 
+    <ion-card-content>
+      <!-- Download button -->
+      <!--<ion-button expand="full" color="primary" (click)="downloadModel()">-->
+      <ion-button>Download</ion-button>
+
+      <!-- Create Request button -->
+      <ion-button></ion-button>
+
+      <!-- Comment section -->
+      <ion-list>
+        <ion-list-header>
+          Comments
+        </ion-list-header>
+        <!--<ion-item *ngFor="let comment of comments">-->
+        <ion-item></ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

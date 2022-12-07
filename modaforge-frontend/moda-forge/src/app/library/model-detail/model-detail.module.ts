@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ModelDetailPageRoutingModule } from './model-detail-routing.module';
 
 import { ModelDetailPage } from './model-detail.page';
+import { SafePipe } from 'src/app/app.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { ModelDetailPage } from './model-detail.page';
     IonicModule,
     ModelDetailPageRoutingModule
   ],
-  declarations: [ModelDetailPage]
+  declarations: [ModelDetailPage, SafePipe]
 })
 export class ModelDetailPageModule {}

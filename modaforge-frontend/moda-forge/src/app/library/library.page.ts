@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component, Injector, OnInit } from '@angular/core';
 import { ModelService } from '../services/model.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { APIstate } from 'src/helpers/APIstate';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-library',
@@ -15,7 +16,8 @@ export class LibraryPage implements OnInit {
   constructor(private modelService: ModelService, 
     private sanitizer: DomSanitizer, 
     private ref: ChangeDetectorRef,
-    private http: HttpClient
+    private http: HttpClient,
+    private navController: NavController,
     ) { }
 
   // variables
@@ -93,6 +95,7 @@ export class LibraryPage implements OnInit {
   redirectToModel(index: number)
   {
     console.log("MODEL: " + this.library[index].uid + " WAS CLICKED ")
+    this.navController.navigateForward('/library/model-detail/' + this.library[index].uid);
   }
 
 

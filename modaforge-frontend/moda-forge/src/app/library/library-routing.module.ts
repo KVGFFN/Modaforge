@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LibraryPage } from './library.page';
+import { ModelDetailPage } from './model-detail/model-detail.page';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'model-detail',
     loadChildren: () => import('./model-detail/model-detail.module').then( m => m.ModelDetailPageModule)
+  },
+  {
+    path: 'model-detail/:modelId',
+    component: ModelDetailPage
   }
 ];
 

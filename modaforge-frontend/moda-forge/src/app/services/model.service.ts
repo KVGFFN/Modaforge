@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Injectable, Injector, OnInit } from '@angular/core';
+import { ModelDetail } from 'src/modules/interfaces/model-detail.interface';
 import { Model } from 'src/modules/interfaces/model.interface';
 
 @Injectable({
@@ -21,7 +22,7 @@ export class ModelService {
 
   // get model by id
   getModelById(id: string) {
-    return this.http.get<Model>(this.modelById + id);
+    return this.http.get<ModelDetail>(this.modelById + id);
   }
 
 
