@@ -5,10 +5,28 @@
 
 
 <ion-content position="relative">
-  <app-model 
-    [child_modelurls]="parent_modelurls"
-    [child_modelnames]="parent_modelnames"
-  ></app-model>
+  <ion-grid>
+    <ion-row *ngFor="let model of parent_modelurls; let i = index;">
+      <ion-col style="width: auto;">
+        <ion-card class="card-style">
+          <ion-card-header>
+            <ion-card-title style="text-align: center">{{ parent_modelurls[i] }} </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="sketchfab-embed-wrapper">
+              <div>
+                <iframe frameborder="0" allowfullscreen="" loading="lazy" allow="autoplay; xr-spatial-tracking"
+                  xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share
+                  [src]="model | safe" width="275px" height="275px" style="text-align: center;">
+                </iframe>
+              </div>
+              <ion-button (click)="redirectToModel(i)">Go to model</ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
 <!--TODO:-->
