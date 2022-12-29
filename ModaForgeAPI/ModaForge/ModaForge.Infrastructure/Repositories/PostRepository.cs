@@ -19,27 +19,36 @@ namespace ModaForge.Infrastructure.Repositories
         
         public Post Create(Post post)
         {
-            throw new NotImplementedException();
+            context.posts.Add(post);
+            context.SaveChanges();
+            return post;
         }
 
-        public void Delete(int id)
+        public void Delete(Post post)
         {
-            throw new NotImplementedException();
+            context.posts.Remove(post);
+            context.SaveChanges();
         }
 
         public IEnumerable<Post> GetAll(SearchParameters searchParameters)
         {
-            throw new NotImplementedException();
+            return context.posts
+                .OrderBy(Request => Request.Name) //TODO Needs some changes like add searchable tags
+                .Skip((searchParameters.PageNumber - 1) * searchParameters.PageSize)
+                .Take(searchParameters.PageSize)
+                .ToList();
         }
 
         public Post GetById(int id)
         {
-            throw new NotImplementedException();
+            return context.posts.FirstOrDefault(x => x.Id == id);
         }
 
         public Post Update(int id, Post post)
         {
-            throw new NotImplementedException();
+            context.posts.Update(post);
+            context.SaveChanges();
+            return post;
         }
     }
 }
