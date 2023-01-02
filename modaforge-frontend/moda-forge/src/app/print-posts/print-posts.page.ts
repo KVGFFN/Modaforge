@@ -9,6 +9,9 @@ export class PrintPostsPage implements OnInit {
 
   constructor() { }
 
+  // Variables
+  posts: any[] = ["test", "test2", "test3", "test4", "test5"];
+
   ngOnInit() {
   }
 
