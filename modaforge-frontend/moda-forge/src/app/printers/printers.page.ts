@@ -9,6 +9,9 @@ export class PrintersPage implements OnInit {
 
   constructor() { }
 
+  // Variables
+  printers: any[] = ["test", "test2", "test3", "test4", "test5"];
+
   ngOnInit() {
   }
 
