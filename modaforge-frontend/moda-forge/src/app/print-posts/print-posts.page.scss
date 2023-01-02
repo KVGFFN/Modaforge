@@ -2,6 +2,10 @@
     clear: both;
 }
 
+.top-row {
+    width: 100%;
+}
+
 .post-card {
     width: 95%; 
     padding: 5px;
@@ -15,13 +19,20 @@
 }
 
 .description {
-    background-color: #353535;
+    background-color: #222428;
     margin: 5px;
     border-radius: 5px;
     min-height: 100px;
 }
 
 .accept-button {
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    float: right;
+}
+
+.create-button {
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
