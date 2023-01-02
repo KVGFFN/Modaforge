@@ -5,5 +5,21 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-grid>
+     <ion-row>
+        <ion-col size="4" *ngFor="let post of posts; let i = index" [class.new-row]="(i + 1) % 3 === 0">
+           <!-- Post -->
+           <ion-card class="post-card">
+              <ion-card-header>
+                <ion-card-title>Username</ion-card-title>
+              </ion-card-header>
+              <ion-card-title class="sub-title"> Bounty request title</ion-card-title>
+              <ion-card-content class="description">
+                 Description
+              </ion-card-content>
+              <ion-button class="accept-button">Accept</ion-button>
+           </ion-card>
+        </ion-col>
+     </ion-row>
+  </ion-grid>
 </ion-content>
