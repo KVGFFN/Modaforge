@@ -7,25 +7,18 @@
 <ion-content>
   <ion-card>
     <!-- Model -->
-    <iframe 
-      frameborder="0" 
-      allowfullscreen="" 
-      loading="lazy" 
-      allow="autoplay; xr-spatial-tracking" xr-spatial-tracking
-      execution-while-out-of-viewport execution-while-not-rendered web-share [src]="embedUrl | safe" 
-      width="100%"
-      style="height: 50vh;"
-      >
+    <iframe frameborder="0" allowfullscreen="" loading="lazy" allow="autoplay; xr-spatial-tracking" xr-spatial-tracking
+      execution-while-out-of-viewport execution-while-not-rendered web-share [src]="embedUrl | safe" width="100%"
+      style="height: 50vh;">
     </iframe>
 
     <ion-card-content>
-      <!-- Download button -->
-      <!--<ion-button expand="full" color="primary" (click)="downloadModel()">-->
-      <ion-button>Download</ion-button>
-
       <!-- Create Request button -->
-      <ion-button></ion-button>
-
+      <ion-button color="primary" shape="round">
+        <ion-icon slot="start" name="create"></ion-icon>
+        Create Request
+      </ion-button>
+      
       <!-- Comment section -->
       <ion-list>
         <ion-list-header>
