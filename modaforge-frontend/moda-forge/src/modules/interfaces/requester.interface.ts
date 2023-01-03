@@ -1,6 +1,6 @@
 import { User } from "./user.interface";
 
-export interface Provider
+export interface Requester
 {
     id: number;
     userId: number;
