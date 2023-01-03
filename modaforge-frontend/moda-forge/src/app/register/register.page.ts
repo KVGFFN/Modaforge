@@ -21,7 +21,7 @@ import { APIstate } from 'src/helpers/APIstate';
 export class RegisterPage implements OnInit {
 
 
-
+  // Configuration of registration
   app = initializeApp(environment.firebaseConfig);
   analytics = getAnalytics(this.app);
   auth = getAuth(this.app);
@@ -32,9 +32,12 @@ export class RegisterPage implements OnInit {
 
   constructor(private router: Router, private userService: UserService) {}
 
+  // Register check
+  userExists: boolean = false;
+
   // User
   name: string;
-  email: string;
+  email?: string;
   password: string;
 
   // Region
@@ -70,10 +73,11 @@ export class RegisterPage implements OnInit {
     });
   }
 
-
   register()
   {
     console.log("EXECUTED LOGIN METHOD LOGIN.PAGE.TS");
+
+    // Check if user with email already exists
     createUserWithEmailAndPassword(this.auth, this.email, this.password)
     .then((userCredential) => {
       this.user = userCredential.user;
@@ -108,6 +112,7 @@ export class RegisterPage implements OnInit {
     .catch((error) => {
       const errorMessage = error.message;
       console.log("ERROR: " + errorMessage);
+      alert("ERROR: " + errorMessage);
     });
 
   }
