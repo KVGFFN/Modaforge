@@ -1,5 +1,7 @@
 import { Model } from "./model.interface";
 import { Region } from "./region.interface";
+import { Requester } from "./requester.interface";
+import { Provider } from "./provider.interface";
 
 
 export interface Request
@@ -17,9 +19,9 @@ export interface Request
     modelId?: number;
     regionId?: number;
 
-    // requester?: Requester;
-    // provider?: Provider;
-    // model?: Model;
-    // region?: Region;
+    requester?: Requester;
+    provider?: Provider;
+    model?: Model;
+    region?: Region;
 
 }
