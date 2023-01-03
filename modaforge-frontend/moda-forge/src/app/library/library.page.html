@@ -10,7 +10,7 @@
       <ion-col style="width: auto;">
         <ion-card class="card-style">
           <ion-card-header>
-            <ion-card-title style="text-align: center">{{ parent_modelurls[i] }} </ion-card-title>
+            <ion-card-title style="text-align: center; padding: 15px;">{{ parent_modelnames[i] }} </ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <div class="sketchfab-embed-wrapper">
@@ -20,7 +20,9 @@
                   [src]="model | safe" width="275px" height="275px" style="text-align: center;">
                 </iframe>
               </div>
-              <ion-button (click)="redirectToModel(i)">Go to model</ion-button>
+              <div style="margin: auto; width: 50%;">
+                <ion-button style="align-items: center;" (click)="redirectToModel(i)">Go to model</ion-button>
+              </div>
             </div>
           </ion-card-content>
         </ion-card>
