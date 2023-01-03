@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import IRequest from 'src/modules/interfaces/request.interface';
+import { Request } from 'src/modules/interfaces/request.interface';
 
 @Component({
   selector: 'app-request-bar',
@@ -8,7 +8,7 @@ import IRequest from 'src/modules/interfaces/request.interface';
 })
 export class RequestBarPage implements OnInit {
 
-  requests: IRequest[];
+  requests: Request[];
 
   id: number;
   title: string;
@@ -17,7 +17,7 @@ export class RequestBarPage implements OnInit {
   // foutmelding op html pagina
   isApiAvailable: boolean;
 
-  async getAllUsers() {
+  async getAllRequests() {
     try
     {
       const response = await fetch('https://localhost:7271/api/Request', {method: 'GET'});
@@ -39,7 +39,7 @@ export class RequestBarPage implements OnInit {
 
   ngOnInit() {
     this.isApiAvailable = true;
-    this.getAllUsers();
+    this.getAllRequests();
   }
 
   

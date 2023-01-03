@@ -1,4 +1,4 @@
-interface IRequest
+export interface Request
 {
     "id": number;
     "title": string;
@@ -7,5 +7,3 @@ interface IRequest
     "acceptedDate": string;
     "doneDate": string;
 }
-
-export default IRequest;
