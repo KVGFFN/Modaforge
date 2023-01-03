@@ -1,12 +1,18 @@
 <ion-card>
   <ion-card-header>
-    <ion-card-title>{{nameModel}}</ion-card-title>
+
+    <ion-card-title text-center>{{nameModel}}</ion-card-title>
     <ion-card-subtitle>
-      Printed by: <b>{{namePrinter}}</b>
+      {{ description }}
     </ion-card-subtitle>
+
   </ion-card-header>
 
-  <ion-card-content>
-    {{description}}
+  <ion-card-content text-center>
+    Printed by: <b>{{ namePrinter }}</b>
   </ion-card-content>
+  <ion-card-content text-center>
+    <ion-badge color="primary">PENDING</ion-badge>
+  </ion-card-content>
+  
 </ion-card>
