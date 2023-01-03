@@ -8,7 +8,7 @@ namespace ModaForge.Domain
         // TODO: Possibly add ICollection collection of Comments (Create Comment.cs?)
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime Created { get; set; }
         

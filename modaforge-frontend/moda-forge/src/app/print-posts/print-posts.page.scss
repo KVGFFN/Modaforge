@@ -1,0 +1,46 @@
+.new-row {
+    clear: both;
+}
+
+.top-row {
+    width: 100%;
+}
+
+.post-card {
+    width: 95%; 
+    padding: 5px;
+    margin: 5px;
+}
+
+.sub-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.description {
+    background-color: #222428;
+    margin: 5px;
+    border-radius: 5px;
+    min-height: 100px;
+}
+
+.accept-button {
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    float: right;
+}
+
+.create-button {
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    float: right;
+}
+
+#profilepicture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
