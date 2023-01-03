@@ -84,11 +84,33 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  allFieldsAreFilled: boolean = false;
+
+  checkIfNotNull()
+  {
+    if (this.name == '' || this.email == '' || this.regionName == '' || this.regionZipcode == undefined) {
+      this.allFieldsAreFilled = false;
+    }
+    else
+    {
+      this.allFieldsAreFilled = true;
+    }
+  }
+
   register() {
     console.log('%cregister() in register.page.ts', 'color: yellow');
     this.checkForIllegalCharacters();
+    this.checkIfNotNull();
     if (this.hasIllegalCharacters == false) {
-      this.createUser();
+      // this.createUser();
+      if (this.allFieldsAreFilled == true) {
+        this.createUser();
+      }
+      else
+      {
+        console.log("%cregister.page.ts -- Not all fields are filled", "color:red");
+        alert("Not all fields are filled, Please fill in all fields and try again.");
+      }
     }
     else
     {
