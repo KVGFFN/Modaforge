@@ -5,8 +5,6 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase
 import { Router } from '@angular/router';
 import { loginHelper } from '../loginHelper';
 import { environment } from 'src/environments/environment';
-import { NgModel } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { User } from 'src/modules/interfaces/user.interface';
 import { Region } from 'src/modules/interfaces/region.interface';
