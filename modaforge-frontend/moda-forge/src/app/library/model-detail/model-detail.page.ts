@@ -42,5 +42,11 @@ export class ModelDetailPage implements OnInit {
     this.embedUrl = data.embedUrl;
   }
 
+  createRequest()
+  {
+    // yellow console log
+    console.log("%cmodel-detail.page.ts -- createRequest()", "color: yellow");
+  }
+
 
 }
