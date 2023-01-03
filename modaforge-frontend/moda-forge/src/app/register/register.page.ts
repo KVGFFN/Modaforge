@@ -9,7 +9,7 @@ import { NgModel } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { User } from 'src/modules/interfaces/user.interface';
-import { Region } from 'src/modules/interfaces/user.interface';
+import { Region } from 'src/modules/interfaces/region.interface';
 import { IP } from 'src/helpers/IP';
 import { APIstate } from 'src/helpers/APIstate';
 
