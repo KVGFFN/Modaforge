@@ -70,45 +70,71 @@ export class RegisterPage implements OnInit {
       });
   }
 
-  register() {
-    console.log('%cregister() in register.page.ts', 'color: yellow');
+  ILLEGAL_NAME_CHARACTERS = /[^a-zA-Z]/;
+  hasIllegalCharacters: boolean = false;
 
-    createUserWithEmailAndPassword(this.auth, this.email, this.password)
-      .then(userCredential => {
-        this.user = userCredential.user;
-        this.updateUserName(this.name);
-        console.log('VV USERINFO VV');
-        console.log(`NAME: ${this.user.displayName}`);
-        console.log(`EMAIL: ${this.user.email}`);
-
-        // Add user to database
-        this.USER_DATA = {
-          id: 0,
-          email: this.email,
-          name: this.name,
-          verified: false,
-          picture: 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png', // default picture
-          regionId: 0,
-          region: {
-            id: 0,
-            name: this.regionName,
-            zipcode: this.regionZipcode
-          }
-        };
-
-        this.userService.addUser(this.USER_DATA).subscribe((data: any) => {
-          console.log('--> userService.addUser register.page.ts:77');
-          console.log(data);
-        });
-        this.router.navigate(['/home']);
-      })
-      .catch(error => {
-        const errorMessage = error.message;
-        console.log(`ERROR: ${errorMessage}`);
-        alert(`ERROR: ${errorMessage}`);
-      });
+  checkForIllegalCharacters() 
+  {
+    if (this.ILLEGAL_NAME_CHARACTERS.test(this.name)) {
+      this.hasIllegalCharacters = true;
+    }
+    else
+    {
+      this.hasIllegalCharacters = false;
+    }
   }
 
+  register() {
+    console.log('%cregister() in register.page.ts', 'color: yellow');
+    this.checkForIllegalCharacters();
+    if (this.hasIllegalCharacters == false) {
+      this.createUser();
+    }
+    else
+    {
+      console.log("%cregister.page.ts -- Illegal characters detected", "color:red");
+      alert("Illegal characters detected in name or email, Please change them and try again.");
+      this.name = "";
+    }
+  }
+
+  createUser()
+  {
+    createUserWithEmailAndPassword(this.auth, this.email, this.password)
+    .then(userCredential => {
+      this.user = userCredential.user;
+      this.updateUserName(this.name);
+      console.log('VV USERINFO VV');
+      console.log(`NAME: ${this.user.displayName}`);
+      console.log(`EMAIL: ${this.user.email}`);
+
+      // Add user to database
+      this.USER_DATA = {
+        id: 0,
+        email: this.email,
+        name: this.name,
+        verified: false,
+        picture: 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png', // default picture
+        regionId: 0,
+        region: {
+          id: 0,
+          name: this.regionName,
+          zipcode: this.regionZipcode
+        }
+      };
+
+      this.userService.addUser(this.USER_DATA).subscribe((data: any) => {
+        console.log('--> userService.addUser register.page.ts:77');
+        console.log(data);
+      });
+      this.router.navigate(['/home']);
+    })
+    .catch(error => {
+      const errorMessage = error.message;
+      console.log(`ERROR: ${errorMessage}`);
+      alert(`ERROR: ${errorMessage}`);
+    });
+  }
 
 
   ngOnInit() {
