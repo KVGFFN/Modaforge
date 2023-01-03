@@ -1,4 +1,5 @@
 import { Model } from "./model.interface";
+import { Region } from "./region.interface";
 
 
 export interface Request
