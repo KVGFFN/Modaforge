@@ -23,6 +23,12 @@ export class RequestService {
   //   return this.http.post<Request>(`${this.API}/api/Request`, body, {'headers': headers});
   // }
 
+  // Get request by id
+  getRequest(id: number): Observable<Request>
+  {
+    return this.http.get<Request>(`${this.API}/api/Request/${id}`);
+  }
+
 
 
 }
