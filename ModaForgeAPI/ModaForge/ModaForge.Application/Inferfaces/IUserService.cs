@@ -11,6 +11,7 @@ namespace ModaForge.Application.Inferfaces
     {
         public IEnumerable<User> GetAll(SearchParameters searchParameters);
         public User GetById(int id);
+        public User GetByNameEmail(string name, string email);
         public User Create(User user);
         public User Update(int id, User user);
         public void Delete(int id);

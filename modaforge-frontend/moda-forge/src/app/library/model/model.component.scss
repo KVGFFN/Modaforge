@@ -1,14 +1,53 @@
-// display all grid elements next to eachother
 ion-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 5fr));
   grid-gap: 10px;
   grid-auto-rows: minmax(25px, auto);
-}
+  width: auto;
+  max-width: 100%;
 
-.card-style
-{
-  width: 100%;
-  height: 100%;
-}
+  ion-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
+    ion-col {
+      width: auto;
+
+      ion-card {
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+
+        &:hover {
+          box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        ion-card-header {
+          padding: 2px 16px;
+
+          ion-card-title {
+            text-align: center;
+            font-weight: bold;
+          }
+        }
+
+        ion-card-content {
+          padding: 2px 16px;
+
+          .sketchfab-embed-wrapper {
+            width: 100%;
+            height: 100%;
+
+            iframe {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}

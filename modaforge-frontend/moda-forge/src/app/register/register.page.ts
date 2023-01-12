@@ -5,11 +5,9 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase
 import { Router } from '@angular/router';
 import { loginHelper } from '../loginHelper';
 import { environment } from 'src/environments/environment';
-import { NgModel } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { User } from 'src/modules/interfaces/user.interface';
-import { Region } from 'src/modules/interfaces/user.interface';
+import { Region } from 'src/modules/interfaces/region.interface';
 import { IP } from 'src/helpers/IP';
 import { APIstate } from 'src/helpers/APIstate';
 
@@ -21,7 +19,7 @@ import { APIstate } from 'src/helpers/APIstate';
 export class RegisterPage implements OnInit {
 
 
-
+  // Configuration of registration
   app = initializeApp(environment.firebaseConfig);
   analytics = getAnalytics(this.app);
   auth = getAuth(this.app);
@@ -30,11 +28,14 @@ export class RegisterPage implements OnInit {
   apistate = APIstate.isActive;
   IP = IP.local;
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router, private userService: UserService) { }
+
+  // Register check
+  userExists: boolean = false;
 
   // User
   name: string;
-  email: string;
+  email?: string;
   password: string;
 
   // Region
@@ -42,86 +43,128 @@ export class RegisterPage implements OnInit {
   regionZipcode: number;
 
   USER_DATA: User = {
-    id:       undefined,
-    name:     undefined,
+    id: undefined,
+    name: undefined,
     verified: undefined,
-    email:    undefined,
-    picture:  undefined,
+    email: undefined,
+    picture: undefined,
     regionId: undefined,
-    region:   undefined
+    region: undefined
   }
 
   REGION_DATA: Region = {
-    id:       undefined,
-    name:     undefined,
-    zipcode:  undefined
+    id: undefined,
+    name: undefined,
+    zipcode: undefined
   }
 
-  async updateUserName(name: string)
-  {
+  async updateUserName(name: string) {
     this.user = this.auth.currentUser;
     await updateProfile(this.user, {
       displayName: name
     }).then(() => {
       console.log("Name updated to " + name);
     })
-    .catch((error) => {
-      console.log(error);
-    });
-  }
-
-
-  register()
-  {
-    console.log("EXECUTED LOGIN METHOD LOGIN.PAGE.TS");
-    createUserWithEmailAndPassword(this.auth, this.email, this.password)
-    .then((userCredential) => {
-      this.user = userCredential.user;
-      this.updateUserName(this.name);
-      console.log("VV USERINFO VV");
-      console.log("NAME: " + this.user.displayName);
-      console.log("EMAIL: " + this.user.email);
-
-      // Add user to database
-
-      this.REGION_DATA.id = 0;
-      this.REGION_DATA.name = this.regionName;
-      this.REGION_DATA.zipcode = this.regionZipcode;
-
-      this.USER_DATA.id = 0;
-      this.USER_DATA.email = this.email;
-      this.USER_DATA.name = this.name
-      this.USER_DATA.verified = false;
-      this.USER_DATA.picture = "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"; // default picture
-      this.USER_DATA.regionId = 0;
-      this.USER_DATA.region = this.REGION_DATA;
-
-
-      this.userService.addUser(this.USER_DATA).subscribe((data: any) => {
-        console.log("--> userService.addUser register.page.ts:77")
-        console.log(data);
+      .catch((error) => {
+        console.log(error);
       });
-      this.router.navigate(['/home']);
-
-    })
-
-    .catch((error) => {
-      const errorMessage = error.message;
-      console.log("ERROR: " + errorMessage);
-    });
-
   }
 
+  ILLEGAL_NAME_CHARACTERS = /[^a-zA-Z]/;
+  hasIllegalCharacters: boolean = false;
 
-  ngOnInit()
+  checkForIllegalCharacters() 
   {
-    if (this.user)
-    {
-      console.log(">> USER IS LOGGED IN");;
-      this.router.navigate(['/home']);
+    if (this.ILLEGAL_NAME_CHARACTERS.test(this.name)) {
+      this.hasIllegalCharacters = true;
     }
     else
     {
+      this.hasIllegalCharacters = false;
+    }
+  }
+
+  allFieldsAreFilled: boolean = false;
+
+  checkIfNotNull()
+  {
+    if (this.name == '' || this.email == '' || this.regionName == '' || this.regionZipcode == undefined) {
+      this.allFieldsAreFilled = false;
+    }
+    else
+    {
+      this.allFieldsAreFilled = true;
+    }
+  }
+
+  register() {
+    console.log('%cregister() in register.page.ts', 'color: yellow');
+    this.checkForIllegalCharacters();
+    this.checkIfNotNull();
+    if (this.hasIllegalCharacters == false) {
+      // this.createUser();
+      if (this.allFieldsAreFilled == true) {
+        this.createUser();
+      }
+      else
+      {
+        console.log("%cregister.page.ts -- Not all fields are filled", "color:red");
+        alert("Not all fields are filled, Please fill in all fields and try again.");
+      }
+    }
+    else
+    {
+      console.log("%cregister.page.ts -- Illegal characters detected", "color:red");
+      alert("Illegal characters detected in name or email, Please change them and try again.");
+      this.name = "";
+    }
+  }
+
+  createUser()
+  {
+    createUserWithEmailAndPassword(this.auth, this.email, this.password)
+    .then(userCredential => {
+      this.user = userCredential.user;
+      this.updateUserName(this.name);
+      console.log('VV USERINFO VV');
+      console.log(`NAME: ${this.user.displayName}`);
+      console.log(`EMAIL: ${this.user.email}`);
+
+      // Add user to database
+      this.USER_DATA = {
+        id: 0,
+        email: this.email,
+        name: this.name,
+        verified: false,
+        picture: 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png', // default picture
+        regionId: 0,
+        region: {
+          id: 0,
+          name: this.regionName,
+          zipcode: this.regionZipcode
+        }
+      };
+
+      this.userService.addUser(this.USER_DATA).subscribe((data: any) => {
+        console.log('--> userService.addUser register.page.ts:77');
+        console.log(data);
+      });
+      this.router.navigate(['/home']);
+    })
+    .catch(error => {
+      const errorMessage = error.message;
+      console.log(`ERROR: ${errorMessage}`);
+      alert(`ERROR: ${errorMessage}`);
+    });
+  }
+
+
+  ngOnInit() {
+    if (this.user) {
+      console.log(">> USER IS LOGGED IN");;
+      this.router.navigate(['/home']);
+    }
+    else {
       console.log(">> USER IS NOT LOGGED IN");
       this.router.navigate(['/register']);
     }

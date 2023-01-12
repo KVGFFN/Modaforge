@@ -1,3 +1,5 @@
+import { Region } from "./region.interface";
+
 export interface User {
     id:       number;
     name:     string;
@@ -8,8 +10,3 @@ export interface User {
     region:   Region;
 }
 
-export interface Region {
-    id:      number;
-    name:    string;
-    zipcode: number;
-}

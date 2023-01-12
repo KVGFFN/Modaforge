@@ -20,5 +20,13 @@ export class ModelComponent implements OnInit {
   @Input() child_modelurls = [];
   @Input() child_modelnames = [];
 
+
+  selectedModel: any = undefined;
+
+  // Other component properties and methods...
+
+  onModelRadioChange(event) {
+    this.selectedModel = event.detail.value;
+  }
 }
 

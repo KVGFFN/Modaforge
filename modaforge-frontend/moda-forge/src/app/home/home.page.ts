@@ -3,6 +3,10 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/services/user.service';
+import { currentUser } from 'src/helpers/CurrentUser';
+import { app, user, auth } from 'src/helpers/authentication';
+import { authState } from 'src/helpers/authState';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,24 +15,35 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HomePage implements OnInit {
 
-  users = [];
-  
+  userName: string;
+  userMail: string;
 
+  app = app;
+  user = user;
+  auth = auth;
 
   constructor(private userService: UserService) 
   {
-    this.users = [];
-  }
-
-  ngOnInit() {
-    this.getAllUsers()
 
   }
 
-  async getAllUsers() {
-    this.userService.getAllUsers().subscribe((data: any) => {
+  ngOnInit(){
+    // Wait until auth is initialized, prevents "currentUser.username" being null
+    let intervalSubscription = interval(1000).subscribe(() => {
+      if (authState.authIsInitialized) {
+        this.userName = currentUser.username;
+        this.userMail = currentUser.email
+        this.getCurrentUser();
+        intervalSubscription.unsubscribe();
+      }
+    });    
+  }
+
+  async getCurrentUser()
+  {
+    this.userService.getUserByNameEmail(this.userName, this.userMail).subscribe((data: any) => {
       console.log(data);
-      this.users = data;
+      currentUser.id = data["id"];
     });
   }
 

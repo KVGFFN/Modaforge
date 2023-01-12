@@ -1,9 +1,51 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>printers</ion-title>
+    <ion-title>Find your Printer</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-grid>
+    <ion-row class="top-row"> 
+      <ion-col>
+        <ion-searchbar color="light"></ion-searchbar>
+      </ion-col> 
+      <!-- <ion-col size="auto">
+        <ion-button class="create-button">Create a post</ion-button>
+      </ion-col>    -->
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+     <ion-row>
+        <ion-col size="4" *ngFor="let printer of printers; let i = index" [class.new-row]="(i + 1) % 3 === 0">
+           <!-- Post -->
+           <ion-card class="print-card">
+              <ion-card-header>
+                <ion-card-title>
+                  <img id="profilepicture" src="https://ionicframework.com/docs/img/demos/avatar.svg">
+                  Username
+                </ion-card-title>
+              </ion-card-header>
+              <ion-card-title class="sub-title"> About me title</ion-card-title>
+              <ion-card-content class="description">
+                 Description
+              </ion-card-content>
+              <ion-button class="accept-button">Send Request</ion-button>
+           </ion-card>
+        </ion-col>
+     </ion-row>
+  </ion-grid>
 </ion-content>
+
+<!--TODO:-->
+<!--
+
+  1. Hardcoded -> actual data
+  
+  2. Search function for printers
+  
+  3. Add filter functions
+
+  4. Add printer review score
+
+-->

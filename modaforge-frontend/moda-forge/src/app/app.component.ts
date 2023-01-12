@@ -11,6 +11,9 @@ import { APIstate } from 'src/helpers/APIstate';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IP } from 'src/helpers/IP';
 import { currentUser } from 'src/helpers/CurrentUser';
+import { app, user, auth } from 'src/helpers/authentication';
+import { UserService } from 'src/app/services/user.service';
+import { authState } from 'src/helpers/authState';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -53,11 +56,11 @@ export class AppComponent {
 
 
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient, private userService: UserService) {}
 
-  app = initializeApp(environment.firebaseConfig);
-  auth = getAuth(this.app);
-  user = this.auth.currentUser
+  app = app;
+  user = user;
+  auth = auth;
 
   username: string;
 
@@ -76,6 +79,7 @@ export class AppComponent {
 
   ngOnInit()
   {
+    console.log("%capp.component.ts -- ngOnInit()", "color: yellow")
     this.http.get(IP.local + '/api/User').subscribe((data: any) => {
       APIstate.isActive = true;
       console.log("API IS RUNNING");
@@ -84,8 +88,10 @@ export class AppComponent {
       alert("API is not running at " + IP.local);
     });
 
-    onAuthStateChanged(this.auth, (user) => {
-      if (user) {
+    onAuthStateChanged(this.auth, (user) =>
+    {
+      if (user) 
+      {
         const uid = user.uid;
         this._loginHelper.isLoggedIn = true;
         console.log(user.email);
@@ -94,27 +100,16 @@ export class AppComponent {
         currentUser.username = user.displayName;
         currentUser.email = user.email;
         this.router.navigate(['/home']);
-      } else {
+      } 
+      else 
+      {
         this._loginHelper.isLoggedIn = false;
         this.router.navigate(['/register']);
       }
+      authState.authIsInitialized = true;
     });
 
 
-
-    this.users =
-    [
-      {
-        id: 1,
-        name: 'John Doe',
-        avatar: '',
-      },
-      {
-        id: 2,
-        name: 'Jane Doe',
-        avatar: '',
-      }
-    ]
     console.log("logged in state: " + this._loginHelper.isLoggedIn);
   }
 }
