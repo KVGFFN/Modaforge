@@ -30,7 +30,7 @@ namespace ModaForge.API.Controllers
         }
 
         [HttpGet]
-        [Route("/user/name-email")]
+        [Route("{name-email}")]
         public IActionResult GetUserByNameEmail([FromQuery] string name, [FromQuery] string email)
         {
             var user = service.GetByNameEmail(name, email);
