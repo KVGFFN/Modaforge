@@ -28,6 +28,19 @@ namespace ModaForge.API.Controllers
         {
             return Ok(service.GetById(id));
         }
+
+        [HttpGet]
+        [Route("/user/name-email")]
+        public IActionResult GetUserByNameEmail([FromQuery] string name, [FromQuery] string email)
+        {
+            var user = service.GetByNameEmail(name, email);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
+
         [HttpPost]
         public IActionResult CreateUser([FromBody] User user )
         {
@@ -46,5 +59,7 @@ namespace ModaForge.API.Controllers
             service.Delete(id);
             return Ok();
         }
+
+
     }
 }

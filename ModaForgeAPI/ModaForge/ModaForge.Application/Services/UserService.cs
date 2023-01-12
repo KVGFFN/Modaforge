@@ -40,6 +40,11 @@ namespace ModaForge.Application.Services
             return repository.GetById(id);
         }
 
+        public User GetByNameEmail(string name, string email)
+        {
+            return repository.GetByNameEmail(name, email);
+        }
+
         public User Update(int id, User User)
         {
             User.Id = id;

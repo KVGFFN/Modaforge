@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModaForge.Application.Inferfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ModaForge.Infrastructure.Repositories
 {
@@ -44,6 +45,12 @@ namespace ModaForge.Infrastructure.Repositories
         {
             User User = context.users.Where(t => t.Id == id).FirstOrDefault();
             return User;
+        }
+
+        public User GetByNameEmail(string name, string email)
+        {
+            User user = context.users.FirstOrDefault(u => u.Name == name && u.Email == email);
+            return user;
         }
 
         public User Update(int id, User User)
