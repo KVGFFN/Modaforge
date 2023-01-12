@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { currentUser } from 'src/helpers/CurrentUser';
+import { HttpClient } from '@angular/common/http';
+import { ProviderService } from '../services/provider.service';
+import { Provider } from 'src/modules/interfaces/provider.interface';
 
 @Component({
   selector: 'app-profile',
@@ -10,15 +13,40 @@ import { currentUser } from 'src/helpers/CurrentUser';
 export class ProfilePage implements OnInit {
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private http: HttpClient,
+    private providerService: ProviderService
   ) { }
 
   // variables
-  name: string;
+  id: number;
+  name: string = "";
+  services: string = "";
   email: string;
   picture: string;
   userdata = [];
   userIsLoaded: boolean = false;
+  showSignUpForm: boolean = false;
+
+  provider: Provider = {
+    id: 0,
+    name: this.name,
+    services: this.services,
+    userId: 420,
+    user: {
+      id: 0,
+      name: "",
+      verified: false,
+      email: "",
+      picture: "",
+      regionId: 0,
+      region: {
+        id: 0,
+        name: "",
+        zipCode: 0
+      }
+    }
+  }
 
   getAllUsers() {
     try {
@@ -46,12 +74,28 @@ export class ProfilePage implements OnInit {
       for (let i = 0; i < this.userdata.length; i++) {
         console.log(this.userdata[i].name);
         if (this.userdata[i].name == currentUser.username && this.userdata[i].email == currentUser.email) {
+          this.id = this.userdata[i].id;
           this.name = this.userdata[i].name;
           this.email = this.userdata[i].email;
           this.picture = this.userdata[i].picture;
         }
       }
     }
+  }
+
+
+
+  createProvider(provider : Provider) {
+    this.providerService.addProvider(provider).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    });
+    
+  }
+
+  toggleSignUpForm() {
+    this.showSignUpForm = !this.showSignUpForm;;
   }
 
 
