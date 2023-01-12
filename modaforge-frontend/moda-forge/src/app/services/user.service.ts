@@ -35,6 +35,11 @@ export class UserService {
     return this.http.get<User>(`${this.API}/api/User/${id}`);
   }
 
+  getUserByNameEmail(name: string, email: string): Observable<User>
+  {
+    return this.http.get<User>(`${this.API}/api/User/${name}/${email}`);
+  }
+
   // Update user
   updateUser(user: User): Observable<User>
   {
