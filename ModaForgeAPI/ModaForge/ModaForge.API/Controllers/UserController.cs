@@ -29,9 +29,9 @@ namespace ModaForge.API.Controllers
             return Ok(service.GetById(id));
         }
 
+        [Route("{name}/{email}")]
         [HttpGet]
-        [Route("{name-email}")]
-        public IActionResult GetUserByNameEmail([FromQuery] string name, [FromQuery] string email)
+        public IActionResult GetUserByNameEmail([FromRoute] string name, [FromRoute] string email)
         {
             var user = service.GetByNameEmail(name, email);
             if (user == null)
