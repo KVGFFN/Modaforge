@@ -28,7 +28,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit(){
-    // Wait until auth is initialized
+    // Wait until auth is initialized, prevents "currentUser.username" being null
     let intervalSubscription = interval(1000).subscribe(() => {
       if (authState.authIsInitialized) {
         this.userName = currentUser.username;
@@ -43,6 +43,7 @@ export class HomePage implements OnInit {
   {
     this.userService.getUserByNameEmail(this.userName, this.userMail).subscribe((data: any) => {
       console.log(data);
+      currentUser.id = data["id"];
     });
   }
 
