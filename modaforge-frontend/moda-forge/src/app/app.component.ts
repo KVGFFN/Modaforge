@@ -12,7 +12,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IP } from 'src/helpers/IP';
 import { currentUser } from 'src/helpers/CurrentUser';
 import { app, user, auth } from 'src/helpers/authentication';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from './tempservices/user.service';
 import { authState } from 'src/helpers/authState';
 
 @Pipe({ name: 'safe' })

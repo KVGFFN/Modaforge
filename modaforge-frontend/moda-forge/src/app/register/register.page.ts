@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { User } from 'src/modules/interfaces/tempinterfaces/user.interface';
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { Router } from '@angular/router';
 import { loginHelper } from '../loginHelper';
 import { environment } from 'src/environments/environment';
-import { UserService } from '../services/user.service';
-import { User } from 'src/modules/interfaces/user.interface';
-import { Region } from 'src/modules/interfaces/region.interface';
 import { IP } from 'src/helpers/IP';
 import { APIstate } from 'src/helpers/APIstate';
+import { UserService } from '../tempservices/user.service';
 
 @Component({
   selector: 'app-register',
@@ -38,25 +37,13 @@ export class RegisterPage implements OnInit {
   email?: string;
   password: string;
 
-  // Region
-  regionName: string;
-  regionZipcode: number;
+  // Location
+  street?: string;
+  country?: string;
+  postalcode?: string;
+  city?: string;
 
-  USER_DATA: User = {
-    id: undefined,
-    name: undefined,
-    verified: undefined,
-    email: undefined,
-    picture: undefined,
-    regionId: undefined,
-    region: undefined
-  }
-
-  REGION_DATA: Region = {
-    id: undefined,
-    name: undefined,
-    zipcode: undefined
-  }
+  USER_DATA: User;
 
   async updateUserName(name: string) {
     this.user = this.auth.currentUser;
@@ -88,7 +75,13 @@ export class RegisterPage implements OnInit {
 
   checkIfNotNull()
   {
-    if (this.name == '' || this.email == '' || this.regionName == '' || this.regionZipcode == undefined) {
+    if (this.name == '' 
+    || this.email == '' 
+    || this.country == '' 
+    || this.city == ''
+    || this.street == ''
+    || this.postalcode == ''
+    ) {
       this.allFieldsAreFilled = false;
     }
     else
@@ -133,19 +126,17 @@ export class RegisterPage implements OnInit {
       // Add user to database
       this.USER_DATA = {
         id: 0,
-        email: this.email,
         name: this.name,
-        verified: false,
-        picture: 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png', // default picture
-        regionId: 0,
-        region: {
-          id: 0,
-          name: this.regionName,
-          zipcode: this.regionZipcode
-        }
+        email: this.email,
+        picture: this.user.photoURL,
+        phonenumber: undefined,
+        street: this.street,
+        country: this.country,
+        postalcode: this.postalcode,
       };
 
-      this.userService.addUser(this.USER_DATA).subscribe((data: any) => {
+      this.userService.addUser(this.USER_DATA).subscribe((data: any) => 
+      {
         console.log('--> userService.addUser register.page.ts:77');
         console.log(data);
       });
@@ -160,11 +151,13 @@ export class RegisterPage implements OnInit {
 
 
   ngOnInit() {
-    if (this.user) {
+    if (this.user) 
+    {
       console.log(">> USER IS LOGGED IN");;
       this.router.navigate(['/home']);
     }
-    else {
+    else 
+    {
       console.log(">> USER IS NOT LOGGED IN");
       this.router.navigate(['/register']);
     }
