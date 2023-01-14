@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, CanActivate, Router } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
 import { Injectable } from "@angular/core";
 import { loginHelper } from "src/app/loginHelper";
 
@@ -9,28 +9,22 @@ import { loginHelper } from "src/app/loginHelper";
 export class AuthGuard implements CanActivate
 {
     isLoggedIn: boolean = false;
-    constructor
+    constructor(private router: Router){}
 
-    (
-        private router: Router
-    )
-    {
-
-    }
-
-    canActivate(route: ActivatedRouteSnapshot): boolean
-    {
-        const expectedRoute = ['/login','/register'];
-        if (!loginHelper.isLoggedIn)
-        {
-            if (!expectedRoute.includes(route.routeConfig.path))
-            {
+    expectedRoute = ['/login','/register']
+    async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
+        this.isLoggedIn = await loginHelper.isLoggedIn;
+        if (!this.isLoggedIn) {
+            if (!this.expectedRoute.includes(route.routeConfig.path)) {
                 this.router.navigate(['/register']);
-                return false;
             }
+            return false;
         }
         return true;
     }
+    
+
+    
     
     
 }

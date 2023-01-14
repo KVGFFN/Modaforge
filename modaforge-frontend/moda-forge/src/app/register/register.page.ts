@@ -41,6 +41,12 @@ export class RegisterPage implements OnInit {
   regionName: string;
   regionZipcode: number;
 
+  country: string;
+  city: string;
+  street: string;
+  streetnumber: string;
+  zipcode: number;
+
   USER_DATA: User = {
     id: undefined,
     name: undefined,
@@ -87,7 +93,7 @@ export class RegisterPage implements OnInit {
 
   checkIfNotNull()
   {
-    if (this.name == '' || this.email == '' || this.regionName == '' || this.regionZipcode == undefined) {
+    if (this.name == '' || this.email == '' || this.password == '') {
       this.allFieldsAreFilled = false;
     }
     else
@@ -155,6 +161,11 @@ export class RegisterPage implements OnInit {
       console.log(`ERROR: ${errorMessage}`);
       alert(`ERROR: ${errorMessage}`);
     });
+  }
+
+  goToSignIn()
+  {
+    this.router.navigate(['/login']);
   }
 
 

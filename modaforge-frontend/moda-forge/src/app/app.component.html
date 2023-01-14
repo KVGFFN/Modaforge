@@ -1,7 +1,7 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
 
-      <ion-menu [disabled]="!_loginHelper.isLoggedIn" contentId="main-content" type="overlay">
+      <ion-menu [disabled]="isLoginOrRegister()" contentId="main-content" type="overlay">
         <ion-content> 
           <!--Create Logo using image-->
           <ion-item>

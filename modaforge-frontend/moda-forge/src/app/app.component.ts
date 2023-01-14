@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { $ } from 'protractor';
-import { loginHelper } from './loginHelper';
 import { Routes, RouterModule, Router } from '@angular/router';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { browserSessionPersistence, getAuth, onAuthStateChanged, setPersistence, inMemoryPersistence } from 'firebase/auth';
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { environment } from 'src/environments/environment';
 import { Pipe, PipeTransform } from '@angular/core';
@@ -11,9 +10,10 @@ import { APIstate } from 'src/helpers/APIstate';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IP } from 'src/helpers/IP';
 import { currentUser } from 'src/helpers/CurrentUser';
-import { app, user, auth } from 'src/helpers/authentication';
 import { UserService } from 'src/app/services/user.service';
 import { authState } from 'src/helpers/authState';
+import { loginHelper } from './loginHelper';
+import { getAnalytics } from 'firebase/analytics';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -50,30 +50,62 @@ export class AppComponent {
   email: string;
   password: string;
 
-  constructor(private router: Router, private http: HttpClient, private userService: UserService) {}
+  constructor
+  (
+    private router: Router, 
+    private http: HttpClient, 
+    private userService: UserService,
+    private cd: ChangeDetectorRef
+  ) {}
 
-  app = app;
-  user = user;
-  auth = auth;
+  app = initializeApp(environment.firebaseConfig);
+  analytics = getAnalytics(this.app);
+  auth = getAuth(this.app);
 
   username: string;
+  loginState = loginHelper.isLoggedIn;
 
-  // logout()
-  // {
-  //   console.log("LOGGING OUT");
-  //   this.auth.signOut();
-  //   this.router.navigate(['/register']);
-  // }
+  logout()
+  {
+    console.log("%c" + "app.component.ts -- logout()", "color: yellow")
+    loginHelper.isLoggedIn = false;
+    // logout  firebase
+    this.auth.signOut();
+    this.router.navigate(['/login']);
+  }
 
-  // goToProfile()
-  // {
-  //   this.router.navigate(['/profile']);
-  // }
+  isLoginOrRegister()
+  {
+    return this.router.url.startsWith('/login') || this.router.url.startsWith('/register');
+  }
 
 
   ngOnInit()
   {
     console.log("%capp.component.ts -- ngOnInit()", "color: yellow")
+    console.log("%c" + "loginState: " + loginHelper.isLoggedIn, "color: red")
+    onAuthStateChanged(this.auth, (user) =>
+    {
+      console.log("%c" + "app.component.ts onAuthStateChanged()", "color: yellow");
+
+      if (user) 
+      {
+        loginHelper.isLoggedIn = true;
+        console.log("%c" + "loginState: " + loginHelper.isLoggedIn, "color: red")
+        console.log(">>> User is signed in ");
+        currentUser.username = user.displayName;
+        currentUser.email = user.email;
+        console.log(user.displayName);
+        console.log(user.email);
+      } 
+      else 
+      {
+        console.log(">>> User is not logged in ");
+        loginHelper.isLoggedIn = false;
+      }
+      authState.authIsInitialized = true;
+    });
+
     this.http.get(IP.local + '/api/User').subscribe((data: any) => {
       APIstate.isActive = true;
       console.log("API IS RUNNING");
@@ -82,26 +114,9 @@ export class AppComponent {
       alert("API is not running at " + IP.local);
     });
 
-    onAuthStateChanged(this.auth, (user) =>
-    {
-      if (user) 
-      {
-        currentUser.username = user.displayName;
-        currentUser.email = user.email;
-        // const uid = user.uid;
-        // loginHelper.isLoggedIn = true;
-        // console.log(user.email);
-        // console.log(user.displayName);
-        // this.username = user.displayName;
-        // this.router.navigate(['/home']);
-        loginHelper.isLoggedIn = true;
-      } 
-      else 
-      {
-        loginHelper.isLoggedIn = false;
-        // this.router.navigate(['/register']);
-      }
-      authState.authIsInitialized = true;
-    });
+    // execute after 3 seconds
+    setTimeout(() => {
+      console.log(">> User is logged in: " + loginHelper.isLoggedIn);
+    }, 3000);
   }
 }
