@@ -36,6 +36,12 @@ namespace ModaForge.Application.Services
                 FileURL = modelData.FileURL,
                 UserId = modelData.UserId,
             };
+            //Tag manage
+            var tags = modelData.Tags.Split(',');
+            foreach (var tag in tags)
+            {
+            }
+
             repository.Create(model);
             return model;
 

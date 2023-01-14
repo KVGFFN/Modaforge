@@ -16,5 +16,9 @@ namespace ModaForge.Domain.Views
         public string FileURL { get; set; }
         [Required]
         public int? UserId { get; set; }
+
+        public string Tags { get; set; }
+
+
     }
 }
