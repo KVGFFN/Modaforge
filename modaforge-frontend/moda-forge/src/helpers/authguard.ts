@@ -1,6 +1,5 @@
 import { ActivatedRouteSnapshot, CanActivate, Router } from "@angular/router";
 import { Injectable } from "@angular/core";
-import { AuthService } from "src/app/services/auth.service";
 import { loginHelper } from "src/app/loginHelper";
 
 @Injectable({
@@ -11,8 +10,8 @@ export class AuthGuard implements CanActivate
 {
     isLoggedIn: boolean = false;
     constructor
+
     (
-        private authService: AuthService,
         private router: Router
     )
     {
