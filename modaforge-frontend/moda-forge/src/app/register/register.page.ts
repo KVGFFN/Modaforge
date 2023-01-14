@@ -23,7 +23,6 @@ export class RegisterPage implements OnInit {
   app = initializeApp(environment.firebaseConfig);
   analytics = getAnalytics(this.app);
   auth = getAuth(this.app);
-  _loginhelper = loginHelper;
   user: any;
   apistate = APIstate.isActive;
   IP = IP.local;
@@ -161,11 +160,13 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {
     if (this.user) {
+      loginHelper.isLoggedIn = true;
       console.log(">> USER IS LOGGED IN");;
       this.router.navigate(['/home']);
     }
     else {
       console.log(">> USER IS NOT LOGGED IN");
+      loginHelper.isLoggedIn = false;
       this.router.navigate(['/register']);
     }
   }

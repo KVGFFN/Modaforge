@@ -50,12 +50,6 @@ export class AppComponent {
   email: string;
   password: string;
 
-  // declare new loginHelper
-
-  _loginHelper = loginHelper;
-
-
-
   constructor(private router: Router, private http: HttpClient, private userService: UserService) {}
 
   app = app;
@@ -64,17 +58,17 @@ export class AppComponent {
 
   username: string;
 
-  logout()
-  {
-    console.log("LOGGING OUT");
-    this.auth.signOut();
-    this.router.navigate(['/register']);
-  }
+  // logout()
+  // {
+  //   console.log("LOGGING OUT");
+  //   this.auth.signOut();
+  //   this.router.navigate(['/register']);
+  // }
 
-  goToProfile()
-  {
-    this.router.navigate(['/profile']);
-  }
+  // goToProfile()
+  // {
+  //   this.router.navigate(['/profile']);
+  // }
 
 
   ngOnInit()
@@ -92,24 +86,22 @@ export class AppComponent {
     {
       if (user) 
       {
-        const uid = user.uid;
-        this._loginHelper.isLoggedIn = true;
-        console.log(user.email);
-        console.log(user.displayName);
-        this.username = user.displayName;
         currentUser.username = user.displayName;
         currentUser.email = user.email;
-        this.router.navigate(['/home']);
+        // const uid = user.uid;
+        // loginHelper.isLoggedIn = true;
+        // console.log(user.email);
+        // console.log(user.displayName);
+        // this.username = user.displayName;
+        // this.router.navigate(['/home']);
+        loginHelper.isLoggedIn = true;
       } 
       else 
       {
-        this._loginHelper.isLoggedIn = false;
-        this.router.navigate(['/register']);
+        loginHelper.isLoggedIn = false;
+        // this.router.navigate(['/register']);
       }
       authState.authIsInitialized = true;
     });
-
-
-    console.log("logged in state: " + this._loginHelper.isLoggedIn);
   }
 }
