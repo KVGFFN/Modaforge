@@ -4,7 +4,6 @@ import { getAnalytics } from 'firebase/analytics';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { environment } from 'src/environments/environment';
-import { authState } from 'src/helpers/authState';
 import { currentUser } from 'src/helpers/CurrentUser';
 import { loginHelper } from '../loginHelper';
 @Component({
