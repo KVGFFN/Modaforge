@@ -15,5 +15,9 @@ namespace ModaForge.Application.Inferfaces
         Tag Create(Tag model);
         Tag Update(int id, Tag model);
         void Delete(Tag model);
+        public void AddTagToModel(int modelId, int tagId);
+        public void RemoveTagFromModel(int modelId, int tagId);
+
+
     }
 }

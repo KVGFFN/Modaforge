@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
+using ModaForge.Application.Helper;
 using ModaForge.Application.Inferfaces;
 using ModaForge.Application.Services;
 using ModaForge.Infrastructure.Contexts;
@@ -32,6 +33,8 @@ builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<ITagService, TagService>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<IPostService, PostService>();
+//Tag Helper
+builder.Services.AddScoped<TagHelper>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

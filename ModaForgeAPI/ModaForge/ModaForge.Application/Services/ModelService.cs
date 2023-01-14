@@ -1,4 +1,5 @@
-﻿using ModaForge.Application.Inferfaces;
+﻿using ModaForge.Application.Helper;
+using ModaForge.Application.Inferfaces;
 using ModaForge.Domain;
 using ModaForge.Domain.Views;
 using System;
@@ -12,10 +13,12 @@ namespace ModaForge.Application.Services
     public class ModelService : IModelService
     {
         private readonly IModelRepository repository;
+        private readonly TagHelper tagHelper;
 
-        public ModelService(IModelRepository repository)
+        public ModelService(IModelRepository repository, TagHelper tagHelper)
         {
             this.repository = repository;
+            this.tagHelper = tagHelper;
         }
 
         public IEnumerable<Model> GetAll(SearchParameters searchParameters)
@@ -23,9 +26,9 @@ namespace ModaForge.Application.Services
             return repository.GetAll(searchParameters);
         }
 
-        public Model GetById(int id)
+        public ModelViewModel GetById(int id)
         {
-            return repository.GetById(id);
+            return repository.GetByIdInfo(id);
         }
 
         public Model Create(CreateModelViewModel modelData)
@@ -36,16 +39,10 @@ namespace ModaForge.Application.Services
                 FileURL = modelData.FileURL,
                 UserId = modelData.UserId,
             };
-            //Tag manage
-            var tags = modelData.Tags.Split(',');
-            foreach (var tag in tags)
-            {
-            }
-
-            repository.Create(model);
+            model = repository.Create(model);
+            //Tag manager
+            tagHelper.AddTagsToModel(model, modelData.Tags);
             return model;
-
-            return repository.Create(model);
         }
 
         public Model Update(int id, Model model)
