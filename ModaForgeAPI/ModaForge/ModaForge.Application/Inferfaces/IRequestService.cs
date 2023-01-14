@@ -1,4 +1,5 @@
 ﻿using ModaForge.Domain;
+using ModaForge.Domain.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ModaForge.Application.Inferfaces
     {
         IEnumerable<Request> GetAll(SearchParameters searchParameters);
         public Request GetById(int id);
-        public Request Create(Request request);
+        public Request Create(CreateRequestViewModel request);
         public Request Update(int id, Request request);
     }
 }

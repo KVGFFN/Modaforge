@@ -13,7 +13,7 @@ namespace ModaForge.Domain.Bridges
         public int? ProviderID { get; set; }
         
         // virtual declarations
-        public virtual Provider? Provider { get; set; }
+        public virtual User? Provider { get; set; }
         public virtual Tag? Tag { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ModaForge.Application.Inferfaces;
 using ModaForge.Application.Services;
 using ModaForge.Domain;
+using ModaForge.Domain.Views;
 using Newtonsoft.Json;
 
 namespace ModaForge.API.Controllers
@@ -29,7 +30,7 @@ namespace ModaForge.API.Controllers
             return Ok(service.GetById(id));
         }
         [HttpPost]
-        public IActionResult CreateRequest([FromBody] Request request)
+        public IActionResult CreateRequest([FromBody] CreateRequestViewModel request)
         {
             return Ok(service.Create(request));
         }

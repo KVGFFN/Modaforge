@@ -1,5 +1,6 @@
 ﻿using ModaForge.Application.Inferfaces;
 using ModaForge.Domain;
+using ModaForge.Domain.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,21 @@ namespace ModaForge.Application.Services
             this.repository = repository;
         }
 
-        public Request Create(Request request)
+        public Request Create(CreateRequestViewModel requestData)
         {
-            return repository.Create(request);
+            Request request = new Request
+            {
+                Title = requestData.Title,
+                Description = requestData.Description,
+                Status = 0,
+                CreationDate = DateTime.Now,
+                RequesterId = requestData.RequesterId,
+                ProviderId = requestData.ProviderId,
+                ModelId = requestData.ModelId,
+                RegionId = requestData.RegionId
+            };
+            repository.Create(request);
+            return request;
         }
 
         public IEnumerable<Request> GetAll(SearchParameters searchParameters)

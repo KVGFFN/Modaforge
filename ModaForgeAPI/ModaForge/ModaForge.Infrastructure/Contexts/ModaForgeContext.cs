@@ -20,8 +20,6 @@ namespace ModaForge.Infrastructure.Contexts
 
         public DbSet<Post> posts { get; set; }
 
-        public DbSet<Provider> providers { get; set; }
-
         public DbSet<Region> regions { get; set; }
         public DbSet<Request> requests { get; set; }
         public DbSet<Topic> topics { get; set; }

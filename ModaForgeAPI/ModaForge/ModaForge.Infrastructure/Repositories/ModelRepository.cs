@@ -1,4 +1,5 @@
-﻿using ModaForge.Application.Inferfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using ModaForge.Application.Inferfaces;
 using ModaForge.Domain;
 using ModaForge.Infrastructure.Contexts;
 using System;
@@ -42,7 +43,9 @@ namespace ModaForge.Infrastructure.Repositories
 
         public Model GetById(int id)
         {
-            return context.models.FirstOrDefault(x => x.Id == id);
+            return context.models
+                .Include(m => m.User)
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public Model Update(int id, Model Model)

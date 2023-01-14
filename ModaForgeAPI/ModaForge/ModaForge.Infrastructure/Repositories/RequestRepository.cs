@@ -1,4 +1,5 @@
-﻿using ModaForge.Application.Inferfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using ModaForge.Application.Inferfaces;
 using ModaForge.Domain;
 using ModaForge.Infrastructure.Contexts;
 using System;
@@ -42,7 +43,11 @@ namespace ModaForge.Infrastructure.Repositories
 
         public Request GetById(int id)
         {
-            Request request = context.requests.Where(t => t.Id == id).FirstOrDefault();
+            Request request = context.requests
+                .Include(r => r.Requester)
+                .Include(r => r.Provider)
+                .Where(t => t.Id == id)
+                .FirstOrDefault();
             return request;
         }
 

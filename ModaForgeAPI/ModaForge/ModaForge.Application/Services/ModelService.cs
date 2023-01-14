@@ -1,5 +1,6 @@
 ﻿using ModaForge.Application.Inferfaces;
 using ModaForge.Domain;
+using ModaForge.Domain.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +28,17 @@ namespace ModaForge.Application.Services
             return repository.GetById(id);
         }
 
-        public Model Create(Model model)
+        public Model Create(CreateModelViewModel modelData)
         {
+            Model model = new Model
+            {
+                Name = modelData.Name,
+                FileURL = modelData.FileURL,
+                UserId = modelData.UserId,
+            };
+            repository.Create(model);
+            return model;
+
             return repository.Create(model);
         }
 

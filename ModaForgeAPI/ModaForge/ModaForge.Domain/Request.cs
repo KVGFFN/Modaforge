@@ -36,8 +36,8 @@ namespace ModaForge.Domain
         public int? RegionId { get; set; }
         
         //virtual declarations
-        public virtual Requester? Requester { get; set; }
-        public virtual Provider? Provider { get; set; }
+        public virtual User? Requester { get; set; }
+        public virtual User? Provider { get; set; }
         public virtual Model? Model { get; set; }
         public virtual Region? Region { get; set; }
         
