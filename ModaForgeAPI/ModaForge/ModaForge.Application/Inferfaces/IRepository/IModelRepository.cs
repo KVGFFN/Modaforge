@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModaForge.Application.Inferfaces
+namespace ModaForge.Application.Inferfaces.IRepository
 {
     public interface IModelRepository
     {

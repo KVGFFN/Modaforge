@@ -1,7 +1,9 @@
 ﻿using ModaForge.Application.Helper;
-using ModaForge.Application.Inferfaces;
+using ModaForge.Application.Inferfaces.IRepository;
+using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Domain;
 using ModaForge.Domain.Views;
+using ModaForge.Domain.Views.Create;
 using System;
 using System.Collections.Generic;
 using System.Linq;

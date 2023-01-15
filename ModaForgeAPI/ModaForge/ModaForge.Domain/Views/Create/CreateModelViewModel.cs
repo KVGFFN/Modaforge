@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModaForge.Domain.Views
+namespace ModaForge.Domain.Views.Create
 {
     public class CreateModelViewModel
     {

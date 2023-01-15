@@ -23,6 +23,7 @@ namespace ModaForge.Domain
         public int? RequestId { get; set; }
         
         // TODO: Check if list of posts is necessary
+        // It is to connect the topics to its posts, just like teams does. or idk it seems good this way...
         public List<Post>? Posts { get; set; }
         
         // virtual declarations

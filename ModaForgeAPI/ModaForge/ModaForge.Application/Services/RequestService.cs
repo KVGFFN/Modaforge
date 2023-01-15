@@ -1,9 +1,12 @@
-﻿using ModaForge.Application.Inferfaces;
+﻿using ModaForge.Application.Helper;
+using ModaForge.Application.Inferfaces.IRepository;
+using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Domain;
-using ModaForge.Domain.Views;
+using ModaForge.Domain.Views.Create;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,9 +15,12 @@ namespace ModaForge.Application.Services
     public class RequestService : IRequestService
     {
         private IRequestRepository repository;
-        public RequestService(IRequestRepository repository)
+        private readonly TagHelper tagHelper;
+
+        public RequestService(IRequestRepository repository, TagHelper tagHelper)
         {
             this.repository = repository;
+            this.tagHelper = tagHelper;
         }
 
         public Request Create(CreateRequestViewModel requestData)
@@ -30,7 +36,11 @@ namespace ModaForge.Application.Services
                 ModelId = requestData.ModelId,
                 RegionId = requestData.RegionId
             };
-            repository.Create(request);
+            request = repository.Create(request);
+
+            //Tag manager
+            tagHelper.AddTagsToRequest(request, requestData.Tags);
+
             return request;
         }
 

@@ -9,46 +9,45 @@ using System.Threading.Tasks;
 
 namespace ModaForge.Infrastructure.Repositories
 {
-    public class PostRepository : IPostRepository
+    public class RegionRepository : IRegionRepository
     {
         private readonly ModaForgeContext context;
-        public PostRepository(ModaForgeContext context)
+        public RegionRepository(ModaForgeContext context)
         {
             this.context = context;
         }
-        
-        public Post Create(Post post)
+        public Region Create(Region region)
         {
-            context.posts.Add(post);
+            context.regions.Add(region);
             context.SaveChanges();
-            return post;
+            return region;
         }
 
-        public void Delete(Post post)
+        public void Delete(Region region)
         {
-            context.posts.Remove(post);
+            context.regions.Remove(region);
             context.SaveChanges();
         }
 
-        public IEnumerable<Post> GetAll(SearchParameters searchParameters)
+        public IEnumerable<Region> GetAll(SearchParameters searchParameters)
         {
-            return context.posts
-                .OrderBy(Request => Request.Name) //TODO Needs some changes like add searchable tags
+            return context.regions
                 .Skip((searchParameters.PageNumber - 1) * searchParameters.PageSize)
                 .Take(searchParameters.PageSize)
                 .ToList();
         }
 
-        public Post GetById(int id)
+        public Region GetById(int id)
         {
-            return context.posts.FirstOrDefault(x => x.Id == id);
+            Region region = context.regions.Where(t => t.Id == id).FirstOrDefault();
+            return region;
         }
 
-        public Post Update(int id, Post post)
+        public Region Update(int id, Region region)
         {
-            context.posts.Update(post);
+            context.regions.Update(region);
             context.SaveChanges();
-            return post;
+            return region;
         }
     }
 }

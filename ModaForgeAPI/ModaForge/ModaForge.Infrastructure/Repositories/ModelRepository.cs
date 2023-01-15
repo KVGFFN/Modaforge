@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ModaForge.Application.Inferfaces;
+using ModaForge.Application.Inferfaces.IRepository;
 using ModaForge.Domain;
 using ModaForge.Domain.Bridges;
 using ModaForge.Domain.Views;

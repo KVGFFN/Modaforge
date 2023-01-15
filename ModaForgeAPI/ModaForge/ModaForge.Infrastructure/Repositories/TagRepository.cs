@@ -1,4 +1,4 @@
-﻿using ModaForge.Application.Inferfaces;
+﻿using ModaForge.Application.Inferfaces.IRepository;
 using ModaForge.Domain;
 using ModaForge.Domain.Bridges;
 using ModaForge.Infrastructure.Contexts;
@@ -70,6 +70,38 @@ namespace ModaForge.Infrastructure.Repositories
         {
             context.tags_models.Remove(context.tags_models.FirstOrDefault(x => x.ModelID == modelId && x.TagID == tagId));
             context.SaveChanges();
+        }
+
+        public void AddTagToRequest(int requestId, int tagId)
+        {
+            Tag_Request tag_Request = new Tag_Request
+            {
+                TagID = tagId,
+                RequestID = requestId
+            };
+            context.tags_requests.Add(tag_Request);
+            context.SaveChanges();
+        }
+
+        public void RemoveTagFromRequest(int requestId, int tagId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddTagToTopic(int topicId, int tagId)
+        {
+            Tag_Topic tag_Topic = new Tag_Topic
+            {
+                TagID = tagId,
+                TopicID = topicId
+            };
+            context.tags_topics.Add(tag_Topic);
+            context.SaveChanges();
+        }
+
+        public void RemoveTagFromTopic(int topicId, int tagId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

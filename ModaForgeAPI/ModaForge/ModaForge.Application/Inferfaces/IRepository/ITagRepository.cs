@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModaForge.Application.Inferfaces
+namespace ModaForge.Application.Inferfaces.IRepository
 {
     public interface ITagRepository
     {
@@ -18,6 +18,10 @@ namespace ModaForge.Application.Inferfaces
         public void AddTagToModel(int modelId, int tagId);
         public void RemoveTagFromModel(int modelId, int tagId);
 
+        public void AddTagToRequest(int requestId, int tagId);
+        public void RemoveTagFromRequest(int requestId, int tagId);
 
+        public void AddTagToTopic(int topicId, int tagId);
+        public void RemoveTagFromTopic(int topicId, int tagId);
     }
 }

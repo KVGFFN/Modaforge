@@ -1,4 +1,5 @@
-﻿using ModaForge.Application.Inferfaces;
+﻿using ModaForge.Application.Inferfaces.IRepository;
+using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Domain;
 using System;
 using System.Collections.Generic;

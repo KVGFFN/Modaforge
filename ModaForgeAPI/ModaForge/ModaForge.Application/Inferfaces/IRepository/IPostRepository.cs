@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModaForge.Application.Inferfaces
+namespace ModaForge.Application.Inferfaces.IRepository
 {
-    public interface IPostService
+    public interface IPostRepository
     {
         IEnumerable<Post> GetAll(SearchParameters searchParameters);
         Post GetById(int id);

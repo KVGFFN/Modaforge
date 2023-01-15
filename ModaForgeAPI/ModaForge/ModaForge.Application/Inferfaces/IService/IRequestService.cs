@@ -1,12 +1,12 @@
 ﻿using ModaForge.Domain;
-using ModaForge.Domain.Views;
+using ModaForge.Domain.Views.Create;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModaForge.Application.Inferfaces
+namespace ModaForge.Application.Inferfaces.Service
 {
     public interface IRequestService
     {

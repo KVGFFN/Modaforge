@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ModaForge.Application.Inferfaces;
+using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Application.Services;
 using ModaForge.Domain;
-using ModaForge.Domain.Views;
+using ModaForge.Domain.Views.Create;
 using Newtonsoft.Json;
 
 namespace ModaForge.API.Controllers

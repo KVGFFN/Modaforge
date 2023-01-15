@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ModaForge.Application.Inferfaces;
+using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Domain;
 
 namespace ModaForge.API.Controllers

@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ModaForge.Application.Inferfaces;
 using Microsoft.EntityFrameworkCore;
+using ModaForge.Application.Inferfaces.IRepository;
 
 namespace ModaForge.Infrastructure.Repositories
 {
