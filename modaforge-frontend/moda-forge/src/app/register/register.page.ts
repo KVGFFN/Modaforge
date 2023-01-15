@@ -23,7 +23,6 @@ export class RegisterPage implements OnInit {
   app = initializeApp(environment.firebaseConfig);
   analytics = getAnalytics(this.app);
   auth = getAuth(this.app);
-  _loginhelper = loginHelper;
   user: any;
   apistate = APIstate.isActive;
   IP = IP.local;
@@ -41,6 +40,12 @@ export class RegisterPage implements OnInit {
   // Region
   regionName: string;
   regionZipcode: number;
+
+  country: string;
+  city: string;
+  street: string;
+  streetnumber: string;
+  zipcode: number;
 
   USER_DATA: User = {
     id: undefined,
@@ -88,7 +93,7 @@ export class RegisterPage implements OnInit {
 
   checkIfNotNull()
   {
-    if (this.name == '' || this.email == '' || this.regionName == '' || this.regionZipcode == undefined) {
+    if (this.name == '' || this.email == '' || this.password == '') {
       this.allFieldsAreFilled = false;
     }
     else
@@ -158,14 +163,21 @@ export class RegisterPage implements OnInit {
     });
   }
 
+  goToSignIn()
+  {
+    this.router.navigate(['/login']);
+  }
+
 
   ngOnInit() {
     if (this.user) {
+      loginHelper.isLoggedIn = true;
       console.log(">> USER IS LOGGED IN");;
       this.router.navigate(['/home']);
     }
     else {
       console.log(">> USER IS NOT LOGGED IN");
+      loginHelper.isLoggedIn = false;
       this.router.navigate(['/register']);
     }
   }
