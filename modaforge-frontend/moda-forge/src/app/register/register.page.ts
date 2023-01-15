@@ -10,6 +10,7 @@ import { User } from 'src/modules/interfaces/user.interface';
 import { Region } from 'src/modules/interfaces/region.interface';
 import { IP } from 'src/helpers/IP';
 import { APIstate } from 'src/helpers/APIstate';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +28,12 @@ export class RegisterPage implements OnInit {
   apistate = APIstate.isActive;
   IP = IP.local;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor
+  (
+    private router: Router, 
+    private userService: UserService,
+    private navCtrl: NavController
+  ) { }
 
   // Register check
   userExists: boolean = false;
@@ -179,7 +185,8 @@ export class RegisterPage implements OnInit {
 
   goToSignIn()
   {
-    this.router.navigate(['/login']);
+    // this.router.navigate(['/login']);
+    this.navCtrl.navigateForward('/login', {animated: false});
   }
 
 

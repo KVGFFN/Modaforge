@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { getAnalytics } from 'firebase/analytics';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -13,7 +14,7 @@ import { loginHelper } from '../loginHelper';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private navCtrl: NavController) { }
 
   ngOnInit() {
   }
@@ -50,7 +51,8 @@ export class LoginPage implements OnInit {
 
   goToRegister()
   {
-    this.router.navigate(['/register']);
+    // this.router.navigate(['/register']);
+    this.navCtrl.navigateForward('/register', {animated: false});
   }
 
 
