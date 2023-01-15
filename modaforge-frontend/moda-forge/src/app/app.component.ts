@@ -79,6 +79,11 @@ export class AppComponent {
     return this.router.url.startsWith('/login') || this.router.url.startsWith('/register');
   }
 
+  goToProfile()
+  {
+    this.router.navigate(['/profile']);
+  }
+
 
   ngOnInit()
   {
@@ -104,6 +109,7 @@ export class AppComponent {
         loginHelper.isLoggedIn = false;
       }
       authState.authIsInitialized = true;
+      this.username = currentUser.username;
     });
 
     this.http.get(IP.local + '/api/User').subscribe((data: any) => {
