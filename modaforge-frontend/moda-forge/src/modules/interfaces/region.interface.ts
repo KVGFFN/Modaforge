@@ -1,5 +1,6 @@
 export interface Region {
-    id:      number;
-    name:    string;
-    zipcode: number;
+    Id:      number;
+    Name:    string;
+    ZipCode: number;
+    Country: string;
 }

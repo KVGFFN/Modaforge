@@ -1,12 +1,11 @@
 import { Region } from "./region.interface";
 
 export interface User {
-    id:       number;
-    name:     string;
-    verified: boolean;
-    email:    string;
-    picture:  string;
-    regionId: number;
-    region:   Region;
+    Id:             number;
+    Name:           string;
+    Verified:       boolean;
+    Email:          string;
+    Picture:        string;
+    ProviderRole:   boolean;
 }
 

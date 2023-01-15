@@ -47,21 +47,18 @@ export class RegisterPage implements OnInit {
   streetnumber: string;
   zipcode: number;
 
-  USER_DATA: User = {
-    id: undefined,
-    name: undefined,
-    verified: undefined,
-    email: undefined,
-    picture: undefined,
-    regionId: undefined,
-    region: undefined
-  }
+  // USER_DATA: User = {
+  //   id: undefined,
+  //   name: undefined,
+  //   verified: undefined,
+  //   email: undefined,
+  //   picture: undefined,
+  //   providerRole: undefined,
+  //   regionId: undefined,
+  //   region: undefined
+  // }
 
-  REGION_DATA: Region = {
-    id: undefined,
-    name: undefined,
-    zipcode: undefined
-  }
+
 
   async updateUserName(name: string) {
     this.user = this.auth.currentUser;
@@ -125,6 +122,23 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  USER_DATA: User =
+  {
+    Id: 0,
+    Name: undefined,
+    Verified: undefined,
+    Email: undefined,
+    Picture: undefined,
+    ProviderRole: false,
+  }
+
+  REGION_DATA: Region = {
+    Id: undefined,
+    Name: undefined,
+    ZipCode: undefined,
+    Country: undefined
+  }
+
   createUser()
   {
     createUserWithEmailAndPassword(this.auth, this.email, this.password)
@@ -136,19 +150,21 @@ export class RegisterPage implements OnInit {
       console.log(`EMAIL: ${this.user.email}`);
 
       // Add user to database
-      this.USER_DATA = {
-        id: 0,
-        email: this.email,
-        name: this.name,
-        verified: false,
-        picture: 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png', // default picture
-        regionId: 0,
-        region: {
-          id: 0,
-          name: this.regionName,
-          zipcode: this.regionZipcode
-        }
-      };
+      this.REGION_DATA = {
+        Id: 0,
+        Name: this.street,
+        ZipCode: this.zipcode,
+        Country: this.country
+      }
+      this.USER_DATA =
+      {
+        Id: 0,
+        Name: this.name,
+        Verified: false,
+        Email: this.email,
+        Picture: "img",
+        ProviderRole: false,
+      }
 
       this.userService.addUser(this.USER_DATA).subscribe((data: any) => {
         console.log('--> userService.addUser register.page.ts:77');
@@ -157,9 +173,7 @@ export class RegisterPage implements OnInit {
       this.router.navigate(['/home']);
     })
     .catch(error => {
-      const errorMessage = error.message;
-      console.log(`ERROR: ${errorMessage}`);
-      alert(`ERROR: ${errorMessage}`);
+      console.log("%c" + error, "color:red");
     });
   }
 
