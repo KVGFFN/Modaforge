@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ModelDetailPageRoutingModule } from './model-detail-routing.module';
 
 import { ModelDetailPage } from './model-detail.page';
-import { SafePipe } from 'src/app/app.component';
+import { SafePipe } from 'src/app/safe.pipe';
 
 @NgModule({
   imports: [

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ModelService } from 'src/app/services/model.service';
 import { Model } from 'src/modules/interfaces/model.interface';
 import { ModelDetail } from 'src/modules/interfaces/model-detail.interface';
-import { SafePipe } from 'src/app/app.component';
+import { SafePipe } from 'src/app/safe.pipe';
 
 
 @Component({
