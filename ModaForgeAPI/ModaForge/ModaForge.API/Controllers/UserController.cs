@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Application.Services;
 using ModaForge.Domain;
+using ModaForge.Domain.Views.Create;
 using Newtonsoft.Json;
 
 namespace ModaForge.API.Controllers
@@ -42,7 +43,7 @@ namespace ModaForge.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateUser([FromBody] User user )
+        public IActionResult CreateUser([FromBody] CreateUserViewModel user )
         {
             return Ok(service.Create(user));
         }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ModaForge.Domain.Views.Create;
 
 namespace ModaForge.Application.Services
 {
@@ -17,9 +18,18 @@ namespace ModaForge.Application.Services
             this.repository = repository;
         }
 
-        public User Create(User user)
+        public User Create(CreateUserViewModel userData)
         {
-            return repository.Create(user);
+            User user = new User()
+            {
+                Name = userData.Name,
+                Email = userData.Email,
+                Verified = userData.Verified,
+                Picture = userData.Picture,
+                ProviderRole = userData.ProviderRole,
+            };
+            user = repository.Create(user);
+            return user;
         }
 
         public void Delete(int id)
