@@ -20,6 +20,26 @@ namespace ModaForge.Infrastructure.Repositories
 
         public Request Create(Request request)
         {
+            var provider = context.users.FirstOrDefault(x => x.Id == request.ProviderId);
+            var requester = context.users.FirstOrDefault(x => x.Id == request.RequesterId);
+            var model = context.models.FirstOrDefault(x => x.Id == request.ModelId);
+            var region = context.regions.FirstOrDefault(x => x.Id == request.RegionId);
+            if (provider == null)
+            {
+                throw new Exception("Provider not found with given ProviderId");
+            }
+            if (requester == null)
+            {
+                throw new Exception("Requester not found with given RequesterId");
+            }
+            if (model == null)
+            {
+                throw new Exception("Model not found with given ModelId");
+            }
+            if (region == null)
+            {
+                throw new Exception("Region not found with given RegionId");
+            }
             context.requests.Add(request);
             context.SaveChanges();
             return request;
