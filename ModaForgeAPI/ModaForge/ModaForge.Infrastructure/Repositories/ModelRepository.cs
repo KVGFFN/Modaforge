@@ -35,8 +35,21 @@ namespace ModaForge.Infrastructure.Repositories
 
         public IEnumerable<Model> GetAll(SearchParameters searchParameters)
         {
-            return context.models
-                .OrderBy(Model => Model.Name) //TODO Needs some changes like add searchable tags
+            var tags = new string[] { };
+            if (!string.IsNullOrWhiteSpace(searchParameters.Tags))
+            {
+                tags = searchParameters.Tags.Split(',');
+            }
+            var query = from model in context.models
+                        join tag_model in context.tags_models on model.Id equals tag_model.ModelID
+                        join tag in context.tags on tag_model.TagID equals tag.Id
+                        where !tags.Any() || tags.Contains(tag.Name)
+                        select model;
+
+            return query
+                .Distinct()
+                .OrderBy(Model => Model.Name)
+                .Include(Model => Model.User)
                 .Skip((searchParameters.PageNumber - 1) * searchParameters.PageSize)
                 .Take(searchParameters.PageSize)
                 .ToList();

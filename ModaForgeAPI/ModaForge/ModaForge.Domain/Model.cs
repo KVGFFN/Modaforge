@@ -1,3 +1,4 @@
+using ModaForge.Domain.Bridges;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,6 +17,5 @@ public class Model
     
     // virtual declarations
     public virtual User? User { get; set; }
-    
-    
+
 }
