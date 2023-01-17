@@ -45,8 +45,5 @@ namespace ModaForge.API.Controllers
             service.Delete(id);
             return Ok();
         }
-
-
-
     }
 }

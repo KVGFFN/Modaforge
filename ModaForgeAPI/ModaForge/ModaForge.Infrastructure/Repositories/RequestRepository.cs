@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ModaForge.Application.Inferfaces.IRepository;
 using ModaForge.Domain;
+using ModaForge.Domain.Bridges;
 using ModaForge.Infrastructure.Contexts;
 using System;
 using System.Collections.Generic;
@@ -53,8 +54,22 @@ namespace ModaForge.Infrastructure.Repositories
 
         public IEnumerable<Request> GetAll(SearchParameters searchParameters)
         {
-            return context.requests
-                .OrderBy(Request => Request.Title) //TODO Needs some changes like add searchable tags
+            var tags = new string[] { };
+            if (!string.IsNullOrWhiteSpace(searchParameters.Tags))
+            {
+                tags = searchParameters.Tags.Split(',');
+            }
+            var query = from request in context.requests
+                        join Tag_Request in context.tags_requests on request.Id equals Tag_Request.RequestID
+                        join tag in context.tags on Tag_Request.TagID equals tag.Id
+                        where !tags.Any() || tags.Contains(tag.Name)
+                        where (string.IsNullOrWhiteSpace(searchParameters.Keyword) || request.Title.Contains(searchParameters.Keyword))
+                        select request;
+
+            return query
+                .Distinct()
+                .OrderBy(Request => Request.Title)
+                .Include(Request => Request.Requester)
                 .Skip((searchParameters.PageNumber - 1) * searchParameters.PageSize)
                 .Take(searchParameters.PageSize)
                 .ToList();

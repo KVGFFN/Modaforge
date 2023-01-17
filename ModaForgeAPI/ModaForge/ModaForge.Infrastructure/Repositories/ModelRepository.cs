@@ -43,7 +43,8 @@ namespace ModaForge.Infrastructure.Repositories
             var query = from model in context.models
                         join tag_model in context.tags_models on model.Id equals tag_model.ModelID
                         join tag in context.tags on tag_model.TagID equals tag.Id
-                        where !tags.Any() || tags.Contains(tag.Name)
+                        where !tags.Any() || tags.Contains(tag.Name) 
+                        where (string.IsNullOrWhiteSpace(searchParameters.Keyword) || model.Name.Contains(searchParameters.Keyword))
                         select model;
 
             return query
