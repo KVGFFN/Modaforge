@@ -12,6 +12,6 @@ namespace ModaForge.Domain
         public int PageSize = 20;
 
         public string? Tags { get; set; }
-        public string Keyword { get; set; }
+        public string? Keyword { get; set; }
     }
 }
