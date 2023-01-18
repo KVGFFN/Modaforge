@@ -21,27 +21,27 @@ namespace ModaForge.Infrastructure.Repositories
 
         public Request Create(Request request)
         {
-            var provider = context.users.FirstOrDefault(x => x.Id == request.ProviderId);
-            var requester = context.users.FirstOrDefault(x => x.Id == request.RequesterId);
-            var model = context.models.FirstOrDefault(x => x.Id == request.ModelId);
-            var region = context.regions.FirstOrDefault(x => x.Id == request.RegionId);
+            var provider = context.users.Find(request.ProviderId);
+            var requester = context.users.Find(request.RequesterId);
+            var model = context.models.Find(request.ModelId);
+            var region = context.regions.Find(request.RegionId);
             if (provider == null)
             {
-                throw new Exception("Provider not found with given ProviderId");
+                throw new ArgumentNullException("Provider not found with given ProviderId");
             }
             if (requester == null)
             {
-                throw new Exception("Requester not found with given RequesterId");
+                throw new ArgumentNullException("Requester not found with given RequesterId");
             }
             if (model == null)
             {
-                throw new Exception("Model not found with given ModelId");
+                throw new ArgumentNullException("Model not found with given ModelId");
             }
             if (region == null)
             {
-                throw new Exception("Region not found with given RegionId");
+                throw new ArgumentNullException("Region not found with givenRegionId");
             }
-            context.requests.Add(request);
+            context.Add(request);
             context.SaveChanges();
             return request;
         }

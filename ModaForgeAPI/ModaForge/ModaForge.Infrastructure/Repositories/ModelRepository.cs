@@ -22,6 +22,12 @@ namespace ModaForge.Infrastructure.Repositories
 
         public Model Create(Model Model)
         {
+            var user = context.users.Find(Model.UserId);
+            if (user == null)
+            {
+                throw new ArgumentNullException("User not found with given UserId");
+            }
+
             context.models.Add(Model);
             context.SaveChanges();
             return Model;

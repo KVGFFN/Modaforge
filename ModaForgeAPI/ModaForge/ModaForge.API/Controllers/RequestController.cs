@@ -32,7 +32,15 @@ namespace ModaForge.API.Controllers
         [HttpPost]
         public IActionResult CreateRequest([FromBody] CreateRequestViewModel request)
         {
-            return Ok(service.Create(request));
+            try
+            {
+                var newRequest = service.Create(request);
+                return Ok(newRequest);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         [Route("{id}")]
         [HttpPut]
