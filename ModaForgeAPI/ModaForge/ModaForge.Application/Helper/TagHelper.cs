@@ -80,7 +80,7 @@ namespace ModaForge.Application.Helper
                     foundtag = repository.GetByName(tag.ToLower());
                 }
 
-                repository.AddTagToModel(request.Id, foundtag.Id);
+                repository.AddTagToRequest(request.Id, foundtag.Id);
             }
         }
 
