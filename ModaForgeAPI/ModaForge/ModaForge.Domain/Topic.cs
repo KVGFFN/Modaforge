@@ -12,7 +12,10 @@ namespace ModaForge.Domain
         public string Name { get; set; }
         public DateTime Created { get; set; }
         public DateTime Updated { get; set; }
-        
+
+        //Instead of deleting the topics i believe its easier to hide them. Also its easier for admins to check if someone did something they should not have. But have to check "privacy" so idk.
+        public bool hidden = false;
+
         // Author is the Name of User.
         public string Author => User.Name;
 
@@ -21,11 +24,7 @@ namespace ModaForge.Domain
 
         [ForeignKey(nameof(Request))]
         public int? RequestId { get; set; }
-        
-        // TODO: Check if list of posts is necessary
-        // It is to connect the topics to its posts, just like teams does. or idk it seems good this way...
-        public List<Post>? Posts { get; set; }
-        
+
         // virtual declarations
         public virtual Request? Request { get; set; }
         public virtual User? User { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ModaForge.Application.Inferfaces.IService;
 using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Domain;
 using ModaForge.Domain.Views.Create;
@@ -7,32 +8,32 @@ namespace ModaForge.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PostController : ControllerBase
+    public class TopicController : ControllerBase
     {
-        private IPostService service;
-        public PostController(IPostService service)
+        private ITopicService service;
+        public TopicController(ITopicService service)
         {
             this.service = service;
         }
         [HttpGet]
-        public IActionResult GetAllPosts([FromQuery] SearchParameters searchParameters)
+        public IActionResult GetAllTopics([FromQuery] SearchParameters searchParameters)
         {
             return Ok(service.GetAll(searchParameters));
         }
 
         [Route("{id}")]
         [HttpGet]
-        public IActionResult GetPost([FromRoute] int id)
+        public IActionResult GetTopic([FromRoute] int id)
         {
-            return Ok(service.GetById(id));
+            return Ok(service.GetByIdWithPosts(id));
         }
         [HttpPost]
-        public IActionResult CreatePost([FromBody] CreatePostViewModel postdata)
+        public IActionResult CreateTopic([FromBody] CreateTopicViewModel topic)
         {
             try
             {
-                var newPost = service.Create(postdata);
-                return Ok();
+                var newTopic = service.Create(topic);
+                return Ok(newTopic);
             }
             catch (ArgumentNullException ex)
             {
@@ -41,9 +42,9 @@ namespace ModaForge.API.Controllers
         }
         [Route("{id}")]
         [HttpPut]
-        public IActionResult UpdatePost([FromRoute] int id, [FromBody] Post post)
+        public IActionResult UpdateTopic([FromRoute] int id, [FromBody] Topic topic)
         {
-            return Ok(service.Update(id, post));
+            return Ok(service.Update(id, topic));
         }
     }
 }

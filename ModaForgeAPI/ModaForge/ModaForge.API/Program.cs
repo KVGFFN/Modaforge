@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using ModaForge.Application.Helper;
 using ModaForge.Application.Inferfaces.IRepository;
+using ModaForge.Application.Inferfaces.IService;
 using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Application.Services;
 using ModaForge.Infrastructure.Contexts;
@@ -35,6 +36,8 @@ builder.Services.AddScoped<ITagService, TagService>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();
+builder.Services.AddScoped<ITopicRepository, TopicRepository>();
+builder.Services.AddScoped<ITopicService, TopicService>();
 //Tag Helper
 builder.Services.AddScoped<TagHelper>();
 builder.Services.AddControllers();

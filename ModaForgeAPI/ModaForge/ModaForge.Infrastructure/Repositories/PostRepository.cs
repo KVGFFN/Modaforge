@@ -19,6 +19,12 @@ namespace ModaForge.Infrastructure.Repositories
         
         public Post Create(Post post)
         {
+            var topic = context.topics.Find(post.topicId);
+            if (topic == null)
+            {
+                throw new ArgumentNullException("Topic not found with given TopicId");
+            }
+
             context.posts.Add(post);
             context.SaveChanges();
             return post;
@@ -33,7 +39,7 @@ namespace ModaForge.Infrastructure.Repositories
         public IEnumerable<Post> GetAll(SearchParameters searchParameters)
         {
             return context.posts
-                .OrderBy(Request => Request.Name) //TODO Needs some changes like add searchable tags
+                .OrderBy(Request => Request.Created) // Order by date
                 .Skip((searchParameters.PageNumber - 1) * searchParameters.PageSize)
                 .Take(searchParameters.PageSize)
                 .ToList();
