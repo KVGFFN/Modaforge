@@ -36,16 +36,23 @@ namespace ModaForge.Infrastructure.Repositories
         public IEnumerable<Model> GetAll(SearchParameters searchParameters)
         {
             var tags = new string[] { };
+            var query = from model in context.models
+                        select model;
+
             if (!string.IsNullOrWhiteSpace(searchParameters.Tags))
             {
                 tags = searchParameters.Tags.Split(',');
-            }
-            var query = from model in context.models
+                query = from model in query
                         join tag_model in context.tags_models on model.Id equals tag_model.ModelID
                         join tag in context.tags on tag_model.TagID equals tag.Id
-                        where !tags.Any() || tags.Contains(tag.Name) 
-                        where (string.IsNullOrWhiteSpace(searchParameters.Keyword) || model.Name.Contains(searchParameters.Keyword))
+                        where tags.Contains(tag.Name)
                         select model;
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchParameters.Keyword))
+            {
+                query = query.Where(m => m.Name.Contains(searchParameters.Keyword));
+            }
 
             return query
                 .Distinct()
