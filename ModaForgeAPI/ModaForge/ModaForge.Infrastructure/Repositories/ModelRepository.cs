@@ -92,6 +92,18 @@ namespace ModaForge.Infrastructure.Repositories
                 Tags = new List<Tag>()
             };
 
+            //Ratings 
+            var ratingslist = context.ratings.Where(tm => tm.ModelId == id);
+            if (ratingslist.Any())
+            {
+                double avgRating = ratingslist.Average(r => r.Score);
+                modelView.rating = Convert.ToInt32(avgRating);
+            }
+            else
+            {
+                modelView.rating = 0;
+            }
+
             //Get All tags
             modelView.Tags = context.tags_models.Where(tm => tm.ModelID == id).Select(tm => tm.Tag).ToList();
 

@@ -38,6 +38,8 @@ builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 builder.Services.AddScoped<ITopicRepository, TopicRepository>();
 builder.Services.AddScoped<ITopicService, TopicService>();
+builder.Services.AddScoped<IRatingRepository, RatingRepository>();
+builder.Services.AddScoped<IRatingService, RatingService>();
 //Tag Helper
 builder.Services.AddScoped<TagHelper>();
 builder.Services.AddControllers();

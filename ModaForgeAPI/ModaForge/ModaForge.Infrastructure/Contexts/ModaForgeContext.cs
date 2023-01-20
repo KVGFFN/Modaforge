@@ -24,6 +24,8 @@ namespace ModaForge.Infrastructure.Contexts
         public DbSet<Request> requests { get; set; }
         public DbSet<Topic> topics { get; set; }
 
+        public DbSet<Rating> ratings { get; set; }
+
         // Tag and all its bridges 
         public DbSet<Tag> tags { get; set; }
         public DbSet<Tag_Model> tags_models { get; set; }

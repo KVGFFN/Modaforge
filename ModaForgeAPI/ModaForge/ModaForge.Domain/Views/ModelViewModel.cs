@@ -18,6 +18,8 @@ namespace ModaForge.Domain.Views
 
         public string UserName { get; set; }
 
+        public int rating { get; set; }
+
         public List<Tag> Tags { get; set; }
     }
 }
