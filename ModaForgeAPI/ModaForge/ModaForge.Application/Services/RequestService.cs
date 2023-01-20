@@ -41,6 +41,9 @@ namespace ModaForge.Application.Services
             //Tag manager
             tagHelper.AddTagsToRequest(request, requestData.Tags);
 
+            //Idk if i should make a topic that is already linked with this request. If we do it this way it would already be a sort of chat you can have in the request self.
+
+
             return request;
         }
 
