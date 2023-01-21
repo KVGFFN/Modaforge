@@ -81,7 +81,6 @@ export class LibraryPage implements OnInit {
           this.parent_modelurls.push(element.embedUrl);
           this.parent_modelnames.push(element.name);
         });
-
         this.hasLoaded = true;
       }
     });
@@ -89,7 +88,7 @@ export class LibraryPage implements OnInit {
   }
 
   goToModel(model) {
-    
+    this.navController.navigateForward('/library/model-detail/' + model.uid);
   }
 
   redirectToModel(index: number)

@@ -4,16 +4,18 @@ import { ModelService } from 'src/app/services/model.service';
 import { Model } from 'src/modules/interfaces/model.interface';
 import { ModelDetail } from 'src/modules/interfaces/model-detail.interface';
 import { SafePipe } from 'src/app/safe.pipe';
-
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-model-detail',
   templateUrl: './model-detail.page.html',
   styleUrls: ['./model-detail.page.scss'],
 })
+
 export class ModelDetailPage implements OnInit {
 
   constructor(
+    private sanitizer: DomSanitizer,
     private activatedRoute: ActivatedRoute,
     private modelService: ModelService,
   ) { }

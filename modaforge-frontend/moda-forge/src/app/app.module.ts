@@ -13,7 +13,7 @@ import { SafePipe } from './safe.pipe';
 @NgModule({
   declarations: [AppComponent, SafePipe],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SafePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
