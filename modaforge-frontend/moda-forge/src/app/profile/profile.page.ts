@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { currentUser } from 'src/helpers/CurrentUser';
 import { HttpClient } from '@angular/common/http';
-import { ProviderService } from '../services/provider.service';
-import { Provider } from 'src/modules/interfaces/provider.interface';
+import { User } from 'src/modules/interfaces/user.interface';
+import { cpuUsage } from 'process';
 
 @Component({
   selector: 'app-profile',
@@ -15,38 +15,18 @@ export class ProfilePage implements OnInit {
   constructor(
     private userService: UserService,
     private http: HttpClient,
-    private providerService: ProviderService
   ) { }
 
   // variables
-  id: number;
-  name: string = "";
-  services: string = "";
+  id: number = 521;
+  name: string;
+  verified: boolean;
   email: string;
   picture: string;
+  providerRole: boolean;
   userdata = [];
   userIsLoaded: boolean = false;
   showSignUpForm: boolean = false;
-
-  provider: Provider = {
-    id: 0,
-    name: this.name,
-    services: this.services,
-    userId: 420,
-    user: {
-      id: 0,
-      name: "",
-      verified: false,
-      email: "",
-      picture: "",
-      regionId: 0,
-      region: {
-        id: 0,
-        name: "",
-        zipCode: 0
-      }
-    }
-  }
 
   getAllUsers() {
     try {
@@ -68,34 +48,34 @@ export class ProfilePage implements OnInit {
   async waitTillTrue() {
     while (this.userIsLoaded == false) {
       await new Promise(resolve => setTimeout(resolve, 1000));
+    } 
+  }
 
-    }
-    if (this.userIsLoaded) {
-      for (let i = 0; i < this.userdata.length; i++) {
-        console.log(this.userdata[i].name);
-        if (this.userdata[i].name == currentUser.username && this.userdata[i].email == currentUser.email) {
-          this.id = this.userdata[i].id;
-          this.name = this.userdata[i].name;
-          this.email = this.userdata[i].email;
-          this.picture = this.userdata[i].picture;
+  updateProviderRole() {
+    console.log("updateProviderRole() called");
+    this.getAllUsers();
+    this.waitTillTrue().then(() => {
+      console.log("waitTillTrue() called");
+      this.userdata.forEach(element => {
+        if (element.name == currentUser.username && element.email.toLowerCase() == currentUser.email) {
+          console.log("if statement called");
+          console.log(element.id)
+          element.ProviderRole = true;
+          this.userService.updateUser(element, element.id).subscribe(data => {
+            console.log(data);
+            console.log("ProviderRole updated");
+          }, error => {
+            console.log(error);
+            console.log("ProviderRole not updated");
+          });
         }
-      }
-    }
+      });
+    })
   }
-
-
-
-  createProvider(provider : Provider) {
-    this.providerService.addProvider(provider).subscribe(data => {
-      console.log(data);
-    }, error => {
-      console.log(error);
-    });
-    
-  }
+   
 
   toggleSignUpForm() {
-    this.showSignUpForm = !this.showSignUpForm;;
+    this.showSignUpForm = !this.showSignUpForm;
   }
 
 
