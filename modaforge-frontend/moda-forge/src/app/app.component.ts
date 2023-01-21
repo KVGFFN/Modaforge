@@ -119,10 +119,5 @@ export class AppComponent {
       APIstate.isActive = false;
       alert("API is not running at " + IP.local);
     });
-
-    // execute after 3 seconds
-    setTimeout(() => {
-      console.log(">> User is logged in: " + loginHelper.isLoggedIn);
-    }, 3000);
   }
 }
