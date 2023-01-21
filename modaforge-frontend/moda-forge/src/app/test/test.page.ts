@@ -16,16 +16,4 @@ export class TestPage implements OnInit {
 
   }
 
-  getRequest()
-  {
-    // make yellow console log
-    console.log("%ctest.page.ts -- getRequest()", "color: yellow")
-
-    this.requestService.getRequest(1).subscribe(
-      (data) => {
-        console.log(data);
-      }
-    );
-  }
-
 }
