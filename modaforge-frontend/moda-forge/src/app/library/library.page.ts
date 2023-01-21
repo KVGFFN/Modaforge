@@ -29,6 +29,7 @@ export class LibraryPage implements OnInit {
   parent_modelurls = [];
   parent_modelnames = [];
   parent_modeluids = [];
+  parent_modelthumbnails = [];
 
   searchTerm: string;
 
@@ -58,6 +59,7 @@ export class LibraryPage implements OnInit {
           this.parent_modelurls.push(element.embedUrl);
           this.parent_modelnames.push(element.name);
           this.parent_modeluids.push(element.uid);
+          this.parent_modelthumbnails.push(element.thumbnails.images[0].url);
         });
 
         this.hasLoaded = true;
@@ -73,7 +75,12 @@ export class LibraryPage implements OnInit {
     this.library = [];
     this.parent_modelurls = [];
     this.parent_modelnames = [];
-    this.http.get(`https://api.sketchfab.com/v3/search?type=models&q=${searchTerm}&archives_flavours=false`)
+    this.http.get(`https://api.sketchfab.com/v3/search?type=models&q=${searchTerm}
+    &https://api.sketchfab.com/v3/models?downloadable=true
+    &animated=false
+    &has_sound=false
+    &restricted=tru
+    e&archives_flavours=false`)
     .subscribe({
       next: (data) => {
         this.library = data['results']
