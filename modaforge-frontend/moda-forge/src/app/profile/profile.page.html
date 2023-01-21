@@ -25,9 +25,11 @@
                   <h2>{{ name }}</h2>
                   <p>{{ email }}</p>
                 </ion-label>
-                <ion-button color="primary" (click)="toggleSignUpForm()">
-                  {{ showSignUpForm ? 'Close Form' : 'Become a printer' }}
-                </ion-button>
+                <ion-button color="primary" (click)="updateProviderRole()">
+                  <ng-container *ngIf="providerRole; then deactivate else become"></ng-container>
+                  <ng-template #deactivate>Deactivate printer role</ng-template>
+                  <ng-template #become>Become a printer</ng-template>
+              </ion-button>
               </ion-item>
             </ion-list>
           </ion-card-content>
@@ -35,27 +37,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <!-- The sign up form -->
-  <ion-row>
-    <ion-col size="12">
-      <ion-card *ngIf="showSignUpForm">
-        <ion-card-header>
-          <ion-card-title>Sign up</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-list>
-            <ion-item>
-              <ion-label position="floating">Name</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-button color="primary" (click)="updateProviderRole()">Submit</ion-button>
-            </ion-item>
-          </ion-list>
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
 
   <ion-grid>
     <!-- The dashboard requests -->

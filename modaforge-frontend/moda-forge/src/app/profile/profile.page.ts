@@ -26,7 +26,6 @@ export class ProfilePage implements OnInit {
   providerRole: boolean;
   userdata = [];
   userIsLoaded: boolean = false;
-  showSignUpForm: boolean = false;
 
   getAllUsers() {
     try {
@@ -58,26 +57,22 @@ export class ProfilePage implements OnInit {
       console.log("waitTillTrue() called");
       this.userdata.forEach(element => {
         if (element.name == currentUser.username && element.email.toLowerCase() == currentUser.email) {
-          console.log("if statement called");
-          console.log(element.id)
-          element.ProviderRole = true;
+          if (element.providerRole == true) {
+            element.providerRole = false;
+          } else {
+            element.providerRole = true;
+          }
+          this.providerRole = !this.providerRole;
           this.userService.updateUser(element, element.id).subscribe(data => {
             console.log(data);
             console.log("ProviderRole updated");
           }, error => {
             console.log(error);
-            console.log("ProviderRole not updated");
           });
         }
       });
     })
   }
-   
-
-  toggleSignUpForm() {
-    this.showSignUpForm = !this.showSignUpForm;
-  }
-
 
   ngOnInit() {
     this.name = currentUser.username;
