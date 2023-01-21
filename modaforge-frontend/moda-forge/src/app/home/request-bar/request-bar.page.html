@@ -20,3 +20,6 @@
 
 <!--display requests-->
 <app-request *ngFor="let request of requests; index as i;" [nameModel]="request.title" [description]="request.description"></app-request>
+<ion-button 
+    class="request-btn"
+    color="light">Create Request</ion-button>
