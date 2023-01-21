@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RequestService } from 'src/app/services/request.service';
+import { currentUser } from 'src/helpers/CurrentUser';
 import { Request } from 'src/modules/interfaces/request.interface';
 
 @Component({
@@ -8,7 +10,9 @@ import { Request } from 'src/modules/interfaces/request.interface';
 })
 export class RequestBarPage implements OnInit {
 
+  constructor(private requestService: RequestService) { }
   requests: Request[];
+  request: Request;
 
   id: number;
   title: string;
@@ -17,29 +21,19 @@ export class RequestBarPage implements OnInit {
   // foutmelding op html pagina
   isApiAvailable: boolean;
 
-  async getAllRequests() {
-    try
-    {
-      const response = await fetch('https://localhost:7271/api/Request', {method: 'GET'});
-      const data = await response.json();
-      this.requests = data;
-      console.log(this.requests);
-      this.isApiAvailable = true;
-    }
-    catch (error)
-    {
-      console.log("--- ERROR AT getAllUsers() ---");
-      console.log(error);
-      this.isApiAvailable = false;
-    }
+  getRequestByUserId(id: number)
+  {
+    
   }
-
-
-  constructor() { }
 
   ngOnInit() {
     this.isApiAvailable = true;
-    this.getAllRequests();
+    this.requestService.getMyRequests(currentUser.id).subscribe(
+      (data) => {
+        this.requests = data;
+      }
+    )
+  
   }
 
   
