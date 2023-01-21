@@ -93,6 +93,16 @@ namespace ModaForge.Infrastructure.Repositories
             return request;
         }
 
+        public IEnumerable<Request> GetAllRequestsByRequesterId(int id)
+        {
+            // Get all Requests by User.cs' Id
+            var requests = context.requests
+                .Include(r => r.Requester)
+                .Where(r => r.RequesterId == id)
+                .ToList();
+            return requests;
+        }
+
         public Request Update(int id, Request request)
         {
             context.requests.Update(request);
