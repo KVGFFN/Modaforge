@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ModaForge.Application.Inferfaces;
+using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Domain;
+using ModaForge.Domain.Views.Create;
 using Newtonsoft.Json;
 
 namespace ModaForge.API.Controllers
@@ -27,9 +28,17 @@ namespace ModaForge.API.Controllers
             return Ok(service.GetById(id));
         }
         [HttpPost]
-        public IActionResult CreateModel([FromBody] Model model)
+        public IActionResult CreateModel([FromBody] CreateModelViewModel model)
         {
-            return Ok(service.Create(model));
+            try
+            {
+                var newModel = service.Create(model);
+                return Ok(newModel);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         [Route("{id}")]
         [HttpPut]
@@ -44,8 +53,5 @@ namespace ModaForge.API.Controllers
             service.Delete(id);
             return Ok();
         }
-
-
-
     }
 }

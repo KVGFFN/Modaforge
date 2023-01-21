@@ -19,20 +19,26 @@ namespace ModaForge.Infrastructure.Configurations
                     Id = 1,
                     Title = "Toy",
                     Description = "A plastic toy",
-                    Status=0,
+                    Status = 2,
                     CreationDate = DateTime.Now,
-                    AcceptedDate = null,
-                    DoneDate = null,
+                    AcceptedDate = DateTime.Now,
+                    DoneDate = DateTime.Now,
+                    ModelId = 1,
+                    RequesterId = 520,
+                    ProviderId = 420
                 },
                 new Request
                 {
                     Id = 2,
                     Title = "Firetruck",
                     Description = "A firetruck in gold",
-                    Status = 0,
+                    Status = 1,
                     CreationDate = DateTime.Now,
-                    AcceptedDate = null,
+                    AcceptedDate = DateTime.Now,
                     DoneDate = null,
+                    ModelId = 2,
+                    RequesterId = 520,
+                    ProviderId = 420
                 },
                 new Request
                 {
@@ -43,6 +49,9 @@ namespace ModaForge.Infrastructure.Configurations
                     CreationDate = DateTime.Now,
                     AcceptedDate = null,
                     DoneDate = null,
+                    ModelId = 3,
+                    RequesterId = 520,
+                    ProviderId = 420
                 },
                 new Request
                 {
@@ -53,8 +62,10 @@ namespace ModaForge.Infrastructure.Configurations
                     CreationDate = DateTime.Now,
                     AcceptedDate = null,
                     DoneDate = null,
+                    ModelId = 4,
+                    RequesterId = 420,
                 }
-                );
+                ); ;
         }
     }
 }

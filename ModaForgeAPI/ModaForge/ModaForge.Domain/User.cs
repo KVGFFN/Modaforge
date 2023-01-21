@@ -15,10 +15,12 @@ namespace ModaForge.Domain
         
         public string Picture { get; set; }
 
+        public bool ProviderRole { get; set; }
+
         [ForeignKey(nameof(Region))]
         public int? RegionId { get; set; }
         
-        // virtual declarations
+           // virtual declarations
         public virtual Region? Region { get; set; }
     }
 }

@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModaForge.Application.Inferfaces
+namespace ModaForge.Application.Inferfaces.IRepository
 {
-    public interface IRequestService
+    public interface IRequestRepository
     {
         IEnumerable<Request> GetAll(SearchParameters searchParameters);
-        public Request GetById(int id);
-        public Request Create(Request request);
-        public Request Update(int id, Request request);
+        Request GetById(int id);
+        Request Create(Request request);
+        Request Update(int id, Request request);
     }
 }

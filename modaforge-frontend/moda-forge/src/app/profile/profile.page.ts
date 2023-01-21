@@ -100,8 +100,8 @@ export class ProfilePage implements OnInit {
 
 
   ngOnInit() {
-    this.getAllUsers();
-    this.waitTillTrue();
+    this.name = currentUser.username;
+    this.email = currentUser.email;
   }
 
 

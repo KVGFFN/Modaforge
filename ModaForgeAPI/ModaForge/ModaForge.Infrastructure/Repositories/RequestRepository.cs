@@ -1,5 +1,7 @@
-﻿using ModaForge.Application.Inferfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using ModaForge.Application.Inferfaces.IRepository;
 using ModaForge.Domain;
+using ModaForge.Domain.Bridges;
 using ModaForge.Infrastructure.Contexts;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,27 @@ namespace ModaForge.Infrastructure.Repositories
 
         public Request Create(Request request)
         {
-            context.requests.Add(request);
+            var provider = context.users.Find(request.ProviderId);
+            var requester = context.users.Find(request.RequesterId);
+            var model = context.models.Find(request.ModelId);
+            var region = context.regions.Find(request.RegionId);
+            if (provider == null)
+            {
+                throw new ArgumentNullException("Provider not found with given ProviderId");
+            }
+            if (requester == null)
+            {
+                throw new ArgumentNullException("Requester not found with given RequesterId");
+            }
+            if (model == null)
+            {
+                throw new ArgumentNullException("Model not found with given ModelId");
+            }
+            if (region == null)
+            {
+                throw new ArgumentNullException("Region not found with givenRegionId");
+            }
+            context.Add(request);
             context.SaveChanges();
             return request;
         }
@@ -32,8 +54,29 @@ namespace ModaForge.Infrastructure.Repositories
 
         public IEnumerable<Request> GetAll(SearchParameters searchParameters)
         {
-            return context.requests
-                .OrderBy(Request => Request.Title) //TODO Needs some changes like add searchable tags
+            var tags = new string[] { };
+            var query = from request in context.requests
+                        select request;
+
+            if (!string.IsNullOrWhiteSpace(searchParameters.Tags))
+            {
+                tags = searchParameters.Tags.Split(',');
+                query = from request in query
+                        join Tag_Request in context.tags_requests on request.Id equals Tag_Request.RequestID
+                        join tag in context.tags on Tag_Request.TagID equals tag.Id
+                        where tags.Contains(tag.Name)
+                        select request;
+            }
+
+            if (!string.IsNullOrWhiteSpace(searchParameters.Keyword))
+            {
+                query = query.Where(r => r.Title.Contains(searchParameters.Keyword));
+            }
+
+            return query
+                .Distinct()
+                .OrderBy(Request => Request.Title)
+                .Include(Request => Request.Requester)
                 .Skip((searchParameters.PageNumber - 1) * searchParameters.PageSize)
                 .Take(searchParameters.PageSize)
                 .ToList();
@@ -42,7 +85,11 @@ namespace ModaForge.Infrastructure.Repositories
 
         public Request GetById(int id)
         {
-            Request request = context.requests.Where(t => t.Id == id).FirstOrDefault();
+            Request request = context.requests
+                .Include(r => r.Requester)
+                .Include(r => r.Provider)
+                .Where(t => t.Id == id)
+                .FirstOrDefault();
             return request;
         }
 

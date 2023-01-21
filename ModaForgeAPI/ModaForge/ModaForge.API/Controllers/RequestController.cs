@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ModaForge.Application.Inferfaces;
+using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Application.Services;
 using ModaForge.Domain;
+using ModaForge.Domain.Views.Create;
 using Newtonsoft.Json;
 
 namespace ModaForge.API.Controllers
@@ -29,9 +30,17 @@ namespace ModaForge.API.Controllers
             return Ok(service.GetById(id));
         }
         [HttpPost]
-        public IActionResult CreateRequest([FromBody] Request request)
+        public IActionResult CreateRequest([FromBody] CreateRequestViewModel request)
         {
-            return Ok(service.Create(request));
+            try
+            {
+                var newRequest = service.Create(request);
+                return Ok(newRequest);
+            }
+            catch (ArgumentNullException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
         [Route("{id}")]
         [HttpPut]

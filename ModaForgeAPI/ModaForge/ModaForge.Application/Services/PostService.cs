@@ -1,5 +1,7 @@
-﻿using ModaForge.Application.Inferfaces;
+﻿using ModaForge.Application.Inferfaces.IRepository;
+using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Domain;
+using ModaForge.Domain.Views.Create;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +18,18 @@ namespace ModaForge.Application.Services
             this.repository = repository;
         }
 
-        public Post Create(Post post)
+        public Post Create(CreatePostViewModel postdata)
         {
-            return repository.Create(post);
+            Post newpost = new Post
+            {
+                stringdata = postdata.poststringdata,
+                Created = DateTime.Now,
+                UserId = postdata.UserId,
+                topicId = postdata.topicId
+            };
+            newpost = repository.Create(newpost);
+
+            return newpost;
         }
 
         public IEnumerable<Post> GetAll(SearchParameters searchParameters)

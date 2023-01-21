@@ -20,17 +20,15 @@ namespace ModaForge.Infrastructure.Contexts
 
         public DbSet<Post> posts { get; set; }
 
-        public DbSet<Provider> providers { get; set; }
-
         public DbSet<Region> regions { get; set; }
         public DbSet<Request> requests { get; set; }
         public DbSet<Topic> topics { get; set; }
 
+        public DbSet<Rating> ratings { get; set; }
+
         // Tag and all its bridges 
         public DbSet<Tag> tags { get; set; }
         public DbSet<Tag_Model> tags_models { get; set; }
-        public DbSet<Tag_Provider> tags_providers { get; set; }
-
         public DbSet<Tag_Request> tags_requests { get; set; }
         public DbSet<Tag_Topic> tags_topics { get; set; }
         
@@ -40,7 +38,7 @@ namespace ModaForge.Infrastructure.Contexts
             modelBuilder.ApplyConfiguration(new RequestConfiguration());
             modelBuilder.ApplyConfiguration(new ModelConfiguration());
             modelBuilder.ApplyConfiguration(new PostConfiguration());
-            modelBuilder.ApplyConfiguration(new ProviderConfiguration());
+            modelBuilder.ApplyConfiguration(new RegionConfiguration());
         }
     }
 

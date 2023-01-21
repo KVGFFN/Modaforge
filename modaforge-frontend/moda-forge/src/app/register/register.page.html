@@ -1,72 +1,38 @@
-<div *ngIf="!apistate" class="noAPI">
-  <ion-card color="warning">
-    <ion-card-header>
-      <ion-card-title>API not found</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>
-        Sorry, You cannot register if the API is not running.
-        <br>
-        <b>Check if {{IP}} is running.</b>
-      </p>
-    </ion-card-content>
-  </ion-card>
-</div>
-
-
-<div id="overarch">
-  <img src="assets/images/modaforge_logo_long.png" id="logo" />
-  <div id="loginform">
-    <ion-card class="card" padding>
-      <form>
-        <ion-item>
-          <ion-label position="floating">Name</ion-label>
-          <ion-input 
-            type="name"  
-            name="name"
-            [(ngModel)]="name"
-            ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input 
-            type="email"  
-            name="email"
-            [(ngModel)]="email"
-            ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Password</ion-label>
-          <ion-input 
-            type="password" 
-            [(ngModel)]="password" 
-            name="password"
-            ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">City</ion-label>
-          <ion-input 
-            type="text"  
-            name="city"
-            [(ngModel)]="regionName"
-            ></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Zipcode</ion-label>
-          <ion-input 
-            type="number"  
-            name="zip"
-            [(ngModel)]="regionZipcode"
-            ></ion-input>
-        </ion-item>
-        <ion-button 
-          class="register-button"
-          (click)="register()"
-          expand="block">
-          Register
-        </ion-button>
-      </form>
-    </ion-card>
+<div class="registration-form">
+  <div (click)="goToSignIn()" class="rectangle signin">Sign In</div>
+  <div class="rectangle register">Register</div>
+  <div class="whole-form">
+    <form class="form-container">
+      <div class="form-group">
+        <input type="text" class="form-control-item" name="name" placeholder="Name*" [(ngModel)]="name" />
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control-item" name="email" placeholder="Email*" [(ngModel)]="email" />
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control-item" name="password" placeholder="Password*" [(ngModel)]="password" />
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control-item" name="country" placeholder="Country" [(ngModel)]="country" />
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control-item" name="city" placeholder="City" [(ngModel)]="city" />
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control-item" name="street" placeholder="Street" [(ngModel)]="street" />
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control-item" name="zipcode" placeholder="Zipcode" [(ngModel)]="zipcode" />
+      </div>
+    </form>
+    <div (click)='register()' class="form-group">
+      <button class="sign-in-button  ">Register</button>
+    </div>
+    
   </div>
 </div>
 
+
+<div class="image-container">
+  <img  src="assets/images/modaforge_logo_square.png" id="logo" />
+</div>

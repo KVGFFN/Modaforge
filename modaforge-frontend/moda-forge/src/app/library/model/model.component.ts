@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SafePipe } from 'src/app/app.component';
+import { SafePipe } from 'src/app/safe.pipe';
 
 @Component({
   selector: 'app-model',

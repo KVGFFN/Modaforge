@@ -13,15 +13,6 @@ namespace ModaForge.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Post> builder)
         {
-            builder.HasData(
-                new Post
-                {
-                    Id = 1,
-                    Name = "testPost",
-                    Created = DateTime.Now,
-                    UserId = 420,
-                }
-            );
         }
     }
 }

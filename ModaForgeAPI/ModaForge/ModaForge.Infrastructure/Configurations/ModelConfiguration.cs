@@ -13,6 +13,37 @@ namespace ModaForge.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Model> builder)
         {
+            //TODO seeddata seems to be broken due to lack fo tag connected i believe.
+            builder.HasData(
+                new Model
+                {
+                    Id = 1,
+                    Name = "Toy",
+                    FileURL = "idk.yet",
+                    UserId = 420,
+                },
+                new Model
+                {
+                    Id = 2,
+                    Name = "Firetruck",
+                    FileURL = "idk.yet",
+                    UserId = 5,
+                },
+                new Model
+                {
+                    Id = 3,
+                    Name = "Money",
+                    FileURL = "idk.yet",
+                    UserId = 5,
+                },
+                new Model
+                {
+                    Id = 4,
+                    Name = "Giant balloon",
+                    FileURL = "idk.yet",
+                    UserId = 5,
+                }
+                );
         }
     }
 }

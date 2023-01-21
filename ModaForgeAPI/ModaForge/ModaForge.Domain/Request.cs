@@ -13,6 +13,12 @@ namespace ModaForge.Domain
         public string Title { get; set; }
         public string Description { get; set; }
         public int Status { get; set; }
+        //Status meaning, (Should change it to enum perhaps)
+        // 0 = New
+        // 1 = Accepted
+        // 2 = InProgress
+        // 3 = Done
+
         public DateTime CreationDate { get; set; }
         public DateTime? AcceptedDate { get; set; }
         public DateTime? DoneDate { get; set; }
@@ -36,8 +42,8 @@ namespace ModaForge.Domain
         public int? RegionId { get; set; }
         
         //virtual declarations
-        public virtual Requester? Requester { get; set; }
-        public virtual Provider? Provider { get; set; }
+        public virtual User? Requester { get; set; }
+        public virtual User? Provider { get; set; }
         public virtual Model? Model { get; set; }
         public virtual Region? Region { get; set; }
         
