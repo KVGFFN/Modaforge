@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from 'src/app/services/request.service';
+import { authState } from 'src/helpers/authState';
 import { currentUser } from 'src/helpers/CurrentUser';
 import { Request } from 'src/modules/interfaces/request.interface';
 
@@ -21,22 +22,20 @@ export class RequestBarPage implements OnInit {
   // foutmelding op html pagina
   isApiAvailable: boolean;
 
-  getRequestByUserId(id: number)
+  isInitialized = authState.authIsInitialized;
+  
+  getMyRequests(uid: number)
   {
-    
-  }
-
-  ngOnInit() {
-    this.isApiAvailable = true;
-    this.requestService.getMyRequests(currentUser.id).subscribe(
+    this.requestService.getMyRequests(uid).subscribe(
       (data) => {
         this.requests = data;
       }
     )
-  
   }
-
   
-
-
+  
+  ngOnInit() {
+    this.isApiAvailable = true;
+    this.getMyRequests(currentUser.id);
+  }
 }
