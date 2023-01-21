@@ -15,13 +15,15 @@
           <ion-card-content>
             <div class="sketchfab-embed-wrapper">
               <div>
-                <iframe frameborder="0" allowfullscreen="" loading="lazy" allow="autoplay; xr-spatial-tracking"
+                <iframe frameborder="0" allowfullscreen="true" loading="lazy" allow="autoplay; xr-spatial-tracking"
                   xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share
-                  [src]="model | safe" width="275px" height="275px" style="text-align: center;">
+                  [src]="model | safe" width="250px" height="400px" style="text-align: center;">
                 </iframe>
               </div>
-              <div style="margin: auto; width: 50%;">
-                <ion-button style="align-items: center;" (click)="redirectToModel(i)">Go to model</ion-button>
+              <div style="margin: auto;">
+                <ion-fab-button style="height: 40px; width: 40px; padding: 5px; margin: 10px;" (click)="redirectToModel(i)">
+                  <ion-icon name="eye-outline"></ion-icon>
+                </ion-fab-button>
               </div>
             </div>
           </ion-card-content>
