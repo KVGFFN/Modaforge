@@ -18,7 +18,7 @@ export class ProfilePage implements OnInit {
   ) { }
 
   // variables
-  id: number = 521;
+  id: number;
   name: string;
   verified: boolean;
   email: string;
