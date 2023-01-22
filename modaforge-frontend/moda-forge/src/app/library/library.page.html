@@ -1,6 +1,6 @@
 <div class="heading-style">
   <h1 style="text-align: center;">Search a model you like</h1>
-  <ion-searchbar class="sb-style" color="light" [(ngModel)]="searchTerm" (keydown.enter)="searchAllModels(searchTerm)"></ion-searchbar>
+  <ion-searchbar class="sb-style" color="light" [(ngModel)]="searchTerm" (keyup)="onSearch($event)"></ion-searchbar>
 </div>
 
 
@@ -22,7 +22,7 @@
               </div>
               <div style="margin: auto;">
                 <ion-fab-button style="height: 40px; width: 40px; padding: 5px; margin: 10px;" (click)="redirectToModel(i)">
-                  <ion-icon name="eye-outline"></ion-icon>
+                  <ion-icon title="View Model" name="eye-outline"></ion-icon>
                 </ion-fab-button>
               </div>
             </div>

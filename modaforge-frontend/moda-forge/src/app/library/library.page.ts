@@ -4,6 +4,7 @@ import { ModelService } from '../services/model.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { APIstate } from 'src/helpers/APIstate';
 import { NavController } from '@ionic/angular';
+import { debounceTime, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-library',
@@ -32,6 +33,7 @@ export class LibraryPage implements OnInit {
   parent_modelthumbnails = [];
 
   searchTerm: string;
+  search$ = new Subject<string>();
 
   // transform url
   transform(url) {
@@ -43,12 +45,18 @@ export class LibraryPage implements OnInit {
   ngOnInit()
   {
     console.log("LIBRARY.PAGE.TS: APISTATE IS " + APIstate.isActive);
-
     if (!this.hasInitialized)
     {
       this.getAllModels();
       this.hasInitialized = true;
     }
+
+    this.search$.pipe(
+      debounceTime(750),
+    ).subscribe((searchTerm) => {
+      this.searchAllModels(searchTerm);
+    }
+    )
   }
 
   getAllModels() {
@@ -91,7 +99,12 @@ export class LibraryPage implements OnInit {
         this.hasLoaded = true;
       }
     });
-    
+  }
+
+  onSearch(event)
+  {
+    this.searchTerm = event.target.value;
+    this.search$.next(this.searchTerm);
   }
 
   goToModel(model) {
