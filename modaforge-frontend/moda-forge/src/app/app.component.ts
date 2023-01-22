@@ -115,11 +115,11 @@ export class AppComponent {
       this.auth.onAuthStateChanged((user) => {
         if (user) {
           console.log("USER IS LOGGED IN");
-          loginHelper.isLoggedIn = true;
           currentUser.username = user.displayName;
           currentUser.email = user.email;
           this.username = user.displayName;
           this.getCurrentUser();
+          loginHelper.isLoggedIn = true;
         } else {
           console.log("USER IS NOT LOGGED IN");
           loginHelper.isLoggedIn = false;
