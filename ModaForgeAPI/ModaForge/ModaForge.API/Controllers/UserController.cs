@@ -4,6 +4,7 @@ using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Application.Services;
 using ModaForge.Domain;
 using ModaForge.Domain.Views.Create;
+using ModaForge.Domain.Views.Update;
 using Newtonsoft.Json;
 
 namespace ModaForge.API.Controllers
@@ -56,9 +57,9 @@ namespace ModaForge.API.Controllers
         }
         [Route("{id}")]
         [HttpPut]
-        public IActionResult UpdateUser([FromRoute] int id, [FromBody] User user )
+        public IActionResult UpdateUser([FromRoute] int id, [FromBody] UpdateUserViewModel userdata )
         {
-            return Ok(service.Update(id, user));
+            return Ok(service.Update(id, userdata));
         }
         [Route("{id}")]
         [HttpDelete]
