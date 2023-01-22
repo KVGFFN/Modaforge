@@ -17,18 +17,21 @@
   </ion-grid>
   <ion-grid>
      <ion-row>
-        <ion-col size="4" *ngFor="let printer of printers; let i = index" [class.new-row]="(i + 1) % 3 === 0">
+        <ion-col size="4" *ngFor="let provider of providerdata; let i = index" [class.new-row]="(i + 1) % 3 === 0">
            <!-- Post -->
            <ion-card class="print-card">
               <ion-card-header>
                 <ion-card-title>
-                  <img id="profilepicture" src="https://ionicframework.com/docs/img/demos/avatar.svg">
-                  Username
+                  <!--<img id="profilepicture" [src]="provider.image" (load)="pictureLoaded = true" (error)="pictureLoaded = false">-->
+                  <img *ngIf="pictureLoaded == false" id="profilepicture" src="https://ionicframework.com/docs/img/demos/avatar.svg">
+                  {{provider.name}}
                 </ion-card-title>
               </ion-card-header>
-              <ion-card-title class="sub-title"> About me title</ion-card-title>
+              <ion-card-title class="sub-title"> About me</ion-card-title>
               <ion-card-content class="description">
-                 Description
+                Contact: {{provider.email}}
+                <br>
+                Region: {{provider.region}}
               </ion-card-content>
               <ion-button class="accept-button">Send Request</ion-button>
            </ion-card>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IP } from 'src/helpers/IP';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/modules/interfaces/user.interface';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, filter, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +46,13 @@ export class UserService {
     const body = JSON.stringify(user);
     return this.http.put<User>(`${this.API}/api/User/${id}`, body, { 'headers': headers });
   }
+
+  /* Get all users where providerRole is true
+  getAllProviders(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.API}/api/User`).pipe(
+      filter(user => user.providerRole === true)
+    );
+  }*/
+
 
 }
