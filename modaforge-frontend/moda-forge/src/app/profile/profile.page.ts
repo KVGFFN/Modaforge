@@ -27,6 +27,8 @@ export class ProfilePage implements OnInit {
   userdata = [];
   userIsLoaded: boolean = false;
 
+  buttonText: string = "Become a printer";
+
   getAllUsers() {
     try {
       this.userService.getAllUsers().subscribe(data => {
@@ -57,12 +59,7 @@ export class ProfilePage implements OnInit {
       console.log("waitTillTrue() called");
       this.userdata.forEach(element => {
         if (element.name == currentUser.username && element.email.toLowerCase() == currentUser.email) {
-          if (element.providerRole == true) {
-            element.providerRole = false;
-          } else {
-            element.providerRole = true;
-          }
-          this.providerRole = !this.providerRole;
+          element.ProviderRole = !element.ProviderRole;
           this.userService.updateUser(element, element.id).subscribe(data => {
             console.log(data);
             console.log("ProviderRole updated");
@@ -73,6 +70,17 @@ export class ProfilePage implements OnInit {
       });
     })
   }
+
+  // Get providerRole
+  getProviderRole(name: string, email: string) {
+    // Fetch the initial value of the "providerRole" from the API
+    this.userService.getUserByNameEmail(name, email).subscribe(data => {
+      this.providerRole = data.ProviderRole;
+      this.buttonText = this.providerRole ? 'Deactivate printer role' : 'Become a printer';
+    });
+  }
+
+
 
   ngOnInit() {
     this.name = currentUser.username;

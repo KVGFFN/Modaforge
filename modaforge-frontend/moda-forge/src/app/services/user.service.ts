@@ -47,12 +47,5 @@ export class UserService {
     return this.http.put<User>(`${this.API}/api/User/${id}`, body, { 'headers': headers });
   }
 
-  /* Get all users where providerRole is true
-  getAllProviders(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.API}/api/User`).pipe(
-      filter(user => user.providerRole === true)
-    );
-  }*/
-
 
 }

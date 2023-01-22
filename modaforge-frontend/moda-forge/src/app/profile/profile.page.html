@@ -26,9 +26,10 @@
                   <p>{{ email }}</p>
                 </ion-label>
                 <ion-button color="primary" (click)="updateProviderRole()">
-                  <ng-container *ngIf="providerRole; then deactivate else become"></ng-container>
+                  {{ buttonText }}
+                  <!--<ng-container *ngIf="providerRole; then deactivate else become"></ng-container>
                   <ng-template #deactivate>Deactivate printer role</ng-template>
-                  <ng-template #become>Become a printer</ng-template>
+                  <ng-template #become>Become a printer</ng-template>-->
               </ion-button>
               </ion-item>
             </ion-list>
