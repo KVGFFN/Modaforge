@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 import { RequestService } from 'src/app/services/request.service';
 import { authState } from 'src/helpers/authState';
 import { currentUser } from 'src/helpers/CurrentUser';
@@ -11,7 +12,7 @@ import { Request } from 'src/modules/interfaces/request.interface';
 })
 export class RequestBarPage implements OnInit {
 
-  constructor(private requestService: RequestService) { }
+  constructor(private requestService: RequestService, private appComponent: AppComponent) { }
   requests: Request[];
   request: Request;
 
@@ -36,6 +37,9 @@ export class RequestBarPage implements OnInit {
   
   ngOnInit() {
     this.isApiAvailable = true;
-    this.getMyRequests(currentUser.id);
+    this.appComponent.onInitDone.subscribe(() => {
+      this.getMyRequests(currentUser.id);
+    });
+
   }
 }

@@ -14,6 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 import { authState } from 'src/helpers/authState';
 import { loginHelper } from './loginHelper';
 import { getAnalytics } from 'firebase/analytics';
+import { EventEmitter } from '@angular/core';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -84,34 +85,54 @@ export class AppComponent {
     this.router.navigate(['/profile']);
   }
 
-
-  ngOnInit()
+  async getCurrentUser()
   {
-    console.log("%capp.component.ts -- ngOnInit()", "color: yellow")
-    console.log("%c" + "loginState: " + loginHelper.isLoggedIn, "color: red")
-    onAuthStateChanged(this.auth, (user) =>
+    return new Promise<void>((resolve, reject) =>
     {
-      console.log("%c" + "app.component.ts onAuthStateChanged()", "color: yellow");
-
-      if (user) 
-      {
-        loginHelper.isLoggedIn = true;
-        console.log("%c" + "loginState: " + loginHelper.isLoggedIn, "color: red")
-        console.log(">>> User is signed in ");
-        currentUser.username = user.displayName;
-        currentUser.email = user.email;
-        console.log(user.displayName);
-        console.log(user.email);
-      } 
-      else 
-      {
-        console.log(">>> User is not logged in ");
-        loginHelper.isLoggedIn = false;
-      }
-      authState.authIsInitialized = true;
-      this.username = currentUser.username;
+      this.userService.getUserByNameEmail(currentUser.username, currentUser.email).subscribe((data: any) => {
+        console.log(data);
+        currentUser.id = data["id"];
+        resolve();
+      });
     });
+  }
 
+  firebaseGetCurrentUser(auth)
+  {
+    return new Promise((resolve, reject) => 
+    {
+      const unsubscribe = onAuthStateChanged(auth, (user) => 
+      {
+        unsubscribe();
+        resolve(user);
+      }, reject);
+    })
+  }
+
+  async initializeFirebaseAuth()
+  {
+    return new Promise<void>((resolve) => {
+      this.auth.onAuthStateChanged((user) => {
+        if (user) {
+          console.log("USER IS LOGGED IN");
+          loginHelper.isLoggedIn = true;
+          currentUser.username = user.displayName;
+          currentUser.email = user.email;
+          this.username = user.displayName;
+          this.getCurrentUser();
+        } else {
+          console.log("USER IS NOT LOGGED IN");
+          loginHelper.isLoggedIn = false;
+        }
+        this.authIsInitialized.emit();
+        this.getCurrentUser();
+        resolve();
+      });
+    })
+  }
+
+  checkAPIState()
+  {
     this.http.get(IP.local + '/api/User').subscribe((data: any) => {
       APIstate.isActive = true;
       console.log("API IS RUNNING");
@@ -120,4 +141,15 @@ export class AppComponent {
       alert("API is not running at " + IP.local);
     });
   }
+
+  ngOnInit()
+  {
+    this.initializeFirebaseAuth().then(() => {
+      this.getCurrentUser().then(() => {
+        this.onInitDone.emit();
+      });
+    });
+  }
+  authIsInitialized = new EventEmitter<void>();
+  onInitDone = new EventEmitter<void>();
 }
