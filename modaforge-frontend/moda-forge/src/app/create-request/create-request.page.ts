@@ -10,8 +10,6 @@ import { Request } from 'src/modules/interfaces/request.interface';
 import { LocalModel } from 'src/modules/interfaces/local.model.interface';
 import { LocalModelService } from '../services/local.model.service';
 import { RequestService } from '../services/request.service';
-import { Observable } from 'rxjs';
-import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-create-request',
@@ -67,7 +65,7 @@ export class CreateRequestPage implements OnInit {
     private cdr: ChangeDetectorRef,
     private modalCtrl: ModalController,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() 
@@ -103,6 +101,7 @@ export class CreateRequestPage implements OnInit {
 
 
   // FUNCTIONS //
+  // USER FUNCTIONS //
   setUserInformation()
   {
     this.requestRequesterId = currentUser.id;
@@ -115,7 +114,6 @@ export class CreateRequestPage implements OnInit {
     console.log(this.selectedProvider);
     console.log(this.selectedProvider["id"]);
   }
-
 
   // MODEL FUNCTIONS //
   userHasModel(){
@@ -183,14 +181,6 @@ export class CreateRequestPage implements OnInit {
   }
 
   async createRequest(){
-    console.log("%c" + "CREATE REQUEST: " + this.modelName, "color: orange")
-    console.log("title: " + this.requestTitle)
-    console.log("description: " + this.requestDescription)
-    console.log("requesterId: " + this.requestRequesterId)
-    console.log("providerId v2: " + this.selectProvider["id"])
-    console.log("modelId: " + this.localModelId)
-    console.log("regionId: " + 1)
-    console.log("tags: " + "test,test,test")
     this.request = 
     {
       title: this.requestTitle,
@@ -198,8 +188,8 @@ export class CreateRequestPage implements OnInit {
       requesterId: currentUser.id,
       providerId: this.selectedProvider["id"],
       modelId: this.localModelId,
-      regionId: 1,
-      tags: "test,test,test"
+      regionId: 1,                                // REGION HAS TO BE CHANGED
+      tags: "test,test,test"                      // USER HAS TO GIVE IN TABS
     }
 
     this.requestService.createRequest(this.request).subscribe((data) => {
@@ -221,6 +211,11 @@ export class CreateRequestPage implements OnInit {
       console.log("ERROR publishRequest line 186")
       console.log(error);
     }
+    alert("Request has been sent!");
+    this.router.navigate(['/home'])
+    .then(() => {
+      window.location.reload();
+    });
   }
 
 

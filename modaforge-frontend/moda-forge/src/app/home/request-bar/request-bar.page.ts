@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { RequestService } from 'src/app/services/request.service';
@@ -21,6 +21,13 @@ export class RequestBarPage implements OnInit {
   ) { }
   requests: Request[];
   request: Request;
+
+  @Output() refresh = new EventEmitter();
+
+  onRefresh()
+  {
+    this.refresh.emit();
+  }
 
   id: number;
   title: string;
@@ -51,6 +58,12 @@ export class RequestBarPage implements OnInit {
     this.appComponent.onInitDone.subscribe(() => {
       this.getMyRequests(currentUser.id);
     });
+    this.ionViewWillEnter();
+  }
 
+  ionViewWillEnter()
+  {
+    console.log("IONVIEWWILLENTER");
+    this.getMyRequests(currentUser.id);
   }
 }

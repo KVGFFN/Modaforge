@@ -13,3 +13,15 @@
     margin: 0 auto;
     transform: translate(50%, -50%);
 }
+
+.requests-container
+{
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    height: 80vh;
+}
+
+.requests-container::-webkit-scrollbar
+{
+    display: none;
+}

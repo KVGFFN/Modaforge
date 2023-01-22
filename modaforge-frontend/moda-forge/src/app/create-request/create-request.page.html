@@ -6,7 +6,7 @@
       <ion-item>
         <ion-label>Model: <b>{{ modelName }}</b></ion-label>
         <ion-button color="dark" *ngIf="modelSelected" slot="end" (click)="viewCurrentModel()">View Model</ion-button>
-        <ion-button *ngIf="modelSelected" slot="end">Change Model</ion-button>
+        <ion-button *ngIf="modelSelected" slot="end" (click)="changeModel()">Change Model</ion-button>
         <ion-button *ngIf="!modelSelected" slot="end" (click)="changeModel()">Search Model</ion-button>
       </ion-item>
 
