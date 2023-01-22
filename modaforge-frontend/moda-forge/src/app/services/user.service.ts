@@ -47,4 +47,10 @@ export class UserService {
     return this.http.put<User>(`${this.API}/api/User/${user.Id}`, body, { 'headers': headers });
   }
 
+  // Get All Providers
+  getAllProviders()
+  {
+    return this.http.get<User[]>(`${this.API}/api/User/GetAllProviders`);
+  }
+
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { GoogleAuthProvider } from 'firebase/auth';
 import { RequestService } from '../services/request.service';
 
 @Component({
@@ -10,10 +12,18 @@ export class TestPage implements OnInit {
 
   
 
-  constructor(private requestService: RequestService) { }
+  constructor
+  (
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    
+  }
 
+  goto()
+  {
+    this.router.navigate(['/create-request']);
   }
 
 }
