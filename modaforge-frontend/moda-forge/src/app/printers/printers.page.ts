@@ -11,17 +11,19 @@ export class PrintersPage implements OnInit {
 
   constructor( private userService: UserService) { }
 
-  // Variables
-  printers: any[] = ["test", "test2", "test3", "test4", "test5"];
-
-  // User variables
+  // variables
+  id: number;
   name: string;
+  verified: boolean;
   email: string;
   picture: string;
+  providerRole: boolean;
   userdata = [];
+  providerdata = [];
+  pictureLoaded: boolean = false;
   userIsLoaded: boolean = false;
 
-  getAllUsers() {
+   getAllUsers() {
     try {
       this.userService.getAllUsers().subscribe(data => {
         console.log(data);
@@ -42,7 +44,7 @@ export class PrintersPage implements OnInit {
       await new Promise(resolve => setTimeout(resolve, 1000));
 
     }
-    if (this.userIsLoaded) {
+    /*if (this.userIsLoaded) {
       for (let i = 0; i < this.userdata.length; i++) {
         console.log(this.userdata[i].name);
         if (this.userdata[i].name == currentUser.username && this.userdata[i].email == currentUser.email) {
@@ -51,11 +53,28 @@ export class PrintersPage implements OnInit {
           this.picture = this.userdata[i].picture;
         }
       }
-    }
+    }*/
+  }
+
+  // Display users that are providers
+  displayProviders() {
+    //this.getAllUsers();
+    this.waitTillTrue().then(() => {
+      for (let i = 0; i < this.userdata.length; i++) {
+        if (this.userdata[i].providerRole == true) {
+          this.providerdata.push(this.userdata[i]);
+          console.log(this.providerdata);
+        }
+      }
+      if (this.providerdata.length == 0) {
+        console.log("No providers found");
+      }
+    });
   }
 
   ngOnInit() {
     this.getAllUsers();
+    this.displayProviders();
   }
 
 }
