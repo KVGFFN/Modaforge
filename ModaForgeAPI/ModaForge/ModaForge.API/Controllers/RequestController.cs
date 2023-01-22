@@ -48,5 +48,12 @@ namespace ModaForge.API.Controllers
         {
             return Ok(service.Update(id, request));
         }
+        
+        [Route("Requester/{userid}")]
+        [HttpGet]
+        public IActionResult GetRequestsByUser([FromRoute] int userid)
+        {
+            return Ok(service.GetAllRequestsByRequesterId(userid));
+        }
     }
 }

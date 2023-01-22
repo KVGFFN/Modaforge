@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { currentUser } from 'src/helpers/CurrentUser';
+import { AppComponent } from '../app.component';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/modules/interfaces/user.interface';
 import { cpuUsage } from 'process';
@@ -14,6 +15,7 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private userService: UserService,
+    private appComponent: AppComponent
     private http: HttpClient,
   ) { }
 
@@ -89,6 +91,13 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
+    this.appComponent.onInitDone.subscribe(() => {
+      this.setUserInformation();
+    });
+  }
+
+  setUserInformation()
+  {
     this.name = currentUser.username;
     this.email = currentUser.email;
     this.checkProviderRole(this.email, this.name);

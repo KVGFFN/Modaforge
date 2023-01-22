@@ -14,9 +14,11 @@ namespace ModaForge.Domain.Views
         public string Name { get; set; }
         public string FileURL { get; set; }
 
+        /*
         public int? UserId { get; set; }
 
         public string UserName { get; set; }
+        */
 
         public int rating { get; set; }
 

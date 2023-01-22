@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ModaForge.Domain.Views.Create;
+using ModaForge.Domain.Views.Update;
 
 namespace ModaForge.Application.Services
 {
@@ -46,6 +47,11 @@ namespace ModaForge.Application.Services
             return repository.GetAll(searchParameters);
         }
 
+        public IEnumerable<User> GetAllProviders()
+        {
+            return repository.GetAllProviders();
+        }
+
         public User GetById(int id)
         {
             return repository.GetById(id);
@@ -56,10 +62,12 @@ namespace ModaForge.Application.Services
             return repository.GetByNameEmail(name, email);
         }
 
-        public User Update(int id, User User)
+        public User Update(int id, UpdateUserViewModel User)
         {
             User.Id = id;
             return repository.Update(id, User);
         }
+        
+        
     }
 }

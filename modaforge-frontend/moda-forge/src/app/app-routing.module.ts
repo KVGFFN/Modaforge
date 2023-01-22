@@ -61,7 +61,15 @@ const routes: Routes =
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },  {
+    path: 'create-request',
+    loadChildren: () => import('./create-request/create-request.module').then( m => m.CreateRequestPageModule)
   },
+  {
+    path: 'model-viewer',
+    loadChildren: () => import('./model-viewer/model-viewer.module').then( m => m.ModelViewerPageModule)
+  },
+
 ];
 
 @NgModule({

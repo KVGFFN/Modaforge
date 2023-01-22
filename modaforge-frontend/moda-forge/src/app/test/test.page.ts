@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { GoogleAuthProvider } from 'firebase/auth';
 import { RequestService } from '../services/request.service';
 
 @Component({
@@ -10,22 +12,18 @@ export class TestPage implements OnInit {
 
   
 
-  constructor(private requestService: RequestService) { }
+  constructor
+  (
+    private router: Router,
+  ) { }
 
   ngOnInit() {
-
+    
   }
 
-  getRequest()
+  goto()
   {
-    // make yellow console log
-    console.log("%ctest.page.ts -- getRequest()", "color: yellow")
-
-    this.requestService.getRequest(1).subscribe(
-      (data) => {
-        console.log(data);
-      }
-    );
+    this.router.navigate(['/create-request']);
   }
 
 }

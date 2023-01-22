@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
+import { RequestService } from 'src/app/services/request.service';
+import { authState } from 'src/helpers/authState';
+import { currentUser } from 'src/helpers/CurrentUser';
 import { Request } from 'src/modules/interfaces/request.interface';
 
 @Component({
@@ -8,7 +13,14 @@ import { Request } from 'src/modules/interfaces/request.interface';
 })
 export class RequestBarPage implements OnInit {
 
+  constructor
+  (
+    private requestService: RequestService, 
+    private appComponent: AppComponent,
+    private router: Router
+  ) { }
   requests: Request[];
+  request: Request;
 
   id: number;
   title: string;
@@ -17,32 +29,28 @@ export class RequestBarPage implements OnInit {
   // foutmelding op html pagina
   isApiAvailable: boolean;
 
-  async getAllRequests() {
-    try
-    {
-      const response = await fetch('https://localhost:7271/api/Request', {method: 'GET'});
-      const data = await response.json();
-      this.requests = data;
-      console.log(this.requests);
-      this.isApiAvailable = true;
-    }
-    catch (error)
-    {
-      console.log("--- ERROR AT getAllUsers() ---");
-      console.log(error);
-      this.isApiAvailable = false;
-    }
+  isInitialized = authState.authIsInitialized;
+  
+  getMyRequests(uid: number)
+  {
+    this.requestService.getMyRequests(uid).subscribe(
+      (data) => {
+        this.requests = data;
+      }
+    )
   }
 
-
-  constructor() { }
-
+  goToCreateRequest()
+  {
+    this.router.navigate(['/create-request']);
+  }
+  
+  
   ngOnInit() {
     this.isApiAvailable = true;
-    this.getAllRequests();
+    this.appComponent.onInitDone.subscribe(() => {
+      this.getMyRequests(currentUser.id);
+    });
+
   }
-
-  
-
-
 }
