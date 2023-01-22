@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ModaForge.Application.Inferfaces.IRepository;
+using ModaForge.Domain.Views.Update;
 
 namespace ModaForge.Infrastructure.Repositories
 {
@@ -60,11 +61,25 @@ namespace ModaForge.Infrastructure.Repositories
             return user;
         }
 
-        public User Update(int id, User User)
+        public User Update(int id, UpdateUserViewModel userdata)
         {
-            context.users.Update(User);
+            User updatedUser = context.users.Find(id);
+            if (userdata.Name != null)
+                updatedUser.Name = userdata.Name;
+            if (userdata.Verified != null)
+                updatedUser.Verified = (bool)userdata.Verified;
+            if (userdata.Email != null)
+                updatedUser.Email = userdata.Email;
+            if (userdata.Picture != null)
+                updatedUser.Picture = userdata.Picture;
+            if (userdata.ProviderRole != null)
+                updatedUser.ProviderRole = (bool)userdata.ProviderRole;
+            if (userdata.RegionId != null)
+                updatedUser.RegionId = userdata.RegionId;
+
+            context.users.Update(updatedUser);
             context.SaveChanges();
-            return User;
+            return updatedUser;
         }
     }
 }
