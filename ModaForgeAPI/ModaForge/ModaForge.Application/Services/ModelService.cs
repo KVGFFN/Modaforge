@@ -39,7 +39,7 @@ namespace ModaForge.Application.Services
             {
                 Name = modelData.Name,
                 FileURL = modelData.FileURL,
-                UserId = modelData.UserId,
+                //UserId = modelData.UserId,
             };
             model = repository.Create(model);
             //Tag manager

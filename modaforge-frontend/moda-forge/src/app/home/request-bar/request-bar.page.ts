@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { RequestService } from 'src/app/services/request.service';
 import { authState } from 'src/helpers/authState';
@@ -12,7 +13,12 @@ import { Request } from 'src/modules/interfaces/request.interface';
 })
 export class RequestBarPage implements OnInit {
 
-  constructor(private requestService: RequestService, private appComponent: AppComponent) { }
+  constructor
+  (
+    private requestService: RequestService, 
+    private appComponent: AppComponent,
+    private router: Router
+  ) { }
   requests: Request[];
   request: Request;
 
@@ -32,6 +38,11 @@ export class RequestBarPage implements OnInit {
         this.requests = data;
       }
     )
+  }
+
+  goToCreateRequest()
+  {
+    this.router.navigate(['/create-request']);
   }
   
   

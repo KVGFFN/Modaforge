@@ -1,16 +1,53 @@
 <ion-content>
+  <ion-card>
+    <ion-list>  
 
-  <div class="request-container">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title style="font-size: 30px;">Create a request</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-item>
+      <!--    SELECT MODEL    -->
+      <ion-item>
+        <ion-label>Model: <b>{{ modelName }}</b></ion-label>
+        <ion-button color="dark" *ngIf="modelSelected" slot="end" (click)="viewCurrentModel()">View Model</ion-button>
+        <ion-button *ngIf="modelSelected" slot="end">Change Model</ion-button>
+        <ion-button *ngIf="!modelSelected" slot="end" (click)="changeModel()">Search Model</ion-button>
+      </ion-item>
 
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
-  </div>
 
+
+
+      <!--    SELECT PROVIDER   -->
+      <ion-item>
+        <ion-label>Select your provider</ion-label>
+        <ion-select placeholder="Providers" (ionChange)="selectProvider($event)">
+          <ion-select-option 
+          *ngFor="let i = index; let provider of providers" 
+          [value]="provider"
+          >
+            {{ provider.name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+
+      <!--TITLE OF REQUEST-->
+      <ion-item>
+        <ion-label position="floating">Title</ion-label>
+        <ion-input [(ngModel)]="requestTitle" type="text"></ion-input>
+      </ion-item>
+  
+
+
+      <!--DESCRIPTION OF REQUEST-->
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea [(ngModel)]="requestDescription" ></ion-textarea>
+      </ion-item>
+  
+
+
+      <ion-button expand="block" (click)="publishRequest()">Submit</ion-button>
+    </ion-list>
+  </ion-card>
+
+  <ion-button (click)="testValues()"></ion-button>
+  
 </ion-content>

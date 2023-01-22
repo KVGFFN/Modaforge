@@ -29,8 +29,4 @@ export class RequestService {
     const body = JSON.stringify(request);
     return this.http.post<Request>(`${this.API}/api/Request`, body, {'headers': headers});
   }
-
-
-
 }
-

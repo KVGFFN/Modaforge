@@ -65,6 +65,10 @@ const routes: Routes =
     path: 'create-request',
     loadChildren: () => import('./create-request/create-request.module').then( m => m.CreateRequestPageModule)
   },
+  {
+    path: 'model-viewer',
+    loadChildren: () => import('./model-viewer/model-viewer.module').then( m => m.ModelViewerPageModule)
+  },
 
 ];
 

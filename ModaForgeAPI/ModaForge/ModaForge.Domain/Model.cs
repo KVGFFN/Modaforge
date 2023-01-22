@@ -11,11 +11,15 @@ public class Model
     public int Id { get; set; }
     public string Name { get; set; }
     public string FileURL { get; set; }
-    
+
+    /*
+
     [ForeignKey(nameof(User))]
     public int? UserId { get; set; }
     
     // virtual declarations
     public virtual User? User { get; set; }
+
+    */
 
 }
