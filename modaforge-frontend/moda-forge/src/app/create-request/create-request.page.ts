@@ -10,6 +10,8 @@ import { Request } from 'src/modules/interfaces/request.interface';
 import { LocalModel } from 'src/modules/interfaces/local.model.interface';
 import { LocalModelService } from '../services/local.model.service';
 import { RequestService } from '../services/request.service';
+import { Observable } from 'rxjs';
+import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-create-request',
@@ -70,6 +72,7 @@ export class CreateRequestPage implements OnInit {
 
   ngOnInit() 
   {
+
     this.appComponent.onInitDone.subscribe(() => {
       this.setUserInformation();
     });
@@ -107,8 +110,10 @@ export class CreateRequestPage implements OnInit {
     this.email = currentUser.email;
   }
 
-  selectProvider(event: any){
-        
+  selectProvider($event: any){
+    this.selectedProvider = $event.detail.value;
+    console.log(this.selectedProvider);
+    console.log(this.selectedProvider["id"]);
   }
 
 
@@ -170,6 +175,11 @@ export class CreateRequestPage implements OnInit {
       console.log("ERROR createModel line 156")
       console.log(error);
     });
+
+    let result = await this.localModelService.createModel(this.modelToPost).toPromise();
+    console.log(result);
+    this.localModelId = result["id"];
+    console.log("LOCAL MODEL ID: " + this.localModelId);
   }
 
   async createRequest(){
@@ -178,7 +188,6 @@ export class CreateRequestPage implements OnInit {
     console.log("description: " + this.requestDescription)
     console.log("requesterId: " + this.requestRequesterId)
     console.log("providerId v2: " + this.selectProvider["id"])
-    console.log("providerId: " + this.selectedProvider.id)
     console.log("modelId: " + this.localModelId)
     console.log("regionId: " + 1)
     console.log("tags: " + "test,test,test")
@@ -186,14 +195,12 @@ export class CreateRequestPage implements OnInit {
     {
       title: this.requestTitle,
       description: this.requestDescription,
-      requesterId: this.requestRequesterId,
-      providerId: this.selectedProvider.id,
+      requesterId: currentUser.id,
+      providerId: this.selectedProvider["id"],
       modelId: this.localModelId,
       regionId: 1,
       tags: "test,test,test"
     }
-
-
 
     this.requestService.createRequest(this.request).subscribe((data) => {
       console.log(data);
@@ -205,25 +212,16 @@ export class CreateRequestPage implements OnInit {
   }
 
   async publishRequest(){
-    await this.createModel().then(() => {
+    try
+    {
+      await this.createModel();
       this.createRequest();
-    },
-    error => {
-      console.log("ERROR publishRequest line 183")
+    } catch(error)
+    {
+      console.log("ERROR publishRequest line 186")
       console.log(error);
-    });
+    }
   }
 
-  testValues()
-  {
-    console.log("%c" + "CREATE REQUEST: " + this.modelName, "color: orange")
-    console.log("title: " + this.requestTitle)
-    console.log("description: " + this.requestDescription)
-    console.log("requesterId: " + this.requestRequesterId)
-    console.log("modelId: " + this.localModelId)
-    console.log("regionId: " + 1)
-    console.log("tags: " + "test,test,test")
-    console.log("providerId: " + this.currentProvider.Id)
-  }
 
 }

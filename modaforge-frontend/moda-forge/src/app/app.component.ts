@@ -144,8 +144,10 @@ export class AppComponent {
 
   ngOnInit()
   {
+    console.log("APP.COMPONENT.TS NGONINIT")
     this.initializeFirebaseAuth().then(() => {
       this.getCurrentUser().then(() => {
+        console.log("app.component.ts emitted")
         this.onInitDone.emit();
       });
     });
