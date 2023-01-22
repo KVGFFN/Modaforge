@@ -1,4 +1,5 @@
 ﻿using ModaForge.Domain;
+using ModaForge.Domain.Views.Update;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace ModaForge.Application.Inferfaces.IRepository
         User GetById(int id);
         User GetByNameEmail(string name, string email);
         User Create(User user);
-        User Update(int id, User user);
+        User Update(int id, UpdateUserViewModel user);
         void Delete(User user);
     }
 }
