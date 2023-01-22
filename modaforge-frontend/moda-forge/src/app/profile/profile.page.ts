@@ -16,7 +16,7 @@ export class ProfilePage implements OnInit {
   constructor(
     private userService: UserService,
     private appComponent: AppComponent
-    private http: HttpClient,
+    //private http: HttpClient,
   ) { }
 
   // variables
