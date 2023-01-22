@@ -35,19 +35,13 @@ export class AuthGuard implements CanActivate
     //     return true;
     // }
 
-    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
+    canActivate(): boolean | Observable<boolean> | Promise<boolean> {
         return new Promise((resolve, reject) => {
             this.auth.onAuthStateChanged((user) => {
                 if (user) {
-                    // User is signed in, see docs for a list of available properties
-                    // https://firebase.google.com/docs/reference/js/firebase.User
-                    const uid = user.uid;
-                    // ...
                     console.log("%c" + "CANACTIVATE: User Found!", "color: yellow")
                     resolve(true);
                 } else {
-                    // User is signed out
-                    // ...
                     console.log("%c" + "CANACTIVATE: User not found!", "color: yellow")
                     resolve(false);
                 }
