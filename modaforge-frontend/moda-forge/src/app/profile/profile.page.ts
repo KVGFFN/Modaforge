@@ -27,8 +27,6 @@ export class ProfilePage implements OnInit {
   userdata = [];
   userIsLoaded: boolean = false;
 
-  buttonText: string = "Become a printer";
-
   getAllUsers() {
     try {
       this.userService.getAllUsers().subscribe(data => {
@@ -56,35 +54,44 @@ export class ProfilePage implements OnInit {
     console.log("updateProviderRole() called");
     this.getAllUsers();
     this.waitTillTrue().then(() => {
+      console.log(this.userdata)
       console.log("waitTillTrue() called");
       this.userdata.forEach(element => {
         if (element.name == currentUser.username && element.email.toLowerCase() == currentUser.email) {
-          element.ProviderRole = !element.ProviderRole;
-          this.userService.updateUser(element, element.id).subscribe(data => {
-            console.log(data);
-            console.log("ProviderRole updated");
-          }, error => {
-            console.log(error);
-          });
+          if (element.providerRole == true) {
+            // Do nothing
+          } else {
+            element.providerRole = true;
+            this.userService.updateUser(element, element.id).subscribe(data => {
+              console.log(data);
+              console.log("ProviderRole updated");
+              this.providerRole = true;
+            }, error => {
+              console.log(error);
+            });
+          }
         }
       });
     })
   }
 
-  // Get providerRole
-  getProviderRole(name: string, email: string) {
-    // Fetch the initial value of the "providerRole" from the API
-    this.userService.getUserByNameEmail(name, email).subscribe(data => {
-      this.providerRole = data.ProviderRole;
-      this.buttonText = this.providerRole ? 'Deactivate printer role' : 'Become a printer';
-    });
+  // Check if user is a provider
+  checkProviderRole(email: string, name: string) {
+    this.getAllUsers();
+    this.waitTillTrue().then(() => {
+      console.log(this.userdata)
+      this.userdata.forEach(element => {
+        if (element.name = name && element.email.toLowerCase() == email) {
+          this.providerRole = element.providerRole;
+        }
+      });
+    })
   }
-
-
 
   ngOnInit() {
     this.name = currentUser.username;
     this.email = currentUser.email;
+    this.checkProviderRole(this.email, this.name);
   }
 
 
