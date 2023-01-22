@@ -11,6 +11,7 @@ namespace ModaForge.Application.Inferfaces.Service
     public interface IUserService
     {
         public IEnumerable<User> GetAll(SearchParameters searchParameters);
+        public IEnumerable<User> GetAllProviders();
         public User GetById(int id);
         public User GetByNameEmail(string name, string email);
         //public User Create(User user);

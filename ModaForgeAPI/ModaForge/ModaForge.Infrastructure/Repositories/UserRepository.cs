@@ -40,6 +40,13 @@ namespace ModaForge.Infrastructure.Repositories
                 .ToList();
         }
 
+        public IEnumerable<User> GetAllProviders()
+        {
+            return context.users
+                .Where(User => User.ProviderRole)
+                .ToList();
+        }
+
 
         public User GetById(int id)
         {

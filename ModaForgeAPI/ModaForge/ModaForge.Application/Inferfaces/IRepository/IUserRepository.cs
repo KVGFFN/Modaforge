@@ -9,6 +9,7 @@ namespace ModaForge.Application.Inferfaces.IRepository
     public interface IUserRepository
     {
         IEnumerable<User> GetAll(SearchParameters searchParameters);
+        IEnumerable<User> GetAllProviders();
         User GetById(int id);
         User GetByNameEmail(string name, string email);
         User Create(User user);

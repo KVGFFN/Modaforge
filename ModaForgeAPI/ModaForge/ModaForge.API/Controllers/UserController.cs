@@ -23,6 +23,13 @@ namespace ModaForge.API.Controllers
             return Ok(service.GetAll(searchParameters));
         }
 
+        [Route("GetAllProviders")]
+        [HttpGet]
+        public IActionResult GetAllProviders()
+        {
+            return Ok(service.GetAllProviders());
+        }
+
         [Route("{id}")]
         [HttpGet]
         public IActionResult GetUser([FromRoute] int id )

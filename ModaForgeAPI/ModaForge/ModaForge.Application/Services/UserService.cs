@@ -46,6 +46,11 @@ namespace ModaForge.Application.Services
             return repository.GetAll(searchParameters);
         }
 
+        public IEnumerable<User> GetAllProviders()
+        {
+            return repository.GetAllProviders();
+        }
+
         public User GetById(int id)
         {
             return repository.GetById(id);
@@ -61,5 +66,7 @@ namespace ModaForge.Application.Services
             User.Id = id;
             return repository.Update(id, User);
         }
+        
+        
     }
 }
