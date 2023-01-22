@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IP } from 'src/helpers/IP';
+import { Request } from 'src/modules/interfaces/request.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,9 @@ export class RequestService {
   API = IP.local;
 
   // Get request by id
-  getRequest(id: number): Observable<Request>
+  getMyRequests(id: number): Observable<Request[]>
   {
-    return this.http.get<Request>(`${this.API}/api/Request/${id}`);
+    return this.http.get<Request[]>(`${this.API}/api/Request/Requester/${id}`);
   }
 
   createRequest(request: Request): Observable<Request>
@@ -28,8 +29,4 @@ export class RequestService {
     const body = JSON.stringify(request);
     return this.http.post<Request>(`${this.API}/api/Request`, body, {'headers': headers});
   }
-
-
-
 }
-

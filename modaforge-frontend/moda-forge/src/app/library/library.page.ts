@@ -4,6 +4,7 @@ import { ModelService } from '../services/model.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { APIstate } from 'src/helpers/APIstate';
 import { NavController } from '@ionic/angular';
+import { debounceTime, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-library',
@@ -29,8 +30,10 @@ export class LibraryPage implements OnInit {
   parent_modelurls = [];
   parent_modelnames = [];
   parent_modeluids = [];
+  parent_modelthumbnails = [];
 
   searchTerm: string;
+  search$ = new Subject<string>();
 
   // transform url
   transform(url) {
@@ -42,12 +45,18 @@ export class LibraryPage implements OnInit {
   ngOnInit()
   {
     console.log("LIBRARY.PAGE.TS: APISTATE IS " + APIstate.isActive);
-
     if (!this.hasInitialized)
     {
       this.getAllModels();
       this.hasInitialized = true;
     }
+
+    this.search$.pipe(
+      debounceTime(750),
+    ).subscribe((searchTerm) => {
+      this.searchAllModels(searchTerm);
+    }
+    )
   }
 
   getAllModels() {
@@ -58,6 +67,7 @@ export class LibraryPage implements OnInit {
           this.parent_modelurls.push(element.embedUrl);
           this.parent_modelnames.push(element.name);
           this.parent_modeluids.push(element.uid);
+          this.parent_modelthumbnails.push(element.thumbnails.images[0].url);
         });
 
         this.hasLoaded = true;
@@ -73,7 +83,12 @@ export class LibraryPage implements OnInit {
     this.library = [];
     this.parent_modelurls = [];
     this.parent_modelnames = [];
-    this.http.get(`https://api.sketchfab.com/v3/search?type=models&q=${searchTerm}&archives_flavours=false`)
+    this.http.get(`https://api.sketchfab.com/v3/search?type=models&q=${searchTerm}
+    &https://api.sketchfab.com/v3/models?downloadable=true
+    &animated=false
+    &has_sound=false
+    &restricted=tru
+    e&archives_flavours=false`)
     .subscribe({
       next: (data) => {
         this.library = data['results']
@@ -81,15 +96,19 @@ export class LibraryPage implements OnInit {
           this.parent_modelurls.push(element.embedUrl);
           this.parent_modelnames.push(element.name);
         });
-
         this.hasLoaded = true;
       }
     });
-    
+  }
+
+  onSearch(event)
+  {
+    this.searchTerm = event.target.value;
+    this.search$.next(this.searchTerm);
   }
 
   goToModel(model) {
-    
+    this.navController.navigateForward('/library/model-detail/' + model.uid);
   }
 
   redirectToModel(index: number)

@@ -18,8 +18,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       policy =>
                       {
-                          policy.WithOrigins("http://localhost:8100")
-                            .WithHeaders(HeaderNames.ContentType, "accessKey");
+                          policy.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
                       });
 });
 

@@ -22,11 +22,13 @@ namespace ModaForge.Infrastructure.Repositories
 
         public Model Create(Model Model)
         {
+            /*
             var user = context.users.Find(Model.UserId);
             if (user == null)
             {
                 throw new ArgumentNullException("User not found with given UserId");
             }
+            */
 
             context.models.Add(Model);
             context.SaveChanges();
@@ -63,7 +65,7 @@ namespace ModaForge.Infrastructure.Repositories
             return query
                 .Distinct()
                 .OrderBy(Model => Model.Name)
-                .Include(Model => Model.User)
+                //.Include(Model => Model.User)
                 .Skip((searchParameters.PageNumber - 1) * searchParameters.PageSize)
                 .Take(searchParameters.PageSize)
                 .ToList();
@@ -73,22 +75,21 @@ namespace ModaForge.Infrastructure.Repositories
         public Model GetById(int id)
         {
             return context.models
-                .Include(m => m.User)
+                //.Include(m => m.User)
                 .FirstOrDefault(x => x.Id == id);
         }
 
         public ModelViewModel GetByIdInfo(int id)
         {
             Model foundmodel = context.models
-                .Include(m => m.User)
                 .FirstOrDefault(x => x.Id == id);
             ModelViewModel modelView = new ModelViewModel
             {
                 Id = foundmodel.Id,
                 Name = foundmodel.Name,
                 FileURL = foundmodel.FileURL,
-                UserId = foundmodel.UserId,
-                UserName = foundmodel.User.Name,
+                //UserId = foundmodel.UserId,
+                //UserName = foundmodel.User.Name,
                 Tags = new List<Tag>()
             };
 

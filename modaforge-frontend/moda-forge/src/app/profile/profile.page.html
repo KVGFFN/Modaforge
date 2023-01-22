@@ -25,6 +25,10 @@
                   <h2>{{ name }}</h2>
                   <p>{{ email }}</p>
                 </ion-label>
+                <ion-button color="primary" (click)="updateProviderRole()" [disabled]="providerRole">
+                  Become a Printer
+                </ion-button>
+                <ion-item *ngIf="providerRole == false"><ion-icon color="warning" name="star" slot="start"></ion-icon> </ion-item>
               </ion-item>
             </ion-list>
           </ion-card-content>
@@ -34,7 +38,6 @@
   </ion-grid>
 
   <ion-grid>
-
     <!-- The dashboard requests -->
     <ion-row>
       <ion-col size="12">

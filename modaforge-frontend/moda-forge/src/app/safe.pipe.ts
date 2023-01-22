@@ -1,9 +1,8 @@
-import { NgModule, Pipe, PipeTransform } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import {CommonModule} from "@angular/common";
 
-@Pipe({ name: 'safePipe' })
+
+@Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) { }
     transform(url) {

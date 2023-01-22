@@ -6,7 +6,8 @@ import { UserService } from 'src/app/services/user.service';
 import { currentUser } from 'src/helpers/CurrentUser';
 import { app, user, auth } from 'src/helpers/authentication';
 import { authState } from 'src/helpers/authState';
-import { interval } from 'rxjs';
+import { interval, take } from 'rxjs';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-home',
@@ -22,30 +23,26 @@ export class HomePage implements OnInit {
   user = user;
   auth = auth;
 
-  constructor(private userService: UserService) 
+  constructor
+  (
+    private userService: UserService,
+    private appComponent: AppComponent
+  ) 
   {
 
   }
 
   ngOnInit(){
-    // Wait until auth is initialized, prevents "currentUser.username" being null
-    let intervalSubscription = interval(1000).subscribe(() => {
-      if (authState.authIsInitialized) {
-        this.userName = currentUser.username;
-        this.userMail = currentUser.email
-        this.getCurrentUser();
-        intervalSubscription.unsubscribe();
-      }
-    });    
+    this.appComponent.onInitDone
+    .pipe(take(1)).subscribe(() => {
+      console.log("VOER UIT??????")
+      console.log(`%c USERNAME: ${currentUser.username}`, `color: green;`)
+      console.log(`%c USERNAME: ${currentUser.email}`, `color: green;`)
+      console.log(`%c USERNAME: ${currentUser.id}`, `color: green;`)
+    });
+
   }
 
-  async getCurrentUser()
-  {
-    this.userService.getUserByNameEmail(this.userName, this.userMail).subscribe((data: any) => {
-      console.log(data);
-      currentUser.id = data["id"];
-    });
-  }
 
 
   
