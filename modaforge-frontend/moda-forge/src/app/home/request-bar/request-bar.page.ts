@@ -69,4 +69,9 @@ export class RequestBarPage implements OnInit {
     console.log("IONVIEWWILLENTER" + currentUser.id);
     this.getMyRequests();
   }
+
+  goToRequest(requestId: number)
+  {
+    this.router.navigate(['/home/request-detail', requestId]);
+  }
 }

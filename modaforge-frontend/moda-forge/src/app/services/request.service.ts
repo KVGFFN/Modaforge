@@ -55,4 +55,9 @@ export class RequestService {
   {
     return this.http.get<Request[]>(`${this.API}/api/Request/public`);
   }
+
+  getRequestById(id: number) : Observable<GetRequest>
+  {
+    return this.http.get<GetRequest>(`${this.API}/api/Request/${id}`);
+  }
 }
