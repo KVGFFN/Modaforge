@@ -8,38 +8,12 @@
   <ion-grid>
     <ion-row class="top-row"> 
       <ion-col>
-        <ion-searchbar color="light"></ion-searchbar>
+        <ion-searchbar name="searchQuery" [debounce]="1000" [(ngModel)]="searchQuery" (ionChange)="getProviderlessPosts()" placeholder="Search for a model" color="light"></ion-searchbar>
       </ion-col> 
       <ion-col size="auto">
-        <ion-button class="create-button" (click)="toggleCreatePostForm()">Create a post</ion-button>
+        <ion-button class="create-button" (click)="goToCreateRequest()">Create a post</ion-button>
       </ion-col>   
     </ion-row>
-
-    <!-- The sign up form -->
-  <ion-row>
-    <ion-col size="12">
-      <ion-card *ngIf="showCreatePostForm">
-        <ion-card-header>
-          <ion-card-title>Create a post</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-list>
-            <ion-item>
-              <ion-label position="floating">Request title</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label position="floating">Description</ion-label>
-              <ion-input type="text"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-button color="primary">Submit</ion-button>
-            </ion-item>
-          </ion-list>
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
 
   </ion-grid>
   <ion-grid>

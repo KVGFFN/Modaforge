@@ -22,6 +22,8 @@ export class PrintPostsPage implements OnInit {
   providerRole: boolean = false;
   loaded: boolean = false;
 
+  searchQuery: string;
+
   constructor
   (
     private requestService: RequestService,
@@ -70,12 +72,14 @@ export class PrintPostsPage implements OnInit {
     this.getProviderlessPosts();
   }
 
-  getProviderlessPosts()
-  {
+  getProviderlessPosts() {
     this.requestService.getAllPublicRequests().subscribe(
       (data) => {
         console.log(data);
         this.posts = data;
+        if(this.searchQuery){
+          this.posts = this.posts.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
+        }
       },
       (error) => {
         console.log(error);
@@ -108,5 +112,8 @@ export class PrintPostsPage implements OnInit {
   goToAcceptRequest(requesterId: number, requestId: number) {
     this.router.navigate(['/accept-request'], { queryParams: { requesterId: requesterId, requestId: requestId} });
   }
-  
+
+  goToCreateRequest() {
+    this.router.navigate(['/create-request']);
+  }
 }

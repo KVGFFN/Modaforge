@@ -72,7 +72,6 @@ export class PrintersPage implements OnInit {
 
   // Display users with the searchbar
   handleChange(event) {
-    console.log("handleChange() called");
     this.providerdata = [];
     for (let i = 0; i < this.userdata.length; i++) {
       if (this.userdata[i].providerRole == true) {

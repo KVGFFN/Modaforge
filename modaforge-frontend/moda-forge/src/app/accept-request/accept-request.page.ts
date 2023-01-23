@@ -118,6 +118,14 @@ export class AcceptRequestPage implements OnInit {
     };
     this.requestService.updateRequest(this.request, this.requestId,).subscribe(response => {
       console.log(response);
+    }, error => {
+      console.log("ERROR updateRequest line 122")
+      console.log(error);
+    });
+    alert("Request has been accepted!");
+    this.router.navigate(['/print-posts'])
+    .then(() => {
+      window.location.reload();
     });
   }
 
@@ -128,11 +136,6 @@ export class AcceptRequestPage implements OnInit {
       console.log("ERROR updateRequest")
       console.log(error);
     }
-    alert("Request has been accepted!");
-    // this.router.navigate(['/home'])
-    // .then(() => {
-    //   window.location.reload();
-    // });
   }
 
 }
