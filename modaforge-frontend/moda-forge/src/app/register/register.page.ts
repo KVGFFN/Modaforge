@@ -11,6 +11,8 @@ import { Region } from 'src/modules/interfaces/region.interface';
 import { IP } from 'src/helpers/IP';
 import { APIstate } from 'src/helpers/APIstate';
 import { NavController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -32,7 +34,8 @@ export class RegisterPage implements OnInit {
   (
     private router: Router, 
     private userService: UserService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private http: HttpClient
   ) { }
 
   // Register check
@@ -203,4 +206,19 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  ionViewWillEnter() {
+    fetch(`${IP.local}/api/User`)
+      .then(response => {
+        if (response.ok) {
+          APIstate.isActive = true;
+          console.log('API is running');
+        }
+      })
+      .catch(error => {
+        APIstate.isActive = false;
+        this.router.navigate(['/no-api']);
+      });
+  }
+  
+  
 }

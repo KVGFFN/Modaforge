@@ -7,6 +7,8 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { environment } from 'src/environments/environment';
 import { currentUser } from 'src/helpers/CurrentUser';
 import { loginHelper } from '../loginHelper';
+import { IP } from 'src/helpers/IP';
+import { APIstate } from 'src/helpers/APIstate';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -54,6 +56,20 @@ export class LoginPage implements OnInit {
     // this.router.navigate(['/register']);
     this.navCtrl.navigateForward('/register', {animated: false});
   }
+
+  ionViewDidEnter() {
+    fetch(`${IP.local}/api/User`)
+      .then(response => {
+        if (response.ok) {
+          APIstate.isActive = true;
+        } 
+      })
+      .catch(error => {
+        APIstate.isActive = false;
+        this.router.navigate(['/no-api']);
+      });
+  }
+  
 
 
 }

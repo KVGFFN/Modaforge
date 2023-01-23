@@ -77,7 +77,7 @@ export class AppComponent {
 
   isLoginOrRegister()
   {
-    return this.router.url.startsWith('/login') || this.router.url.startsWith('/register');
+    return this.router.url.startsWith('/login') || this.router.url.startsWith('/register') || this.router.url.startsWith('/no-api');
   }
 
   goToProfile()
@@ -138,12 +138,14 @@ export class AppComponent {
       console.log("API IS RUNNING");
     }, (error) => {
       APIstate.isActive = false;
-      alert("API is not running at " + IP.local);
+      console.log("API is not running at " + IP.local);
+      this.router.navigate(['/no-api']);
     });
   }
 
   ngOnInit()
   {
+    this.checkAPIState();
     console.log("APP.COMPONENT.TS NGONINIT")
     this.initializeFirebaseAuth().then(() => {
       this.getCurrentUser().then(() => {

@@ -70,7 +70,11 @@ const routes: Routes =
   {
     path: 'model-viewer',
     loadChildren: () => import('./model-viewer/model-viewer.module').then( m => m.ModelViewerPageModule)
+  },  {
+    path: 'no-api',
+    loadChildren: () => import('./no-api/no-api.module').then( m => m.NoApiPageModule)
   },
+
 ];
 
 @NgModule({
