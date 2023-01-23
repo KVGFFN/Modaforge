@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Post Dashboard</ion-title>
+    <ion-title>Public Requests</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -57,7 +57,7 @@
               <ion-card-content class="description">
                  {{post.description}}
               </ion-card-content>
-              <ion-button class="accept-button">Accept</ion-button>
+              <ion-button class="accept-button" (click)="goToCreateRequest()" [disabled]="providerRole == false">Accept</ion-button>
            </ion-card>
         </ion-col>
      </ion-row>
