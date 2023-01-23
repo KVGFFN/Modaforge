@@ -2,6 +2,9 @@ import { Component, OnInit} from '@angular/core';
 import { UserService } from '../services/user.service';
 import { currentUser } from 'src/helpers/CurrentUser';
 import { AppComponent } from '../app.component';
+import { RequestService } from '../services/request.service';
+import { Request } from 'src/modules/interfaces/request.interface';
+import { catchError, from, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/modules/interfaces/user.interface';
 import { cpuUsage } from 'process';
@@ -16,6 +19,7 @@ export class ProfilePage implements OnInit {
 
   constructor(
     private userService: UserService,
+    private requestService: RequestService,
     private appComponent: AppComponent
     //private http: HttpClient,
   ) { }
@@ -30,6 +34,11 @@ export class ProfilePage implements OnInit {
   userdata = [];
 
   userIsLoaded: boolean = false;
+  requests: any[];
+  status = ["Pending", "In Progress", "Done"];
+
+  // HTML
+  badgeColor: string = "light";
 
   getAllUsers() {
     try {
@@ -51,7 +60,7 @@ export class ProfilePage implements OnInit {
   async waitTillTrue() {
     while (this.userIsLoaded == false) {
       await new Promise(resolve => setTimeout(resolve, 1000));
-    } 
+    }
   }
 
   updateProviderRole() {
@@ -99,10 +108,35 @@ export class ProfilePage implements OnInit {
     this.checkProviderRole(this.email, this.name);
   }
 
-  setUserInformation()
-  {
+  setUserInformation() {
     this.name = currentUser.username;
     this.email = currentUser.email;
+  }
+
+
+  async getMyRequests() {
+    const requestObservable = from(this.requestService.getMyRequests(currentUser.id));
+    requestObservable.pipe(
+      map(requests => {
+        return requests.map(request => {
+          request.status = this.status[request.status];
+          return request;
+        });
+      }),
+      tap(data => {
+        console.log(data);
+        this.requests = data;
+      }),
+      catchError(error => {
+        console.log(error);
+        return of(error);
+      }),
+    ).subscribe();
+  }
+
+
+  async ionViewWillEnter() {
+    this.getMyRequests();
   }
 
 

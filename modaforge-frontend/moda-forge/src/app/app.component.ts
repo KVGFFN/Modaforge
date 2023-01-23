@@ -53,8 +53,8 @@ export class AppComponent {
 
   constructor
   (
-    private router: Router, 
-    private http: HttpClient, 
+    private router: Router,
+    private http: HttpClient,
     private userService: UserService,
     private cd: ChangeDetectorRef
   ) {}
@@ -77,7 +77,7 @@ export class AppComponent {
 
   isLoginOrRegister()
   {
-    return this.router.url.startsWith('/login') || this.router.url.startsWith('/register');
+    return this.router.url.startsWith('/login') || this.router.url.startsWith('/register') || this.router.url.startsWith('/no-api');
   }
 
   goToProfile()
@@ -92,21 +92,10 @@ export class AppComponent {
       this.userService.getUserByNameEmail(currentUser.username, currentUser.email).subscribe((data: any) => {
         console.log(data);
         currentUser.id = data["id"];
+        currentUser.picture = data["picture"];
         resolve();
       });
     });
-  }
-
-  firebaseGetCurrentUser(auth)
-  {
-    return new Promise((resolve, reject) => 
-    {
-      const unsubscribe = onAuthStateChanged(auth, (user) => 
-      {
-        unsubscribe();
-        resolve(user);
-      }, reject);
-    })
   }
 
   async initializeFirebaseAuth()
@@ -138,19 +127,19 @@ export class AppComponent {
       console.log("API IS RUNNING");
     }, (error) => {
       APIstate.isActive = false;
-      alert("API is not running at " + IP.local);
+      console.log("API is not running at " + IP.local);
+      this.router.navigate(['/no-api']);
     });
   }
 
   ngOnInit()
   {
-    console.log("APP.COMPONENT.TS NGONINIT")
-    this.initializeFirebaseAuth().then(() => {
-      this.getCurrentUser().then(() => {
-        console.log("app.component.ts emitted")
-        this.onInitDone.emit();
-      });
-    });
+    this.checkAPIState();
+    this.initializeFirebaseAuth().then(async() => {
+      await this.getCurrentUser();
+      console.log("ONINITDONE EMITTED")
+      this.onInitDone.emit();
+    })
   }
   authIsInitialized = new EventEmitter<void>();
   onInitDone = new EventEmitter<void>();

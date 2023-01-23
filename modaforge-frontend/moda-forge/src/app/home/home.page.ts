@@ -8,6 +8,8 @@ import { app, user, auth } from 'src/helpers/authentication';
 import { authState } from 'src/helpers/authState';
 import { interval, take } from 'rxjs';
 import { AppComponent } from '../app.component';
+import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -26,25 +28,21 @@ export class HomePage implements OnInit {
   constructor
   (
     private userService: UserService,
-    private appComponent: AppComponent
+    private appComponent: AppComponent,
+    private router: Router,
+    private navCtrl: NavController,
   ) 
   {
-
+    
   }
 
+  refreshing = false;
   ngOnInit(){
     this.appComponent.onInitDone
     .pipe(take(1)).subscribe(() => {
-      console.log("VOER UIT??????")
       console.log(`%c USERNAME: ${currentUser.username}`, `color: green;`)
       console.log(`%c USERNAME: ${currentUser.email}`, `color: green;`)
       console.log(`%c USERNAME: ${currentUser.id}`, `color: green;`)
     });
-
   }
-
-
-
-  
-
 }

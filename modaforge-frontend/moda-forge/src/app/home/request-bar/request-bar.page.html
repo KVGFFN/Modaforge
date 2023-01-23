@@ -19,7 +19,16 @@
 
 
 <!--display requests-->
-<app-request *ngFor="let request of requests; index as i;" [nameModel]="request.title" [description]="request.description"></app-request>
+<div class="requests-container">
+<app-request 
+    *ngFor="let request of requests; index as i;" 
+    [nameModel]="request.title" 
+    [description]="request.description"
+    style="direction: ltr;"
+    >
+</app-request>
+</div>
+
 <ion-button 
     class="request-btn"
     color="light"

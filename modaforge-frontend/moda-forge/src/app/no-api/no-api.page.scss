@@ -1,0 +1,25 @@
+.no-api-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.btn
+{
+    margin-top: 15px;
+}
+
+.subheader
+{
+    font-size: 15px;
+    color: gray;
+    margin-top: 10px;
+}

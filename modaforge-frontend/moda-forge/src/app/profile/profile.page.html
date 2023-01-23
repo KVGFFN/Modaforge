@@ -47,7 +47,7 @@
           </ion-card-header>
           <ion-card-content>
             <ion-list>
-              <ion-item>
+              <!-- <ion-item>
                 <ion-icon name="time" slot="start"></ion-icon>
                 <ion-label>Request 1</ion-label>
                 <ion-badge color="primary">Pending</ion-badge>
@@ -61,7 +61,25 @@
                 <ion-icon name="checkmark-circle" slot="start"></ion-icon>
                 <ion-label>Request 3</ion-label>
                 <ion-badge color="success">Completed</ion-badge>
+              </ion-item> -->
+
+              <!--    EACH REQUEST    -->
+              <ion-item *ngFor="let i = index; let request of requests">
+
+                <!--if ion-icon pending or accepted-->
+                <ion-icon *ngIf = "request.status == 'Pending'" name="time" slot="start"></ion-icon>
+                <ion-icon *ngIf = "request.status == 'In Progress'" name="time" slot="start"></ion-icon>
+                <ion-icon *ngIf = "request.status == 'Completed'" name="checkmark-circle" slot="start"></ion-icon>
+
+                <ion-label>{{ request.title }}</ion-label>
+
+                <ion-badge 
+                  [color]="badgeColor"> {{request.status}} 
+                </ion-badge>
+
               </ion-item>
+
+
             </ion-list>
           </ion-card-content>
         </ion-card>

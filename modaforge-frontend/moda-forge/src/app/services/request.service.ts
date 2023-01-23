@@ -4,9 +4,30 @@ import { Observable } from 'rxjs';
 import { IP } from 'src/helpers/IP';
 import { Request } from 'src/modules/interfaces/request.interface';
 
+interface GetRequest
+{
+  id: number;
+  acceptedDate: any,
+  creationDate: any,
+  doneDate: any,
+  model: any,
+  modelId: any,
+  provider: any,
+  providerId: any,
+  region: any,
+  regionId: any,
+  requester: any,
+  requesterId: any,
+  status: any,
+  title: any,
+  description: any,
+  tags: any,
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 
 export class RequestService {
   
@@ -18,9 +39,9 @@ export class RequestService {
   API = IP.local;
 
   // Get request by id
-  getMyRequests(id: number): Observable<Request[]>
+  getMyRequests(id: number): Observable<GetRequest[]>
   {
-    return this.http.get<Request[]>(`${this.API}/api/Request/Requester/${id}`);
+    return this.http.get<GetRequest[]>(`${this.API}/api/Request/Requester/${id}`);
   }
 
   createRequest(request: Request): Observable<Request>
@@ -28,5 +49,10 @@ export class RequestService {
     const headers = { 'content-type': 'application/json'}
     const body = JSON.stringify(request);
     return this.http.post<Request>(`${this.API}/api/Request`, body, {'headers': headers});
+  }
+
+  getAllPublicRequests() : Observable<Request[]>
+  {
+    return this.http.get<Request[]>(`${this.API}/api/Request/public`);
   }
 }

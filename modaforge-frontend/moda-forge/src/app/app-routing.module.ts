@@ -7,7 +7,7 @@ import { TestPage } from './test/test.page';
 import { AuthGuard } from 'src/helpers/authguard';
 
 
-const routes: Routes = 
+const routes: Routes =
 [
   {
     path: 'register',
@@ -61,13 +61,18 @@ const routes: Routes =
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  },  {
+  },
+  {
     path: 'create-request',
     loadChildren: () => import('./create-request/create-request.module').then( m => m.CreateRequestPageModule)
   },
   {
     path: 'model-viewer',
     loadChildren: () => import('./model-viewer/model-viewer.module').then( m => m.ModelViewerPageModule)
+  },
+  {
+    path: 'no-api',
+    loadChildren: () => import('./no-api/no-api.module').then( m => m.NoApiPageModule)
   },
 
 ];

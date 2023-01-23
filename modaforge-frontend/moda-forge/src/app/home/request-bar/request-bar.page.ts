@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { RequestService } from 'src/app/services/request.service';
 import { authState } from 'src/helpers/authState';
@@ -22,6 +23,13 @@ export class RequestBarPage implements OnInit {
   requests: Request[];
   request: Request;
 
+  @Output() refresh = new EventEmitter();
+
+  onRefresh()
+  {
+    this.refresh.emit();
+  }
+
   id: number;
   title: string;
   description: string;
@@ -31,9 +39,10 @@ export class RequestBarPage implements OnInit {
 
   isInitialized = authState.authIsInitialized;
   
-  getMyRequests(uid: number)
+  getMyRequests()
   {
-    this.requestService.getMyRequests(uid).subscribe(
+    console.log("executed getmyrequests")
+    this.requestService.getMyRequests(currentUser.id).subscribe(
       (data) => {
         this.requests = data;
       }
@@ -49,8 +58,15 @@ export class RequestBarPage implements OnInit {
   ngOnInit() {
     this.isApiAvailable = true;
     this.appComponent.onInitDone.subscribe(() => {
-      this.getMyRequests(currentUser.id);
+      this.getMyRequests();
     });
+    
+    this.ionViewWillEnter();
+  }
 
+  ionViewWillEnter()
+  {
+    console.log("IONVIEWWILLENTER" + currentUser.id);
+    this.getMyRequests();
   }
 }
