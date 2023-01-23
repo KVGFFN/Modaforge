@@ -85,7 +85,7 @@ export class ProfilePage implements OnInit {
     this.waitTillTrue().then(() => {
       console.log(this.userdata)
       this.userdata.forEach(element => {
-        if (element.name = name && element.email.toLowerCase() == email) {
+        if (element.name == name && element.email.toLowerCase() == email) {
           this.providerRole = element.providerRole;
         }
       });
