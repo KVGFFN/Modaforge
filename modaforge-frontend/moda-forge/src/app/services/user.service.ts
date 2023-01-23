@@ -48,8 +48,7 @@ export class UserService {
   }
 
   // Get All Providers
-  getAllProviders()
-  {
+  getAllProviders() {
     return this.http.get<User[]>(`${this.API}/api/User/GetAllProviders`);
   }
 

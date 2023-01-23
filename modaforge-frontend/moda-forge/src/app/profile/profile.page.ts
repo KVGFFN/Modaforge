@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { UserService } from '../services/user.service';
 import { currentUser } from 'src/helpers/CurrentUser';
 import { AppComponent } from '../app.component';
 import { RequestService } from '../services/request.service';
 import { catchError, from, map, of, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { User } from 'src/modules/interfaces/user.interface';
+import { cpuUsage } from 'process';
+import { ViewDidEnter } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -21,12 +25,13 @@ export class ProfilePage implements OnInit {
 
   // variables
   id: number;
-  name: string;
+  name = currentUser.username;
   verified: boolean;
-  email: string;
+  email = currentUser.email;
   picture: string;
   providerRole: boolean;
   userdata = [];
+
   userIsLoaded: boolean = false;
   requests: any[];
   status = ["Pending", "In Progress", "Done"];
@@ -88,7 +93,7 @@ export class ProfilePage implements OnInit {
     this.waitTillTrue().then(() => {
       console.log(this.userdata)
       this.userdata.forEach(element => {
-        if (element.name = name && element.email.toLowerCase() == email) {
+        if (element.name == name && element.email.toLowerCase() == email) {
           this.providerRole = element.providerRole;
         }
       });
@@ -99,12 +104,12 @@ export class ProfilePage implements OnInit {
     this.appComponent.onInitDone.subscribe(() => {
       this.setUserInformation();
     });
+    this.checkProviderRole(this.email, this.name);
   }
 
   setUserInformation() {
     this.name = currentUser.username;
     this.email = currentUser.email;
-    this.checkProviderRole(this.email, this.name);
   }
 
 

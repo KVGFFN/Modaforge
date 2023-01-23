@@ -56,8 +56,13 @@ export class RequestService {
     return this.http.get<Request[]>(`${this.API}/api/Request/public`);
   }
 
-  getRequestById(id: number) : Observable<GetRequest>
-  {
-    return this.http.get<GetRequest>(`${this.API}/api/Request/${id}`);
+  getRequestById(id: number): Observable<Request> {
+    return this.http.get<Request>(`${this.API}/api/Request/${id}`);
+  }
+
+  updateRequest(request: Request, id: number): Observable<Request> {
+    const headers = { 'content-type': 'application/json'}
+    const body = JSON.stringify(request);
+    return this.http.put<Request>(`${this.API}/api/Request/${id}`, body, {'headers': headers});
   }
 }
