@@ -114,6 +114,14 @@ namespace ModaForge.Infrastructure.Repositories
             return requests;
         }
 
+        public IEnumerable<Request> GetAllPublicRequests()
+        {
+            var requests = context.requests
+                .Where(r => r.ProviderId == null)
+                .ToList();
+            return requests;
+        }
+
         public Request Update(int id, Request request)
         {
             context.requests.Update(request);

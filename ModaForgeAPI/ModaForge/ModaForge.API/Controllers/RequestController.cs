@@ -48,6 +48,13 @@ namespace ModaForge.API.Controllers
         {
             return Ok(service.Update(id, request));
         }
+
+        [Route("public")]
+        [HttpGet]
+        public IActionResult GetAllPublicRequests()
+        {
+            return Ok(service.GetAllPublicRequests());
+        }
         
         [Route("Requester/{userid}")]
         [HttpGet]

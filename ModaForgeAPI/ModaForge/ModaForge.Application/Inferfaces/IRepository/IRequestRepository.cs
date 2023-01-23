@@ -11,6 +11,7 @@ namespace ModaForge.Application.Inferfaces.IRepository
     {
         IEnumerable<Request> GetAll(SearchParameters searchParameters);
         IEnumerable<Request> GetAllRequestsByRequesterId(int id);
+        IEnumerable<Request> GetAllPublicRequests();
         Request GetById(int id);
         Request Create(Request request);
         Request Update(int id, Request request);
