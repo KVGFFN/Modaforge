@@ -43,7 +43,9 @@ export class LoginPage implements OnInit {
         currentUser.username = user.displayName;
         currentUser.email = user.email;
         loginHelper.isLoggedIn = true;
-        this.router.navigate(['/home']);
+        this.router.navigate(['/home']).then(() => {
+          window.location.reload();
+        });;
       })
       console.log(">>> Sign In successful!")
     } catch (error) {

@@ -246,10 +246,10 @@ export class CreateRequestPage implements OnInit {
       console.log(error);
     }
     alert("Request has been sent!");
-    // this.router.navigate(['/home'])
-    // .then(() => {
-    //   window.location.reload();
-    // });
+    this.router.navigate(['/home'])
+    .then(() => {
+      window.location.reload();
+    });
   }
 
 

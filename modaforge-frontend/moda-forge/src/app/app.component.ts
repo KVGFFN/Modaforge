@@ -34,10 +34,10 @@ export class AppComponent {
     { title: 'Home', url: '/home', icon: 'home' },
     { title: 'Library', url: '/library', icon: 'library' },
     //{ title: 'Feedback', url: '/folder/Feedback', icon: 'cube' },
-    { title: 'Print posts', url: '/print-posts', icon: 'cube' },
+    { title: 'Public requests', url: '/print-posts', icon: 'cube' },
     { title: 'Printers', url: '/printers', icon: 'telescope' },
     { title: 'Near you', url: '/near-you', icon: 'location' },
-    { title: 'Your prints', url: '/your-prints', icon: 'cube' },
+    { title: 'Incoming requests', url: '/your-prints', icon: 'cube' },
     { title: 'TESTING PAGE', url: '/test', icon: 'alert' },
   ];
   public labels = ['Favorite Clients'];

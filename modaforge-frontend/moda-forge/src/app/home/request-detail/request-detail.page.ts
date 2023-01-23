@@ -79,8 +79,6 @@ export class RequestDetailPage implements OnInit {
         next: (data) => {
           console.log('MODEL: ');
           console.log(data);
-          console.log("nig")
-          console.log(data)
           this.setModelAttributes(data);
         },
       });
@@ -89,8 +87,6 @@ export class RequestDetailPage implements OnInit {
 
   setModelAttributes(data: any) {
     this.modelEmbed = data.fileURL;
-    console.log("ger")
-    console.log(this.modelEmbed)
   }
 
   closeRequestDetail()
