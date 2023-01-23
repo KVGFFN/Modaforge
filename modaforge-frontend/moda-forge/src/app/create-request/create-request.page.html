@@ -15,7 +15,7 @@
 
       <!--    SELECT PROVIDER   -->
       <ion-item>
-        <ion-label>Select your provider</ion-label>
+        <!-- <ion-label>Select your provider</ion-label>
         <ion-select placeholder="Providers" (ionChange)="selectProvider($event)">
           <ion-select-option 
           *ngFor="let i = index; let provider of providers" 
@@ -23,7 +23,12 @@
           >
             {{ provider.name }}
           </ion-select-option>
-        </ion-select>
+        </ion-select> -->
+
+        <ion-label>Provider: <b> {{ providerName }}</b></ion-label>
+        <ion-button *ngIf="!providerSelected" slot="end" (click)="goToProvider()">Search Provider</ion-button>
+        <ion-button color="dark" *ngIf="providerSelected" slot="end" (click)="clearProvider()">Clear</ion-button>
+        <ion-button *ngIf="providerSelected" slot="end" (click)="goToProvider()">Change Provider</ion-button>
       </ion-item>
 
 
@@ -47,5 +52,9 @@
       <ion-button expand="block" (click)="publishRequest()">Submit</ion-button>
     </ion-list>
   </ion-card>
+
+  <ion-button (click)="test()">
+    TEST
+  </ion-button>
   
 </ion-content>

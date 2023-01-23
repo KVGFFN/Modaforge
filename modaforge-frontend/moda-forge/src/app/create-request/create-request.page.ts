@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { UserService } from '../services/user.service';
 import { currentUser } from 'src/helpers/CurrentUser';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { Route, Router } from '@angular/router';
 import { ModelViewerPage } from '../model-viewer/model-viewer.page';
@@ -39,7 +39,8 @@ export class CreateRequestPage implements OnInit {
   currentProvider: any;
   selectedProvider: any;
   providerid: number;
-  providername: string;
+  providerName: string;
+  providerSelected: boolean = false;
 
   // model variables
   modelName: string;
@@ -62,7 +63,6 @@ export class CreateRequestPage implements OnInit {
     private localModelService: LocalModelService,
     private requestService: RequestService,
     private appComponent: AppComponent,
-    private cdr: ChangeDetectorRef,
     private modalCtrl: ModalController,
     private http: HttpClient,
     private router: Router,
@@ -82,6 +82,25 @@ export class CreateRequestPage implements OnInit {
     this.getModelInformation();
     this.userHasModel();
     console.log("%c" + "IONVIEWWILLENTER: " + currentUser.modelURI["embedUrl"], "color: purple")
+  }
+
+  ionViewDidEnter()
+  {
+    if (currentUser.selectedProvider != null)
+    {
+      console.log("THERE IS A PROVIDER SELECTED")
+      this.providerSelected = true;
+      this.selectedProvider = currentUser.selectedProvider;
+      this.currentProvider = currentUser.selectedProvider;
+      this.providerName = this.currentProvider["name"];
+      this.providerid = this.currentProvider["id"];
+
+    }
+    else
+    {
+      console.log("THERE IS NO PROVIDER SELECTED")
+      this.providerSelected = false;
+    }
   }
 
   async getAllProviders()
@@ -113,6 +132,20 @@ export class CreateRequestPage implements OnInit {
     this.selectedProvider = $event.detail.value;
     console.log(this.selectedProvider);
     console.log(this.selectedProvider["id"]);
+  }
+  // PROVIDER FUNCTIONS //
+  goToProvider()
+  {
+    this.router.navigate(['/printers']);
+  }
+
+  clearProvider()
+  {
+    this.providerSelected = false;
+    this.currentProvider = undefined;
+    this.selectedProvider = undefined;
+    this.providerid = undefined;
+    this.providerName = undefined;
   }
 
   // MODEL FUNCTIONS //
@@ -165,14 +198,14 @@ export class CreateRequestPage implements OnInit {
       tags: "test,test,test"
     }
 
-    this.localModelService.createModel(this.modelToPost).subscribe((data) => {
-      console.log(data);
-      this.localModelId = data["id"];
-      console.log("LOCAL MODEL ID: " + this.localModelId);
-    }, error => {
-      console.log("ERROR createModel line 156")
-      console.log(error);
-    });
+    // this.localModelService.createModel(this.modelToPost).subscribe((data) => {
+    //   console.log(data);
+    //   this.localModelId = data["id"];
+    //   console.log("LOCAL MODEL ID: " + this.localModelId);
+    // }, error => {
+    //   console.log("ERROR createModel line 156")
+    //   console.log(error);
+    // });
 
     let result = await this.localModelService.createModel(this.modelToPost).toPromise();
     console.log(result);
@@ -212,10 +245,15 @@ export class CreateRequestPage implements OnInit {
       console.log(error);
     }
     alert("Request has been sent!");
-    this.router.navigate(['/home'])
-    .then(() => {
-      window.location.reload();
-    });
+    // this.router.navigate(['/home'])
+    // .then(() => {
+    //   window.location.reload();
+    // });
+  }
+
+  test()
+  {
+    console.log(currentUser.selectedProvider)
   }
 
 

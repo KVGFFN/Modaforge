@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { currentUser } from 'src/helpers/CurrentUser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-printers',
@@ -9,7 +10,11 @@ import { currentUser } from 'src/helpers/CurrentUser';
 })
 export class PrintersPage implements OnInit {
 
-  constructor( private userService: UserService) { }
+  constructor
+  (
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   // variables
   id: number;
@@ -75,6 +80,13 @@ export class PrintersPage implements OnInit {
   ngOnInit() {
     this.getAllUsers();
     this.displayProviders();
+  }
+
+  sendRequest(provider: any)
+  {
+    currentUser.selectedProvider = provider;
+    console.log(currentUser.selectedProvider)
+    this.router.navigate(['/create-request']);
   }
 
 }

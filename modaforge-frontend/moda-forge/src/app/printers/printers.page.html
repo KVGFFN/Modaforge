@@ -33,7 +33,9 @@
                 <br>
                 Region: {{provider.region}}
               </ion-card-content>
-              <ion-button class="accept-button">Send Request</ion-button>
+              <ion-button 
+                (click)="sendRequest(provider)"
+                class="accept-button">Send Request</ion-button>
            </ion-card>
         </ion-col>
      </ion-row>
