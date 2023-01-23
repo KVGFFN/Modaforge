@@ -106,6 +106,7 @@ export class AppComponent {
           console.log("USER IS LOGGED IN");
           currentUser.username = user.displayName;
           currentUser.email = user.email;
+          this.email = user.email;
           this.username = user.displayName;
           this.getCurrentUser();
           loginHelper.isLoggedIn = true;
