@@ -55,4 +55,10 @@ export class RequestService {
   {
     return this.http.get<Request[]>(`${this.API}/api/Request/public`);
   }
+
+  /*Get the name of the user from the requestId
+  getRequesterName(requestId: number): Observable<string>
+  {
+    return this.http.get<string>(`${this.API}/api/Request/RequesterName/${requestId}`);
+  }*/
 }

@@ -34,7 +34,7 @@ export class PrintersPage implements OnInit {
   getAllUsers() {
     try {
       this.userService.getAllUsers().subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.userdata = data;
         this.userIsLoaded = true;
       }, error => {
