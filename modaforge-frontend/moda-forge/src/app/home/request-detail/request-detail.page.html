@@ -1,9 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>request-detail</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="request-detail-page">
+    <h1 class="title">{{requestTitle}}</h1>
+    <div class="sketchfab-embed-wrapper">
+      <iframe frameborder="0" allowfullscreen="true" loading="lazy" allow="autoplay; xr-spatial-tracking"
+        xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share
+        [src]="modelEmbed | safe" width="250px" height="400px" style="text-align: center;">
+      </iframe>
+    </div>
+    <ion-list>
 
+      <ion-item class="status">
+        <p>Status: </p>
+      </ion-item>
+      <ion-item class="provider-id">
+        <p>
+          <b>Provider:</b> {{ requestProviderName }}
+        </p>
+      </ion-item>
+
+    </ion-list>
+  </div>
 </ion-content>

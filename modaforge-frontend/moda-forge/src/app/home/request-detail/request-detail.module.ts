@@ -8,6 +8,8 @@ import { RequestDetailPageRoutingModule } from './request-detail-routing.module'
 
 import { RequestDetailPage } from './request-detail.page';
 
+import { SafePipe } from 'src/app/safe.pipe';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,6 @@ import { RequestDetailPage } from './request-detail.page';
     IonicModule,
     RequestDetailPageRoutingModule
   ],
-  declarations: [RequestDetailPage]
+  declarations: [RequestDetailPage, SafePipe]
 })
 export class RequestDetailPageModule {}
