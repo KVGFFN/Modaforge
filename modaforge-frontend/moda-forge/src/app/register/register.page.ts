@@ -171,7 +171,7 @@ export class RegisterPage implements OnInit {
         Name: this.name,
         Verified: false,
         Email: this.email,
-        Picture: "img",
+        Picture: "https://ionicframework.com/docs/img/demos/avatar.svg",
         ProviderRole: false,
       }
 
