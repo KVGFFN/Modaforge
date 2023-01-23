@@ -1,6 +1,10 @@
+ion-content {
+  background-image: linear-gradient(to right top, #370507, #2c070a, #22050a, #160206, #000000);
+}
+
 .request-detail-page {
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 80%;
     padding: 20px;
   }
   
@@ -18,7 +22,7 @@
   
   .sketchfab-embed-wrapper {
     position: relative;
-    padding-bottom: 56.25%;
+    padding-bottom: 50%;
     height: 0;
     overflow: hidden;
   }
@@ -40,3 +44,9 @@
     font-size: 18px;
   }
   
+.main-labels
+{
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

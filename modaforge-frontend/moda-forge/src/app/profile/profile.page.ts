@@ -3,7 +3,6 @@ import { UserService } from '../services/user.service';
 import { currentUser } from 'src/helpers/CurrentUser';
 import { AppComponent } from '../app.component';
 import { RequestService } from '../services/request.service';
-import { Request } from 'src/modules/interfaces/request.interface';
 import { catchError, from, map, of, tap } from 'rxjs';
 
 @Component({
@@ -132,6 +131,9 @@ export class ProfilePage implements OnInit {
 
   async ionViewWillEnter() {
     this.getMyRequests();
+    this.name = currentUser.username;
+    this.email = currentUser.email;
+    this.picture = currentUser.picture;
   }
 
 
