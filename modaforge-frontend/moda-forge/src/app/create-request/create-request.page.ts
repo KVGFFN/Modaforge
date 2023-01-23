@@ -94,7 +94,6 @@ export class CreateRequestPage implements OnInit {
       this.currentProvider = currentUser.selectedProvider;
       this.providerName = this.currentProvider["name"];
       this.providerid = this.currentProvider["id"];
-
     }
     else
     {
@@ -219,7 +218,7 @@ export class CreateRequestPage implements OnInit {
       title: this.requestTitle,
       description: this.requestDescription,
       requesterId: currentUser.id,
-      providerId: this.selectedProvider["id"],
+      providerId: this.providerid,
       modelId: this.localModelId,
       regionId: 1,                                // REGION HAS TO BE CHANGED
       tags: "test,test,test"                      // USER HAS TO GIVE IN TABS
