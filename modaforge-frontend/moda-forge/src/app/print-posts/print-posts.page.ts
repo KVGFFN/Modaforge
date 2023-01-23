@@ -47,7 +47,7 @@ export class PrintPostsPage implements OnInit {
   checkProviderRole(email: string, name: string) {
     this.getAllUsers();
     this.waitTillTrue().then(() => {
-      console.log(this.userdata)
+      //console.log(this.userdata)
       this.userdata.forEach(element => {
         if (element.name == name && element.email.toLowerCase() == email) {
           this.providerRole = element.providerRole;
@@ -105,8 +105,8 @@ export class PrintPostsPage implements OnInit {
     }
   }
 
-  goToCreateRequest() {
-    this.router.navigate(['/create-request']);
+  goToAcceptRequest(requesterId: number, requestId: number) {
+    this.router.navigate(['/accept-request'], { queryParams: { requesterId: requesterId, requestId: requestId} });
   }
   
 }

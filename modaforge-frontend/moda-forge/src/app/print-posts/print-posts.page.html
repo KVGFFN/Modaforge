@@ -57,7 +57,7 @@
               <ion-card-content class="description">
                  {{post.description}}
               </ion-card-content>
-              <ion-button class="accept-button" (click)="goToCreateRequest()" [disabled]="providerRole == false">Accept</ion-button>
+              <ion-button class="accept-button" (click)="goToAcceptRequest(post.requesterId, post.id)" [disabled]="providerRole == false">Accept</ion-button>
            </ion-card>
         </ion-col>
      </ion-row>

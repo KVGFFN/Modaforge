@@ -56,9 +56,13 @@ export class RequestService {
     return this.http.get<Request[]>(`${this.API}/api/Request/public`);
   }
 
-  /*Get the name of the user from the requestId
-  getRequesterName(requestId: number): Observable<string>
-  {
-    return this.http.get<string>(`${this.API}/api/Request/RequesterName/${requestId}`);
-  }*/
+  getRequestById(id: number): Observable<Request> {
+    return this.http.get<Request>(`${this.API}/api/Request/${id}`);
+  }
+
+  updateRequest(request: Request, id: number): Observable<Request> {
+    const headers = { 'content-type': 'application/json'}
+    const body = JSON.stringify(request);
+    return this.http.put<Request>(`${this.API}/api/Request/${id}`, body, {'headers': headers});
+  }
 }

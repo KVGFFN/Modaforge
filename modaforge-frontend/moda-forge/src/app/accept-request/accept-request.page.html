@@ -1,0 +1,50 @@
+<ion-content>
+  <ion-card>
+    <ion-list>  
+
+      <!--    SELECT MODEL    -->
+      <ion-item>
+        <ion-label>Model: <b>{{ modelName }}</b></ion-label>
+        <ion-button color="dark" *ngIf="modelSelected" slot="end" (click)="viewCurrentModel()">View Model</ion-button>
+        <!-- <ion-button *ngIf="modelSelected" slot="end" (click)="changeModel()">Change Model</ion-button>
+        <ion-button *ngIf="!modelSelected" slot="end" (click)="changeModel()">Search Model</ion-button> -->
+      </ion-item>
+
+
+
+
+      <!--    SELECT PROVIDER   -->
+      <ion-item>
+        <!-- <ion-label>Select your provider</ion-label>
+        <ion-select placeholder="Providers" (ionChange)="selectProvider($event)">
+          <ion-select-option 
+          *ngFor="let i = index; let provider of providers" 
+          [value]="provider"
+          >
+            {{ provider.name }}
+          </ion-select-option>
+        </ion-select> -->
+
+        <ion-label>Provider: <b> {{providerId}}</b></ion-label>
+      </ion-item>
+
+
+
+      <!--TITLE OF REQUEST-->
+      <ion-item>
+        <ion-label>Title: <b> {{requestTitle}}</b></ion-label>
+      </ion-item>
+  
+
+
+      <!--DESCRIPTION OF REQUEST-->
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea [(ngModel)]="requestDescription" ></ion-textarea>
+      </ion-item>
+  
+
+
+      <ion-button expand="block" (click)="updateRequest()">Accept</ion-button>
+    </ion-list>
+  </ion-card>

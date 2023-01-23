@@ -73,7 +73,11 @@ const routes: Routes =
   {
     path: 'no-api',
     loadChildren: () => import('./no-api/no-api.module').then( m => m.NoApiPageModule)
+  },  {
+    path: 'accept-request',
+    loadChildren: () => import('./accept-request/accept-request.module').then( m => m.AcceptRequestPageModule)
   },
+
 
 ];
 
