@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { UserService } from '../services/user.service';
 import { currentUser } from 'src/helpers/CurrentUser';
 import { AppComponent } from '../app.component';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/modules/interfaces/user.interface';
 import { cpuUsage } from 'process';
+import { ViewDidEnter } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -21,12 +22,13 @@ export class ProfilePage implements OnInit {
 
   // variables
   id: number;
-  name: string;
+  name = currentUser.username;
   verified: boolean;
-  email: string;
+  email = currentUser.email;
   picture: string;
   providerRole: boolean;
   userdata = [];
+
   userIsLoaded: boolean = false;
 
   getAllUsers() {
@@ -94,13 +96,13 @@ export class ProfilePage implements OnInit {
     this.appComponent.onInitDone.subscribe(() => {
       this.setUserInformation();
     });
+    this.checkProviderRole(this.email, this.name);
   }
 
   setUserInformation()
   {
     this.name = currentUser.username;
     this.email = currentUser.email;
-    this.checkProviderRole(this.email, this.name);
   }
 
 

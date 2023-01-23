@@ -8,7 +8,7 @@
   <ion-grid>
     <ion-row class="top-row"> 
       <ion-col>
-        <ion-searchbar color="light"></ion-searchbar>
+        <ion-searchbar [debounce]="1000" (ionChange)="handleChange($event)" placeholder="Search for a printer" color="light"></ion-searchbar>
       </ion-col> 
       <!-- <ion-col size="auto">
         <ion-button class="create-button">Create a post</ion-button>

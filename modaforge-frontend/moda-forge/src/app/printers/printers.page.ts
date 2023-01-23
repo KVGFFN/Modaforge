@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { currentUser } from 'src/helpers/CurrentUser';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-printers',
@@ -18,12 +19,14 @@ export class PrintersPage implements OnInit {
   email: string;
   picture: string;
   providerRole: boolean;
+
   userdata = [];
   providerdata = [];
+
   pictureLoaded: boolean = false;
   userIsLoaded: boolean = false;
 
-   getAllUsers() {
+  getAllUsers() {
     try {
       this.userService.getAllUsers().subscribe(data => {
         console.log(data);
@@ -44,16 +47,6 @@ export class PrintersPage implements OnInit {
       await new Promise(resolve => setTimeout(resolve, 1000));
 
     }
-    /*if (this.userIsLoaded) {
-      for (let i = 0; i < this.userdata.length; i++) {
-        console.log(this.userdata[i].name);
-        if (this.userdata[i].name == currentUser.username && this.userdata[i].email == currentUser.email) {
-          this.name = this.userdata[i].name;
-          this.email = this.userdata[i].email;
-          this.picture = this.userdata[i].picture;
-        }
-      }
-    }*/
   }
 
   // Display users that are providers
@@ -71,6 +64,24 @@ export class PrintersPage implements OnInit {
       }
     });
   }
+
+  // Display users with the searchbar
+  handleChange(event) {
+    console.log("handleChange() called");
+    this.providerdata = [];
+    for (let i = 0; i < this.userdata.length; i++) {
+      if (this.userdata[i].providerRole == true) {
+        if (this.userdata[i].name.toLowerCase().includes(event.target.value.toLowerCase())) {
+          this.providerdata.push(this.userdata[i]);
+          console.log(this.providerdata);
+        }
+      }
+    }
+    if (this.providerdata.length == 0) {
+      console.log("No providers found");
+    }
+  }
+  
 
   ngOnInit() {
     this.getAllUsers();
