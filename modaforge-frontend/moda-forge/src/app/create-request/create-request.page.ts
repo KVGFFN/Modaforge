@@ -209,6 +209,8 @@ export class CreateRequestPage implements OnInit {
     let result = await this.localModelService.createModel(this.modelToPost).toPromise();
     console.log(result);
     this.localModelId = result["id"];
+    console.log(this.modelToPost)
+    console.log(this.request)
     console.log("LOCAL MODEL ID: " + this.localModelId);
   }
 
@@ -248,11 +250,6 @@ export class CreateRequestPage implements OnInit {
     // .then(() => {
     //   window.location.reload();
     // });
-  }
-
-  test()
-  {
-    console.log(currentUser.selectedProvider)
   }
 
 

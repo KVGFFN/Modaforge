@@ -66,7 +66,11 @@ export class RequestDetailPage implements OnInit {
     this.requestDescription = data.description;
     this.requestDate = data.date;
     this.requestProvider = data.provider;
-    this.requestProviderName = data.provider.name;
+    if (data.provider) {
+      this.requestProviderName = data.provider.name;
+    } else {
+      this.requestProviderName = 'No provider assigned';
+    }
   }
 
   async getModel() {
@@ -75,6 +79,8 @@ export class RequestDetailPage implements OnInit {
         next: (data) => {
           console.log('MODEL: ');
           console.log(data);
+          console.log("nig")
+          console.log(data)
           this.setModelAttributes(data);
         },
       });
@@ -83,6 +89,8 @@ export class RequestDetailPage implements OnInit {
 
   setModelAttributes(data: any) {
     this.modelEmbed = data.fileURL;
+    console.log("ger")
+    console.log(this.modelEmbed)
   }
 
   closeRequestDetail()
