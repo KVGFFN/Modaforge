@@ -134,13 +134,6 @@ export class AppComponent {
   ngOnInit()
   {
     this.checkAPIState();
-    // console.log("APP.COMPONENT.TS NGONINIT")
-    // this.initializeFirebaseAuth().then(() => {
-    //   this.getCurrentUser().then(async () => {
-    //     console.log("app.component.ts emitted")
-    //     this.onInitDone.emit();
-    //   });
-    // });
     this.initializeFirebaseAuth().then(async() => {
       await this.getCurrentUser();
       console.log("ONINITDONE EMITTED")
