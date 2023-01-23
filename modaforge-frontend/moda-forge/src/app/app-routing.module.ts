@@ -5,10 +5,9 @@ import { LibraryPage } from './library/library.page';
 import { RegisterPage } from './register/register.page';
 import { TestPage } from './test/test.page';
 import { AuthGuard } from 'src/helpers/authguard';
-import { RequestBarPage } from './home/request-bar/request-bar.page';
 
 
-const routes: Routes = 
+const routes: Routes =
 [
   {
     path: 'register',
@@ -70,7 +69,8 @@ const routes: Routes =
   {
     path: 'model-viewer',
     loadChildren: () => import('./model-viewer/model-viewer.module').then( m => m.ModelViewerPageModule)
-  },  {
+  },
+  {
     path: 'no-api',
     loadChildren: () => import('./no-api/no-api.module').then( m => m.NoApiPageModule)
   },

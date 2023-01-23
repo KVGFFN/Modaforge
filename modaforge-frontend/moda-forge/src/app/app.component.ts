@@ -53,8 +53,8 @@ export class AppComponent {
 
   constructor
   (
-    private router: Router, 
-    private http: HttpClient, 
+    private router: Router,
+    private http: HttpClient,
     private userService: UserService,
     private cd: ChangeDetectorRef
   ) {}
@@ -95,18 +95,6 @@ export class AppComponent {
         resolve();
       });
     });
-  }
-
-  firebaseGetCurrentUser(auth)
-  {
-    return new Promise((resolve, reject) => 
-    {
-      const unsubscribe = onAuthStateChanged(auth, (user) => 
-      {
-        unsubscribe();
-        resolve(user);
-      }, reject);
-    })
   }
 
   async initializeFirebaseAuth()
