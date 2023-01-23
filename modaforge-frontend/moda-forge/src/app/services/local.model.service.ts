@@ -23,7 +23,8 @@ export class LocalModelService {
     return this.http.post<LocalModel>(`${this.API}/api/Model`, body, { 'headers': headers });
   }
 
-  getModelById(id: number) : Observable<LocalModel> {
+  getModelById(id: number) : Observable<LocalModel>
+  {
     return this.http.get<LocalModel>(`${this.API}/api/Model/${id}`);
   }
 }

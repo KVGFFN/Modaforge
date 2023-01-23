@@ -1,0 +1,35 @@
+<ion-content>
+  <div class="request-detail-page">
+    <ion-item
+      style="border-top-right-radius: 2ch; border-top-left-radius: 2ch; background-color: #1b1b1b"
+    >
+      <h1 class="title">{{requestTitle}}</h1>
+    </ion-item>
+    
+    <div class="sketchfab-embed-wrapper">
+      <iframe frameborder="0" allowfullscreen="true" loading="lazy" allow="autoplay; xr-spatial-tracking"
+        xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share
+        [src]="modelEmbed | safe" width="250px" height="400px" style="text-align: center;">
+      </iframe>
+    </div>
+    <ion-list>
+
+      <ion-item class="status">
+        <p>
+          <ion-label class="main-labels">Status</ion-label>
+          <ion-badge color="primary">Pending</ion-badge>
+        </p>
+      </ion-item>
+      <ion-item class="provider-id">
+        <p>
+          <ion-label class="main-labels">Provider</ion-label>
+          {{ requestProviderName }}
+        </p>
+      </ion-item>
+      <ion-item>
+
+      </ion-item>
+
+    </ion-list>
+  </div>
+</ion-content>

@@ -44,11 +44,12 @@
                     <img id="user-profilepicture" src="https://ionicframework.com/docs/img/demos/avatar.svg" /> 
                   </ion-avatar>
                   <ion-label id="profilepicture-name">
-                    {{ username }}
+                    <p style="color: white; position:relative; margin: 0; padding-bottom: 0;">{{ username }}</p>
+                    <p style="font-size: 10px;">{{ email }}</p>
                   </ion-label>
-                  <ion-button (click)="logout()">
-                    <ion-icon style="color: black" name="exit"></ion-icon>
-                  </ion-button>
+                  <ion-icon 
+                    (click)="logout()"
+                    slot="end" name="exit"></ion-icon>
                 </ion-item>
               </div>
             </div>
