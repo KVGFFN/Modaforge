@@ -21,14 +21,25 @@ namespace ModaForge.Infrastructure.Repositories
 
         public Request Create(Request request)
         {
-            var provider = context.users.Find(request.ProviderId);
+            //If the providerid is 0 that means that there was no id send and therefore a public request
+            if (request.ProviderId != 0)
+            {
+                var provider = context.users.Find(request.ProviderId);
+                if (provider == null)
+                {
+                    throw new ArgumentNullException("Provider not found with given ProviderId");
+                }
+            }
+            else
+            {
+                request.ProviderId = null;
+            }
+            
             var requester = context.users.Find(request.RequesterId);
             var model = context.models.Find(request.ModelId);
             var region = context.regions.Find(request.RegionId);
-            if (provider == null)
-            {
-                throw new ArgumentNullException("Provider not found with given ProviderId");
-            }
+
+            
             if (requester == null)
             {
                 throw new ArgumentNullException("Requester not found with given RequesterId");
