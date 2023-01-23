@@ -29,4 +29,9 @@ export class RequestService {
     const body = JSON.stringify(request);
     return this.http.post<Request>(`${this.API}/api/Request`, body, {'headers': headers});
   }
+
+  getAllPublicRequests() : Observable<Request[]>
+  {
+    return this.http.get<Request[]>(`${this.API}/api/Request/public`);
+  }
 }

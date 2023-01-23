@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RequestService } from '../services/request.service';
 
 @Component({
   selector: 'app-print-posts',
@@ -8,16 +9,35 @@ import { Component, OnInit } from '@angular/core';
 export class PrintPostsPage implements OnInit {
 
    // Variables
-   posts: any[] = ["test", "test2", "test3", "test4", "test5"];
+   posts: any[];
    showCreatePostForm: boolean = false;
 
-  constructor() { }
+  constructor
+  (
+    private requestService: RequestService,
+  ) { }
 
   ngOnInit() {
   }
 
   toggleCreatePostForm() {
     this.showCreatePostForm = !this.showCreatePostForm;;
+  }
+
+  ionViewWillEnter() {
+    this.getProviderlessPosts();
+  }
+
+  getProviderlessPosts()
+  {
+    this.requestService.getAllPublicRequests().subscribe(
+      (data) => {
+        console.log(data);
+        this.posts = data;
+      },
+      (error) => {
+        console.log(error);
+      });
   }
 
 }
