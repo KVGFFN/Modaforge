@@ -28,6 +28,7 @@ namespace ModaForge.Application.Services
                 Verified = userData.Verified,
                 Picture = userData.Picture,
                 ProviderRole = userData.ProviderRole,
+                Description = userData.Description,
             };
             user = repository.Create(user);
             return user;
