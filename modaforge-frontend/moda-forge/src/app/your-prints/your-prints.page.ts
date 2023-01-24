@@ -61,7 +61,7 @@ export class YourPrintsPage implements OnInit {
   async getRequestsByProvider(id: number)
   {
     // Runs before getUserById
-    this.requestService.getAllRequestByProviderId(id).subscribe(data => {
+    this.requestService.GetAllIncomingRequests(id).subscribe(data => {
       this.requests = data;
       console.log("DATA: ")
       console.log(this.requests);

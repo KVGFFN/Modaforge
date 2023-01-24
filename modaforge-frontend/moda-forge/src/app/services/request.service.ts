@@ -69,6 +69,10 @@ export class RequestService {
   getAllRequestByProviderId(id: number): Observable<Request[]>{
     return this.http.get<Request[]>(`${this.API}/api/Request/Provider/${id}`);
   }
+  
+  GetAllIncomingRequests(providerId: number): Observable<Request[]>{
+    return this.http.get<Request[]>(`${this.API}/api/Request/Provider/Incoming/${providerId}`);
+  }
 
   acceptRequest(requestId: number, providerId: number) : Observable<Request> {
     const headers = { 'content-type': 'application/json'}
