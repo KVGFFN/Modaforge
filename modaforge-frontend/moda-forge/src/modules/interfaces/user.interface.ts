@@ -5,6 +5,7 @@ export interface User {
     Name:           string;
     Verified:       boolean;
     Email:          string;
+    Description:    string;
     Picture:        string;
     ProviderRole:   boolean;
 }

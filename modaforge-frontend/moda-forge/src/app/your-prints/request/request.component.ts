@@ -15,6 +15,7 @@ export class RequestComponent implements OnInit {
 
   ngOnInit() {
     console.log("----- REQUEST COMPONENT")
+    console.log(this.requestPrinterName)
   }
 
 }

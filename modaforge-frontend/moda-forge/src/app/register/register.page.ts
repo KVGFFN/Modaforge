@@ -137,6 +137,7 @@ export class RegisterPage implements OnInit {
     Name: undefined,
     Verified: undefined,
     Email: undefined,
+    Description: undefined,
     Picture: undefined,
     ProviderRole: false,
   }
@@ -171,6 +172,7 @@ export class RegisterPage implements OnInit {
         Name: this.name,
         Verified: false,
         Email: this.email,
+        Description: " ",
         Picture: "https://ionicframework.com/docs/img/demos/avatar.svg",
         ProviderRole: false,
       }
