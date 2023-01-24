@@ -11,18 +11,28 @@
       <ion-col> 
         <h1 style="text-align: center;">INCOMING REQUESTS</h1>
         <app-request
-          *ngFor="let request of requests"
+          *ngFor="let request of incoming_requests"
           [requestTitle]="request.title"
           [requestDescription]="request.description"
           [requesterName]="request.requester.name"
           [requestCreationDate]="request.creationDate | date: 'dd/MM/yyyy'"
           [requestId]="request.id"
+          [requestStatus]="request.status"
         ></app-request>
       </ion-col>
 
       <!--    INTERACTED REQUESTS   -->
       <ion-col> 
-        <h1 style="text-align: center;">ACCEPTED REQUESTS</h1>
+        <h1 style="text-align: center;">INTERACTED REQUESTS</h1>
+        <app-interacted-request
+          *ngFor="let request of interacted_requests"
+          [requestTitle]="request.title"
+          [requestDescription]="request.description"
+          [requesterName]="request.requester.name"
+          [requestCreationDate]="request.creationDate | date: 'dd/MM/yyyy'"
+          [requestId]="request.id"
+          [requestStatus]="request.status"
+        ></app-interacted-request>
       </ion-col>
     </ion-row>
   </ion-grid>

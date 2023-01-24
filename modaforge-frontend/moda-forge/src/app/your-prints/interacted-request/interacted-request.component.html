@@ -13,18 +13,18 @@
     Requested by: <b>{{ requesterName }}</b>
   </ion-card-content>
   <ion-card-content text-center>
-    <ion-badge color="primary">PENDING</ion-badge>
+    <ion-badge (color)="checkColor(requestStatus)">{{requestStatuses[requestStatus]}}</ion-badge>
   </ion-card-content>
 
   <ion-card-content>
 
     <!--  buttons   -->
     <div class="incoming-status-buttons">
-      <ion-button (click)="acceptRequest()" color="success">
-        ACCEPT
+      <ion-button (click)="finishRequest()" color="success">
+        START PRINTING
       </ion-button>
       <ion-button (click)="rejectRequest()">
-        DECLINE
+        CANCEL
       </ion-button>
     </div>
 

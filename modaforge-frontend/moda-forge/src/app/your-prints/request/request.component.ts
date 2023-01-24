@@ -14,6 +14,7 @@ export class RequestComponent implements OnInit {
   @Input() requesterName: any;
   @Input() requestCreationDate: any;
   @Input() requestId: any;
+  @Input() requestStatus: any;
 
   constructor(private requestService: RequestService) { }
 
@@ -41,29 +42,6 @@ export class RequestComponent implements OnInit {
       console.log(data);
     }, (error)=>
     {
-      console.log(error);
-    });
-  }
-
-  finishRequest() {
-    console.log("Finish request");
-    this.requestService.finishRequest(this.requestId, currentUser.id).subscribe((data)=>
-    {
-      console.log("%c SUCCESFULLY FINISHED ","color: green");
-      console.log(data);
-    }, (error)=>
-    {
-      console.log(error);
-    });
-  }
-
-  inProgressRequest() {
-    console.log("In progress request");
-    this.requestService.inProgressRequest(this.requestId, currentUser.id).subscribe((data)=>
-    {
-      console.log("%c SUCCESFULLY IN PROGRESS ","color: green");
-      console.log(data);
-    }, (error)=> {
       console.log(error);
     });
   }

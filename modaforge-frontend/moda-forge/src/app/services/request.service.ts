@@ -74,6 +74,10 @@ export class RequestService {
     return this.http.get<Request[]>(`${this.API}/api/Request/Provider/Incoming/${providerId}`);
   }
 
+  getAllInteractedRequests(providerId: number): Observable<Request[]>{
+    return this.http.get<Request[]>(`${this.API}/api/Request/Provider/Interacted/${providerId}`);
+  }
+
   acceptRequest(requestId: number, providerId: number) : Observable<Request> {
     const headers = { 'content-type': 'application/json'}
     return this.http.put<Request>(`${this.API}/api/Request/AcceptRequest/${requestId}/${providerId}`, {'headers' : headers})

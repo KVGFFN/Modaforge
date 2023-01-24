@@ -10,6 +10,9 @@ import { YourPrintsPage } from './your-prints.page';
 
 import { RequestComponent } from './request/request.component';
 
+import { InteractedRequestComponent } from './interacted-request/interacted-request.component';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +20,6 @@ import { RequestComponent } from './request/request.component';
     IonicModule,
     YourPrintsPageRoutingModule
   ],
-  declarations: [YourPrintsPage, RequestComponent]
+  declarations: [YourPrintsPage, RequestComponent, InteractedRequestComponent]
 })
 export class YourPrintsPageModule {}

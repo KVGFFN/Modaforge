@@ -33,13 +33,15 @@ export class YourPrintsPage implements OnInit {
   async ionViewDidEnter()
   {
     await this.waitTillTrue();
-    this.getRequestsByProvider(currentUser.id);
+    this.getIncomingRequestsByProvider(currentUser.id);
+    this.getInteractedRequestsByProvider(currentUser.id);
   }
 
   // variables
   isProvider: boolean;
   userdata = [];
-  requests: any[];
+  incoming_requests: any[];
+  interacted_requests: any[];
   requester: any[];
 
   currentUserName = currentUser.username;
@@ -58,16 +60,25 @@ export class YourPrintsPage implements OnInit {
 
   }
 
-  async getRequestsByProvider(id: number)
+  async getIncomingRequestsByProvider(id: number)
   {
     // Runs before getUserById
     this.requestService.GetAllIncomingRequests(id).subscribe(data => {
-      this.requests = data;
+      this.incoming_requests = data;
       console.log("DATA: ")
-      console.log(this.requests);
+      console.log(this.incoming_requests);
     }, error => {
       console.log(error);
     });
+  }
+
+  async getInteractedRequestsByProvider(id: number)
+  {
+    this.requestService.getAllInteractedRequests(id).subscribe(data => {
+      this.interacted_requests = data;
+      console.log("-- INTERACTED REQUESTS --")
+      console.log(this.interacted_requests);
+    })
   }
 
   
