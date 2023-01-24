@@ -69,4 +69,25 @@ export class RequestService {
   getAllRequestByProviderId(id: number): Observable<Request[]>{
     return this.http.get<Request[]>(`${this.API}/api/Request/Provider/${id}`);
   }
+
+  acceptRequest(requestId: number, providerId: number) : Observable<Request> {
+    const headers = { 'content-type': 'application/json'}
+    return this.http.put<Request>(`${this.API}/api/Request/AcceptRequest/${requestId}/${providerId}`, {'headers' : headers})
+  }
+
+  rejectRequest(requestId: number, providerId: number) : Observable<Request> {
+    const headers = { 'content-type': 'application/json'}
+    return this.http.put<Request>(`${this.API}/api/Request/${requestId}/${providerId}`, {'headers' : headers})
+  }
+
+  finishRequest(requestId: number, providerId: number) : Observable<Request> {
+    const headers = { 'content-type': 'application/json'}
+    return this.http.put<Request>(`${this.API}/api/Request/FinishRequest/${requestId}/${providerId}`, {'headers' : headers})
+  }
+
+  inProgressRequest(requestId: number, providerId: number) : Observable<Request> {
+    const headers = { 'content-type': 'application/json'}
+    return this.http.put<Request>(`${this.API}/api/Request/InProgressRequest/${requestId}/${providerId}`, {'headers' : headers})
+  }
+
 }

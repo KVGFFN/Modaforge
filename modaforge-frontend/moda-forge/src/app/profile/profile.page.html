@@ -75,9 +75,11 @@
 
                 <ion-label>{{ request.title }}</ion-label>
 
-                <ion-badge 
-                  [color]=""> {{request.status}} 
-                </ion-badge>
+                <ion-badge *ngIf="request.status == 'Pending'" [color]="badgeColor[0]"> {{request.status}} </ion-badge>
+                <ion-badge *ngIf="request.status == 'Accepted'" [color]="badgeColor[1]"> {{request.status}} </ion-badge>
+                <ion-badge *ngIf="request.status == 'In Progress'" [color]="badgeColor[2]"> {{request.status}} </ion-badge>
+                <ion-badge *ngIf="request.status == 'Done'" [color]="badgeColor[3]"> {{request.status}} </ion-badge>
+                <ion-badge *ngIf="request.status == 'Declined'" [color]="badgeColor[4]"> {{request.status}} </ion-badge>
 
               </ion-item>
 

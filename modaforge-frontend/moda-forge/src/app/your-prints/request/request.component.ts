@@ -10,6 +10,7 @@ export class RequestComponent implements OnInit {
   @Input() requestTitle: any;
   @Input() requestDescription: any;
   @Input() requesterName: any;
+  @Input() requestCreationDate: any;
 
   constructor() { }
 

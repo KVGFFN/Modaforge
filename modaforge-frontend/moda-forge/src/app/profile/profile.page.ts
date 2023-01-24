@@ -38,6 +38,7 @@ export class ProfilePage implements OnInit {
 
   // HTML
   badgeColor = ["medium", "light", "warning", "success", "danger"];
+  badgecolorNumber: number;
 
   getAllUsers() {
     try {
