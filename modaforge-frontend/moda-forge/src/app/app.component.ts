@@ -89,9 +89,10 @@ export class AppComponent {
   {
     return new Promise<void>((resolve, reject) =>
     {
-      this.userService.getUserByNameEmail(currentUser.username, currentUser.email).subscribe((data: any) => {
+      this.userService.getUserByNameEmail(currentUser.username, currentUser.email).subscribe((data) => {
         console.log(data);
         currentUser.id = data["id"];
+        console.log("APP.COMPONENT.TS-------------------- " + data["id"])
         currentUser.picture = data["picture"];
         resolve();
       });

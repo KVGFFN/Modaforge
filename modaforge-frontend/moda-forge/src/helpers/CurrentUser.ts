@@ -7,4 +7,5 @@ export class currentUser
     public static modelURI: string;
     public static selectedProvider: any;
     public static picture: string;
+    public static providerRole: boolean;
 }

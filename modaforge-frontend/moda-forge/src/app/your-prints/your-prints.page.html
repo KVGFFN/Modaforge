@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>your-prints</ion-title>
+    <ion-title>Your requests</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="!providerRole">
+<ion-content *ngIf="providerRole">
   <ion-grid style="width: 100%" fixed>
     <ion-row class="ion-no-padding ion-no-margin">
       <!--    INCOMING REQUESTS   -->
@@ -14,6 +14,7 @@
           *ngFor="let request of requests"
           [requestTitle]="request.title"
           [requestDescription]="request.description"
+          [requesterName]="request.requester.name"
         ></app-request>
       </ion-col>
 

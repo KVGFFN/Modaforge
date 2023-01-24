@@ -18,28 +18,28 @@ export class YourPrintsPage implements OnInit {
     ) { }
 
   ngOnInit() {
+    console.log("INIT")
     this.getAllUsers();
     this.appComponent.onInitDone.subscribe(() => {
+      this.currentUserId = currentUser.id;
+      console.log("INIT------- currentuser:" + currentUser.id)
       this.setUserInformation();
+      //this.getRequestsByProvider(currentUser.id)
     });
     this.checkProviderRole(this.currentUserEmail, this.currentUserName);
   }
 
-  ionViewWillEnter() {
-    console.log("_DSOFPIGPOIGIDFSPGIGSOPG")
-    this.requestService.getAllRequestByProviderId(420).subscribe(data => {
-      this.requests = data;
-      console.log("DATA: ")
-      console.log(this.requests);
-    }, error => {
-      console.log(error);
-    });
+  async ionViewDidEnter()
+  {
+    await this.waitTillTrue();
+    this.getRequestsByProvider(currentUser.id);
   }
 
   // variables
   isProvider: boolean;
   userdata = [];
   requests: any[];
+  requester: any[];
 
   currentUserName = currentUser.username;
   currentUserEmail = currentUser.email;
@@ -53,8 +53,26 @@ export class YourPrintsPage implements OnInit {
   requestTitle: any;
   requestDescription: any;
 
+  ngAfterViewInit() {
+
+  }
+
+  async getRequestsByProvider(id: number)
+  {
+    // Runs before getUserById
+    this.requestService.getAllRequestByProviderId(id).subscribe(data => {
+      this.requests = data;
+      console.log("DATA: ")
+      console.log(this.requests);
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  
+
   // Get all users
-  getAllUsers() {
+  async getAllUsers() {
     try {
       this.userService.getAllUsers().subscribe(data => {
         //console.log(data);
@@ -81,6 +99,7 @@ export class YourPrintsPage implements OnInit {
   setUserInformation() {
     this.currentUserName = currentUser.username;
     this.currentUserEmail = currentUser.email;
+    this.currentUserId = currentUser.id;
   }
 
   // Check if user is a provider

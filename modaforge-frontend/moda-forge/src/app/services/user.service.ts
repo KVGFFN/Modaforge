@@ -52,4 +52,9 @@ export class UserService {
     return this.http.get<User[]>(`${this.API}/api/User/GetAllProviders`);
   }
 
+  becomeProvider(id: number) {
+    const headers = { 'content-type':'application/json'}
+    return this.http.put<User>(`${this.API}/api/User/BecomeProvider/${id}`, { 'headers': headers});
+  }
+
 }
