@@ -131,11 +131,17 @@ namespace ModaForge.Infrastructure.Repositories
             return requests;
         }
 
-        // public IEnumerable<Request> InteractedRequests(int providerId)
-        // {
-        //     var requests = context.requests;
-        //     return requests;
-        // }
+        // Toont requests dat provider interactie mee heeft gehad
+        // Met statussen "Accepted" "In Progress" "Done"
+        public IEnumerable<Request> GetAllInteractedRequests(int providerId)
+        {
+            var requests = context.requests
+                .Include(r => r.Requester)
+                .Where(r => r.ProviderId == providerId)
+                .Where(r => r.Status == 1 || r.Status == 2 || r.Status == 3)
+                .ToList();
+            return requests;
+        }
 
         public Request Update(int id, Request request)
         {
@@ -169,11 +175,9 @@ namespace ModaForge.Infrastructure.Repositories
         public Request FinishRequest(int id, int providerId)
         {
             var request = context.requests.Find(id);
-            
             var provider = context.users.Find(providerId);
             request.Provider = provider;
             request.ProviderId = providerId;
-            
             request.DoneDate = DateTime.Now;
             request.Status = 3;
             context.requests.Update(request);

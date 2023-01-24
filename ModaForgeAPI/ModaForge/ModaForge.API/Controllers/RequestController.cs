@@ -61,6 +61,13 @@ namespace ModaForge.API.Controllers
             return Ok(service.GetAllPublicRequests());
         }
         
+        [Route("Provider/Interacted/{providerId}")]
+        [HttpGet]
+        public IActionResult GetInteractedRequests([FromRoute] int providerId)
+        {
+            return Ok(service.GetAllInteractedRequests(providerId));
+        }
+        
         [Route("Requester/{userid}")]
         [HttpGet]
         public IActionResult GetRequestsByUser([FromRoute] int userid)
