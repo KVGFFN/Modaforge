@@ -88,9 +88,13 @@ namespace ModaForge.Application.Services
             return repository.Update(id, request);
         }
 
-        public Request Delete(int id)
+        public void Delete(int id)
         {
-            return repository.Delete(id);
+            var request = repository.GetById(id);
+            if (request == null)
+                throw new KeyNotFoundException("");
+
+            repository.Delete(request);
         }
 
         public Request AcceptRequest(int id, int providerId)

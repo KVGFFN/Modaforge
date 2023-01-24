@@ -57,11 +57,10 @@ namespace ModaForge.Infrastructure.Repositories
             return request;
         }
 
-        public Request Delete(int id)
+        public void Delete(Request request)
         {
-            context.Remove(id);
+            context.requests.Remove(request);
             context.SaveChanges();
-            return null;
         }
 
         public IEnumerable<Request> GetAll(SearchParameters searchParameters)
