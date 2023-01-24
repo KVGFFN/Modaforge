@@ -15,6 +15,7 @@ namespace ModaForge.Application.Inferfaces.IRepository
         User GetByNameEmail(string name, string email);
         User Create(User user);
         User Update(int id, UpdateUserViewModel user);
+        User BecomeProvider(int id);
         void Delete(User user);
     }
 }

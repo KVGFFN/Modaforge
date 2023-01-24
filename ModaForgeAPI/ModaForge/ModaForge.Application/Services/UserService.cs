@@ -68,6 +68,11 @@ namespace ModaForge.Application.Services
             User.Id = id;
             return repository.Update(id, User);
         }
+
+        public User BecomeProvider(int id)
+        {
+            return repository.BecomeProvider(id);
+        }
         
         
     }

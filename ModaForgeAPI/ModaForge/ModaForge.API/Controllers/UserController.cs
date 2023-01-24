@@ -66,6 +66,9 @@ namespace ModaForge.API.Controllers
         {
             return Ok(service.Update(id, userdata));
         }
+        
+
+        
         [Route("{id}")]
         [HttpDelete]
         public IActionResult DeleteUser([FromRoute] int id )
@@ -73,7 +76,13 @@ namespace ModaForge.API.Controllers
             service.Delete(id);
             return Ok();
         }
-
-
+        
+        [Route("BecomeProvider/{id}")]
+        [HttpPut]
+        public IActionResult BecomeProvider([FromRoute] int id)
+        {
+            return Ok(service.BecomeProvider(id));
+        }
+        
     }
 }

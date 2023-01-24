@@ -81,5 +81,14 @@ namespace ModaForge.Infrastructure.Repositories
             context.SaveChanges();
             return updatedUser;
         }
+        
+        public User BecomeProvider(int id)
+        {
+            User updatedUser = context.users.Find(id);
+            updatedUser.ProviderRole = true;
+            context.users.Update(updatedUser);
+            context.SaveChanges();
+            return updatedUser;
+        }
     }
 }

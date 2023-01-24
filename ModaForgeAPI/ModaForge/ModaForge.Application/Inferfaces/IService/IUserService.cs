@@ -17,6 +17,7 @@ namespace ModaForge.Application.Inferfaces.Service
         public User GetByNameEmail(string name, string email);
         //public User Create(User user);
         public User Update(int id, UpdateUserViewModel user);
+        public User BecomeProvider(int id);
         public void Delete(int id);
         public User Create(CreateUserViewModel user);
     }
