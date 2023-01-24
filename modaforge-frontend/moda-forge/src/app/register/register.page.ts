@@ -179,7 +179,9 @@ export class RegisterPage implements OnInit {
         console.log('--> userService.addUser register.page.ts:77');
         console.log(data);
       });
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home']).then(() => {
+        window.location.reload();
+      });;
     })
     .catch(error => {
       console.log("%c" + error, "color:red");
