@@ -24,6 +24,8 @@ export class PrintersPage implements OnInit {
   email: string;
   picture: string;
   providerRole: boolean;
+  description = currentUser.description;
+  //currentUserRegion = currentUser.region;
 
   userdata = [];
   providerdata = [];
