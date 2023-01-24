@@ -92,6 +92,7 @@ export class AppComponent {
       this.userService.getUserByNameEmail(currentUser.username, currentUser.email).subscribe((data: any) => {
         console.log(data);
         currentUser.id = data["id"];
+        console.log("APP.COMPONENT.TS-------------------- " + data["id"])
         currentUser.picture = data["picture"];
         resolve();
       });

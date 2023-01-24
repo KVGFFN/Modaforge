@@ -9,10 +9,20 @@
   </ion-card-header>
 
   <ion-card-content text-center>
-    Requested by: <b>{{ requestPrinterName }}</b>
+    Requested by: <b>{{ requesterName }}</b>
   </ion-card-content>
   <ion-card-content text-center>
     <ion-badge color="primary">PENDING</ion-badge>
   </ion-card-content>
+
+  <ion-card-content>
+    <div class="status-buttons">
+      <ion-button>DECLINE</ion-button>
+      <ion-button color="success" >ACCEPT</ion-button>
+    </div>
+  </ion-card-content>
+  <!--ACCEPT AND DECLINE BUTTON-->
+
+  
   
 </ion-card>

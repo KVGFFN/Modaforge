@@ -30,7 +30,7 @@ export class ProfilePage implements OnInit {
   email = currentUser.email;
   picture: string;
   providerRole: boolean;
-  userdata = [];
+  userdata: any;
 
   userIsLoaded: boolean = false;
   requests: any[];
@@ -62,29 +62,38 @@ export class ProfilePage implements OnInit {
     }
   }
 
-  updateProviderRole() {
-    console.log("updateProviderRole() called");
-    this.getAllUsers();
-    this.waitTillTrue().then(() => {
-      console.log(this.userdata)
-      console.log("waitTillTrue() called");
-      this.userdata.forEach(element => {
-        if (element.name == currentUser.username && element.email.toLowerCase() == currentUser.email) {
-          if (element.providerRole == true) {
-            // Do nothing
-          } else {
-            element.providerRole = true;
-            this.userService.updateUser(element, element.id).subscribe(data => {
-              console.log(data);
-              console.log("ProviderRole updated");
-              this.providerRole = true;
-            }, error => {
-              console.log(error);
-            });
-          }
-        }
-      });
-    })
+  // updateProviderRole() {
+  //   console.log("updateProviderRole() called");
+  //   this.getAllUsers();
+  //   this.waitTillTrue().then(() => {
+  //     console.log(this.userdata)
+  //     console.log("waitTillTrue() called");
+  //     this.userdata.forEach(element => {
+  //       if (element.name == currentUser.username && element.email.toLowerCase() == currentUser.email) {
+  //         if (element.providerRole == true) {
+  //           // Do nothing
+  //         } else {
+  //           element.providerRole = true;
+  //           this.userService.updateUser(element, element.id).subscribe(data => {
+  //             console.log(data);
+  //             console.log("ProviderRole updated");
+  //             this.providerRole = true;
+  //           }, error => {
+  //             console.log(error);
+  //           });
+  //         }
+  //       }
+  //     });
+  //   }
+  //   )
+  // }
+
+  current_user_data: any;
+  updateProviderRole()
+  {
+    this.userService.getUserByNameEmail(currentUser.name, currentUser.email).subscribe(data => {
+      this.userdata = data;
+    });
   }
 
   // Check if user is a provider
@@ -99,6 +108,15 @@ export class ProfilePage implements OnInit {
       });
     })
   }
+
+  // // this.providerRole is undefined
+  // checkProviderRole(email: string, name: string) {
+  //   this.userService.getUserByNameEmail(name, email).subscribe(data => {
+  //     console.log(data);
+  //     this.providerRole = data.ProviderRole;
+  //     console.log(this.providerRole)
+  //   });
+  // }
 
   ngOnInit() {
     this.appComponent.onInitDone.subscribe(() => {
