@@ -109,6 +109,7 @@ namespace ModaForge.Infrastructure.Repositories
             // Get all Requests by User.cs' Id
             var requests = context.requests
                 .Include(r => r.Requester)
+                .Include(r => r.Provider)
                 .Where(r => r.RequesterId == id)
                 .ToList();
             return requests;
