@@ -53,6 +53,14 @@ namespace ModaForge.API.Controllers
         {
             return Ok(service.Update(id, request));
         }
+        
+        [Route("{id}")]
+        [HttpDelete]
+        public IActionResult DeleteRequest([FromRoute] int id)
+        {
+            service.Delete(id);
+            return Ok();
+        }
 
         [Route("public")]
         [HttpGet]
