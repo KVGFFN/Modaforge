@@ -9,6 +9,7 @@ export class RequestComponent implements OnInit {
 
   @Input() requestTitle: any;
   @Input() requestDescription: any;
+  @Input() requestPrinterName: any;
 
   constructor() { }
 
