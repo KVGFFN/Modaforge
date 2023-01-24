@@ -85,7 +85,7 @@ export class RequestService {
 
   rejectRequest(requestId: number, providerId: number) : Observable<Request> {
     const headers = { 'content-type': 'application/json'}
-    return this.http.put<Request>(`${this.API}/api/Request/${requestId}/${providerId}`, {'headers' : headers})
+    return this.http.put<Request>(`${this.API}/api/Request/RejectRequest/${requestId}/${providerId}`, {'headers' : headers})
   }
 
   finishRequest(requestId: number, providerId: number) : Observable<Request> {

@@ -5,6 +5,7 @@ import { LibraryPage } from './library/library.page';
 import { RegisterPage } from './register/register.page';
 import { TestPage } from './test/test.page';
 import { AuthGuard } from 'src/helpers/authguard';
+import { ProviderRequestDetailPage } from './your-prints/provider-request-detail/provider-request-detail.page';
 
 
 const routes: Routes =
@@ -83,8 +84,6 @@ const routes: Routes =
     path: 'accept-request',
     loadChildren: () => import('./accept-request/accept-request.module').then( m => m.AcceptRequestPageModule)
   },
-
-
 ];
 
 @NgModule({

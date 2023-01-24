@@ -33,6 +33,8 @@ export class RequestBarPage implements OnInit {
   id: number;
   title: string;
   description: string;
+  requestStatus: number;
+  //providerName: string;
 
   // foutmelding op html pagina
   isApiAvailable: boolean;
@@ -45,6 +47,8 @@ export class RequestBarPage implements OnInit {
     this.requestService.getMyRequests(currentUser.id).subscribe(
       (data) => {
         this.requests = data;
+        console.log("request data requestbar")
+        console.log(data);
       }
     )
   }
@@ -73,5 +77,9 @@ export class RequestBarPage implements OnInit {
   goToRequest(requestId: number)
   {
     this.router.navigate(['/home/request-detail', requestId]);
+  }
+
+  getProviderById(id: number) {
+    //this.requestService.getAllRequestByProviderId(id).subscribe(
   }
 }
