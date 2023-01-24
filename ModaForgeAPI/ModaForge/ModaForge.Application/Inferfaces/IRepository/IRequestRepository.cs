@@ -17,6 +17,9 @@ namespace ModaForge.Application.Inferfaces.IRepository
         Request Create(Request request);
         Request Update(int id, Request request);
         Request AcceptRequest(int id, int providerId);
+        Request RejectRequest(int id, int providerId);
+        Request FinishRequest(int id, int providerId);
+        Request InProgressRequest(int id, int providerId);
 
 
     }

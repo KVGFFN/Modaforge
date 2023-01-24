@@ -82,5 +82,20 @@ namespace ModaForge.Application.Services
         {
             return repository.AcceptRequest(id, providerId);
         }
+
+        public Request RejectRequest(int id, int providerId)
+        {
+            return repository.RejectRequest(id, providerId);
+        }
+
+        public Request FinishRequest(int id, int providerId)
+        {
+            return repository.FinishRequest(id, providerId);
+        }
+
+        public Request InProgressRequest(int id, int providerId)
+        {
+            return repository.InProgressRequest(id, providerId);
+        }
     }
 }

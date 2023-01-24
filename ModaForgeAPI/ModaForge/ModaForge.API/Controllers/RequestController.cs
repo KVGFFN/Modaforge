@@ -81,5 +81,26 @@ namespace ModaForge.API.Controllers
         {
             return Ok(service.AcceptRequest(requestId, providerId));
         }
+        
+        [Route("RejectRequest/{requestId}/{providerId}")]
+        [HttpPut]
+        public IActionResult RejectRequest([FromRoute] int requestId, [FromRoute] int providerId)
+        {
+            return Ok(service.RejectRequest(requestId, providerId));
+        }
+        
+        [Route("FinishRequest/{requestId}/{providerId}")]
+        [HttpPut]
+        public IActionResult FinishRequest([FromRoute] int requestId, [FromRoute] int providerId)
+        {
+            return Ok(service.FinishRequest(requestId, providerId));
+        }
+        
+        [Route("InProgressRequest/{requestId}/{providerId}")]
+        [HttpPut]
+        public IActionResult InProgressRequest([FromRoute] int requestId, [FromRoute] int providerId)
+        {
+            return Ok(service.InProgressRequest(requestId, providerId));
+        }
     }
 }

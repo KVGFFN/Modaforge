@@ -148,5 +148,36 @@ namespace ModaForge.Infrastructure.Repositories
             context.SaveChanges();
             return request;
         }
+
+        public Request RejectRequest(int id, int providerId)
+        {
+            var request = context.requests.Find(id);
+            request.ProviderId = providerId;
+            request.AcceptedDate = DateTime.Now;
+            request.Status = 4;
+            context.requests.Update(request);
+            context.SaveChanges();
+            return request;
+        }
+
+        public Request FinishRequest(int id, int providerId)
+        {
+            var request = context.requests.Find(id);
+            request.ProviderId = providerId;
+            request.DoneDate = DateTime.Now;
+            request.Status = 3;
+            context.requests.Update(request);
+            context.SaveChanges();
+            return request;
+        }
+        
+        public Request InProgressRequest(int id, int providerId)
+        {
+            var request = context.requests.Find(id);
+            request.Status = 2;
+            context.requests.Update(request);
+            context.SaveChanges();
+            return request;
+        }
     }
 }
