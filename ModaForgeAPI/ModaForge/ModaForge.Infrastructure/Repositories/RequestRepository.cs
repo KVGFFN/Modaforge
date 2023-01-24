@@ -142,6 +142,8 @@ namespace ModaForge.Infrastructure.Repositories
         {
             var request = context.requests.Find(id);
             request.ProviderId = providerId;
+            request.AcceptedDate = DateTime.Now;
+            request.Status = 1;
             context.requests.Update(request);
             context.SaveChanges();
             return request;
