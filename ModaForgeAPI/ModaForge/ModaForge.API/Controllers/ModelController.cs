@@ -25,7 +25,12 @@ namespace ModaForge.API.Controllers
         [HttpGet]
         public IActionResult GetModel([FromRoute] int id)
         {
-            return Ok(service.GetById(id));
+            var model = service.GetById(id);
+            if (model == null)
+            {
+                return NotFound();
+            }
+            return Ok(model);
         }
         [HttpPost]
         public IActionResult CreateModel([FromBody] CreateModelViewModel model)
