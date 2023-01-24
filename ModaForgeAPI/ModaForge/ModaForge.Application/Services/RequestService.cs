@@ -77,5 +77,10 @@ namespace ModaForge.Application.Services
             request.Id = id;
             return repository.Update(id, request);
         }
+
+        public Request AcceptRequest(int id, int providerId)
+        {
+            return repository.AcceptRequest(id, providerId);
+        }
     }
 }
