@@ -82,6 +82,13 @@ namespace ModaForge.API.Controllers
             return Ok(service.GetAllRequestsByProviderId(providerId));
         }
         
+        [Route("Provider/Incoming/{providerId}")]
+        [HttpGet]
+        public IActionResult GetIncomingRequests([FromRoute] int providerId)
+        {
+            return Ok(service.GetAllIncomingRequests(providerId));
+        }
+        
         [Route("AcceptRequest/{requestId}/{providerId}")]
         [HttpPut]
         public IActionResult AcceptRequest([FromRoute] int requestId, [FromRoute] int providerId)

@@ -15,6 +15,7 @@ namespace ModaForge.Application.Inferfaces.Service
         IEnumerable<Request> GetAllPublicRequests();
         IEnumerable<Request> GetAllRequestsByProviderId(int providerId);
         IEnumerable<Request> GetAllInteractedRequests(int providerid);
+        IEnumerable<Request> GetAllIncomingRequests(int providerid);
         public Request GetById(int id);
         public Request Create(CreateRequestViewModel request);
         public Request Update(int id, Request request);
