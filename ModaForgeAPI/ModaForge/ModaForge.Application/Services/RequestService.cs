@@ -61,6 +61,11 @@ namespace ModaForge.Application.Services
         {
             return repository.GetAllPublicRequests();
         }
+        
+        public IEnumerable<Request> GetAllRequestsByProviderId(int providerId)
+        {
+            return repository.GetAllRequestsByProviderId(providerId);
+        }
 
         public Request GetById(int id)
         {

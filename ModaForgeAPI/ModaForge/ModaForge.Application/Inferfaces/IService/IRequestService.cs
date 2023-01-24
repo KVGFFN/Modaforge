@@ -13,6 +13,7 @@ namespace ModaForge.Application.Inferfaces.Service
         IEnumerable<Request> GetAll(SearchParameters searchParameters);
         IEnumerable<Request> GetAllRequestsByRequesterId(int requesterId);
         IEnumerable<Request> GetAllPublicRequests();
+        IEnumerable<Request> GetAllRequestsByProviderId(int providerId);
         public Request GetById(int id);
         public Request Create(CreateRequestViewModel request);
         public Request Update(int id, Request request);

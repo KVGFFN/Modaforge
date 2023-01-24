@@ -122,6 +122,15 @@ namespace ModaForge.Infrastructure.Repositories
             return requests;
         }
 
+        public IEnumerable<Request> GetAllRequestsByProviderId(int providerId)
+        {
+            var requests = context.requests
+                .Include(r => r.Requester)
+                .Where(r => r.ProviderId == providerId)
+                .ToList();
+            return requests;
+        }
+
         public Request Update(int id, Request request)
         {
             context.requests.Update(request);
