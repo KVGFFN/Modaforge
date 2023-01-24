@@ -68,13 +68,16 @@
 
                 <!--if ion-icon pending or accepted-->
                 <ion-icon *ngIf = "request.status == 'Pending'" name="time" slot="start"></ion-icon>
+                <ion-icon *ngIf = "request.status == 'Accepted'" name="time" slot="start"></ion-icon>
                 <ion-icon *ngIf = "request.status == 'In Progress'" name="time" slot="start"></ion-icon>
                 <ion-icon *ngIf = "request.status == 'Completed'" name="checkmark-circle" slot="start"></ion-icon>
+                <ion-icon *ngIf = "request.status == 'Declined'" name="checkmark-circle" slot="start"></ion-icon>
 
                 <ion-label>{{ request.title }}</ion-label>
 
                 <ion-badge 
-                  [color]="badgeColor"> {{request.status}} 
+                  [color]="badgeColor[i]"
+                  > {{request.status}} 
                 </ion-badge>
 
               </ion-item>
