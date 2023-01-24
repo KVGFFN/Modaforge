@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Domain;
+using System.Xml.Linq;
 
 namespace ModaForge.API.Controllers
 {
@@ -26,7 +27,12 @@ namespace ModaForge.API.Controllers
         [HttpGet]
         public IActionResult GetTag([FromRoute] int id)
         {
-            return Ok(service.GetById(id));
+            var tag = service.GetById(id);
+            if (tag == null)
+            {
+                return NotFound();
+            }
+            return Ok(tag);
         }
         [HttpPost]
         public IActionResult CreateTag([FromBody] Tag tag)
