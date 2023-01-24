@@ -131,6 +131,12 @@ namespace ModaForge.Infrastructure.Repositories
             return requests;
         }
 
+        // public IEnumerable<Request> InteractedRequests(int providerId)
+        // {
+        //     var requests = context.requests;
+        //     return requests;
+        // }
+
         public Request Update(int id, Request request)
         {
             context.requests.Update(request);
@@ -163,7 +169,11 @@ namespace ModaForge.Infrastructure.Repositories
         public Request FinishRequest(int id, int providerId)
         {
             var request = context.requests.Find(id);
+            
+            var provider = context.users.Find(providerId);
+            request.Provider = provider;
             request.ProviderId = providerId;
+            
             request.DoneDate = DateTime.Now;
             request.Status = 3;
             context.requests.Update(request);
