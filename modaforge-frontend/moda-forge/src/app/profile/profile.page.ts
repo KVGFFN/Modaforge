@@ -34,10 +34,10 @@ export class ProfilePage implements OnInit {
 
   userIsLoaded: boolean = false;
   requests: any[];
-  status = ["Pending","Accepted","In Progress", "Done"];
+  status = ["Pending","Accepted","In Progress", "Done", "Declined"];
 
   // HTML
-  badgeColor: string = "light";
+  badgeColor = ["medium", "light", "warning", "success", "danger"];
 
   getAllUsers() {
     try {
