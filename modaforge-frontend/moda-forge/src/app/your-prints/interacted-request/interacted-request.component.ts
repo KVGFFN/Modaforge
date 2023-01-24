@@ -55,11 +55,11 @@ export class InteractedRequestComponent implements OnInit {
 
   checkStatus(status) {
     if(status == 1) {
-      this.badgeColor = this.badgeColors[1];
+      return this.badgeColors[1];
     } else if(status == 2) {
-      this.badgeColor = this.badgeColors[2];
+      return this.badgeColors[2];
     } else if(status == 3) {
-      this.badgeColor = this.badgeColors[3];
+      return this.badgeColors[3];
     }
   }
 }

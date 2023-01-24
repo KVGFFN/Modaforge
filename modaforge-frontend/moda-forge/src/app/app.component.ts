@@ -103,10 +103,12 @@ export class AppComponent {
   {
     return new Promise<void>((resolve) => {
       this.auth.onAuthStateChanged((user) => {
+        currentUser.username = user.displayName;
+        currentUser.email = user.email;
         if (user) {
           console.log("USER IS LOGGED IN");
-          currentUser.username = user.displayName;
-          currentUser.email = user.email;
+          // currentUser.username = user.displayName;
+          // currentUser.email = user.email;
           this.email = user.email;
           this.username = user.displayName;
           this.getCurrentUser();
