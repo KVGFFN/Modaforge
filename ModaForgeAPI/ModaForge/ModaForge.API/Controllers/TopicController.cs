@@ -3,6 +3,7 @@ using ModaForge.Application.Inferfaces.IService;
 using ModaForge.Application.Inferfaces.Service;
 using ModaForge.Domain;
 using ModaForge.Domain.Views.Create;
+using System.Xml.Linq;
 
 namespace ModaForge.API.Controllers
 {
@@ -25,7 +26,12 @@ namespace ModaForge.API.Controllers
         [HttpGet]
         public IActionResult GetTopic([FromRoute] int id)
         {
-            return Ok(service.GetByIdWithPosts(id));
+            var topic = service.GetByIdWithPosts(id);
+            if (topic == null)
+            {
+                return NotFound();
+            }
+            return Ok(topic);
         }
         [HttpPost]
         public IActionResult CreateTopic([FromBody] CreateTopicViewModel topic)

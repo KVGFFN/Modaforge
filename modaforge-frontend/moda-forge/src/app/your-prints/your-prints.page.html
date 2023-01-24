@@ -4,6 +4,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="!providerRole">
+  <ion-grid style="width: 100%" fixed>
+    <ion-row class="ion-no-padding ion-no-margin">
+      <!--    INCOMING REQUESTS   -->
+      <ion-col> 
+        <h1>TEST REQUESTS</h1>
+        <app-request
+          *ngFor="let request of requests"
+          [requestTitle]="request.title"
+          [requestDescription]="request.description"
+        ></app-request>
+      </ion-col>
 
+      <!--    INTERACTED REQUESTS   -->
+      <ion-col> 
+        <h1>TEST INTERACTED REQUESTS</h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<!-- To Do List
+  1. check if user is provider 
+    -> if true he can see this page 
+    -> if false then he sees polite message
+
+  2. Provider must see all his incoming requests
+  3. Provider has option to accept or decline
+  4. Page is split in 2 sections pending and other statuses
+  5. Provider has option to change status
+-->

@@ -34,7 +34,7 @@ export class ProfilePage implements OnInit {
 
   userIsLoaded: boolean = false;
   requests: any[];
-  status = ["Pending", "In Progress", "Done"];
+  status = ["Pending","Accepted","In Progress", "Done"];
 
   // HTML
   badgeColor: string = "light";

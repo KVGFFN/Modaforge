@@ -8,6 +8,8 @@ import { YourPrintsPageRoutingModule } from './your-prints-routing.module';
 
 import { YourPrintsPage } from './your-prints.page';
 
+import { RequestComponent } from './request/request.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +17,6 @@ import { YourPrintsPage } from './your-prints.page';
     IonicModule,
     YourPrintsPageRoutingModule
   ],
-  declarations: [YourPrintsPage]
+  declarations: [YourPrintsPage, RequestComponent]
 })
 export class YourPrintsPageModule {}

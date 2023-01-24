@@ -35,7 +35,12 @@ namespace ModaForge.API.Controllers
         [HttpGet]
         public IActionResult GetUser([FromRoute] int id )
         {
-            return Ok(service.GetById(id));
+            var user = service.GetById(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
         }
 
         [Route("{name}/{email}")]

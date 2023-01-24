@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { rejects } from 'assert';
 import { LocalModelService } from 'src/app/services/local.model.service';
 import { RequestService } from 'src/app/services/request.service';
@@ -12,8 +14,11 @@ import { RequestService } from 'src/app/services/request.service';
 export class RequestDetailPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
+    private navCtrl: NavController,
     private localModelService: LocalModelService,
-    private requestService: RequestService
+    private requestService: RequestService,
+    private http: HttpClient
   ) {}
 
   // MODEL VARIABLES //
@@ -82,5 +87,10 @@ export class RequestDetailPage implements OnInit {
 
   setModelAttributes(data: any) {
     this.modelEmbed = data.fileURL;
+  }
+
+  closeRequestDetail()
+  {
+    this.navCtrl.navigateForward('/home', {animated: false});
   }
 }

@@ -65,4 +65,8 @@ export class RequestService {
     const body = JSON.stringify(request);
     return this.http.put<Request>(`${this.API}/api/Request/${id}`, body, {'headers': headers});
   }
+
+  getAllRequestByProviderId(id: number): Observable<Request[]>{
+    return this.http.get<Request[]>(`${this.API}/api/Request/Provider/${id}`);
+  }
 }
