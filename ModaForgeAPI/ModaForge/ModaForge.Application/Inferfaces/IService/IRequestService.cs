@@ -17,5 +17,6 @@ namespace ModaForge.Application.Inferfaces.Service
         public Request GetById(int id);
         public Request Create(CreateRequestViewModel request);
         public Request Update(int id, Request request);
+        public Request AcceptRequest(int id, int providerId);
     }
 }

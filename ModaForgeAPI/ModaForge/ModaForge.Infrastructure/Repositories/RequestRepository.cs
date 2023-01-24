@@ -137,5 +137,14 @@ namespace ModaForge.Infrastructure.Repositories
             context.SaveChanges();
             return request;
         }
+
+        public Request AcceptRequest(int id, int providerId)
+        {
+            var request = context.requests.Find(id);
+            request.ProviderId = providerId;
+            context.requests.Update(request);
+            context.SaveChanges();
+            return request;
+        }
     }
 }
