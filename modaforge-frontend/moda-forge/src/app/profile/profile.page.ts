@@ -62,37 +62,38 @@ export class ProfilePage implements OnInit {
     }
   }
 
-  // updateProviderRole() {
-  //   console.log("updateProviderRole() called");
-  //   this.getAllUsers();
-  //   this.waitTillTrue().then(() => {
-  //     console.log(this.userdata)
-  //     console.log("waitTillTrue() called");
-  //     this.userdata.forEach(element => {
-  //       if (element.name == currentUser.username && element.email.toLowerCase() == currentUser.email) {
-  //         if (element.providerRole == true) {
-  //           // Do nothing
-  //         } else {
-  //           element.providerRole = true;
-  //           this.userService.updateUser(element, element.id).subscribe(data => {
-  //             console.log(data);
-  //             console.log("ProviderRole updated");
-  //             this.providerRole = true;
-  //           }, error => {
-  //             console.log(error);
-  //           });
-  //         }
-  //       }
-  //     });
-  //   }
-  //   )
-  // }
-
   current_user_data: any;
-  updateProviderRole()
+  async updateProviderRole()
   {
-    this.userService.getUserByNameEmail(currentUser.name, currentUser.email).subscribe(data => {
+    await this.getCurrentUser();
+    await this.becomeProvider();
+  }
+
+  async getCurrentUser()
+  {
+    this.userService.getUserByNameEmail(currentUser.username, currentUser.email).subscribe(data => {
+
       this.userdata = data;
+      console.log(data);
+    },
+    (error) => 
+    {
+      console.log("%c async getCurrentUser","color: red");
+      console.log(error);
+    });
+  }
+
+  async becomeProvider()
+  {
+    this.userService.becomeProvider(currentUser.id).subscribe((data) =>
+    {
+      console.log("%c Successfully became provider ","color: green");
+      console.log(data);
+    },
+    (error)=>
+    {
+      console.log("%c async becomeProvider","color: red");
+      console.log(error);
     });
   }
 
@@ -108,15 +109,6 @@ export class ProfilePage implements OnInit {
       });
     })
   }
-
-  // // this.providerRole is undefined
-  // checkProviderRole(email: string, name: string) {
-  //   this.userService.getUserByNameEmail(name, email).subscribe(data => {
-  //     console.log(data);
-  //     this.providerRole = data.ProviderRole;
-  //     console.log(this.providerRole)
-  //   });
-  // }
 
   ngOnInit() {
     this.appComponent.onInitDone.subscribe(() => {
