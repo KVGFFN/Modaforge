@@ -18,12 +18,14 @@
 
   <ion-card-content>
     <div class="status-buttons">
-      <ion-button><ion-icon name="close-outline" ></ion-icon></ion-button>
-      <ion-button color="success" ><ion-icon name="checkmark-outline"></ion-icon></ion-button>
+      <ion-button
+        (click)="rejectRequest()"
+      ><ion-icon name="close-outline" ></ion-icon>
+    <ion-button (click)="acceptRecuest()"><ion-button color="success" >
+      <ion-icon name="checkmark-outline">
+      </ion-icon>
+    </ion-button>
     </div>
   </ion-card-content>
   <!--ACCEPT AND DECLINE BUTTON-->
-
-  
-  
 </ion-card>
