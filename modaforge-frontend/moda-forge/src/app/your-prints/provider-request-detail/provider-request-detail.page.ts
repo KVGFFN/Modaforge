@@ -1,17 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { rejects } from 'assert';
 import { LocalModelService } from 'src/app/services/local.model.service';
 import { RequestService } from 'src/app/services/request.service';
 
 @Component({
-  selector: 'app-request-detail',
-  templateUrl: './request-detail.page.html',
-  styleUrls: ['./request-detail.page.scss'],
+  selector: 'app-provider-request-detail',
+  templateUrl: './provider-request-detail.page.html',
+  styleUrls: ['./provider-request-detail.page.scss'],
 })
-export class RequestDetailPage implements OnInit {
+export class ProviderRequestDetailPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -70,7 +69,6 @@ export class RequestDetailPage implements OnInit {
     this.requestDescription = data.description;
     this.requestDate = data.date;
     this.requestProvider = data.provider;
-    this.requestStatus = data.status;
     if (data.provider) {
       this.requestProviderName = data.provider.name;
     } else {
@@ -94,8 +92,9 @@ export class RequestDetailPage implements OnInit {
     this.modelEmbed = data.fileURL;
   }
 
-  closeRequestDetail()
-  {
-    this.navCtrl.navigateForward('/home', {animated: false});
+  closeRequestDetail() {
+    this.navCtrl.navigateForward('/your-prints', { animated: false });
   }
+
+
 }

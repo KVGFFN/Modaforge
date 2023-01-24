@@ -4,6 +4,8 @@ import { RequestService } from 'src/app/services/request.service';
 import { currentUser } from 'src/helpers/CurrentUser';
 import { AppComponent } from '../app.component';
 import { Pipe } from '@angular/core';
+import { ProviderRequestDetailPage } from './provider-request-detail/provider-request-detail.page';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-your-prints',
@@ -15,7 +17,8 @@ export class YourPrintsPage implements OnInit {
   constructor(
     private userService: UserService,
     private requestService: RequestService,
-    private appComponent: AppComponent
+    private appComponent: AppComponent,
+    private router: Router,
     ) { }
 
   ngOnInit() {
@@ -28,6 +31,11 @@ export class YourPrintsPage implements OnInit {
       //this.getRequestsByProvider(currentUser.id)
     });
     this.checkProviderRole(this.currentUserEmail, this.currentUserName);
+  }
+
+  goToRequest(id: number)
+  {
+    this.router.navigate(['/your-prints/provider-request-detail', id]);
   }
 
   async ionViewDidEnter()

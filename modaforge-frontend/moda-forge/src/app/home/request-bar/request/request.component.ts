@@ -10,8 +10,10 @@ export class RequestComponent implements OnInit {
   @Input() nameModel: any;
   @Input() namePrinter: any;
   @Input() description: any;
+  @Input() requestStatus: any;
 
-
+  requestStatuses = ["Pending", "Accepted", "In progress", "Finished", "Rejected"];
+  badgeColor = ["medium", "light", "warning", "success", "danger"];
 
   constructor() { }
 

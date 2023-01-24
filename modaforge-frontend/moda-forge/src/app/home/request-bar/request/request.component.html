@@ -12,7 +12,7 @@
     Printed by: <b>{{ namePrinter }}</b>
   </ion-card-content>
   <ion-card-content text-center>
-    <ion-badge color="primary">PENDING</ion-badge>
+    <ion-badge [color]="badgeColor[requestStatus]">{{requestStatuses[requestStatus]}}</ion-badge>
   </ion-card-content>
   
 </ion-card>

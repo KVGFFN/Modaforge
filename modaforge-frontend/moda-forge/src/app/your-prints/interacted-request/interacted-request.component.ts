@@ -30,6 +30,17 @@ export class InteractedRequestComponent implements OnInit {
     console.log(this.requesterName)
   }
 
+  rejectRequest() {
+    console.log("Reject request");
+    this.requestService.rejectRequest(this.requestId, currentUser.id).subscribe((data)=>
+    {
+      console.log("%c SUCCESFULLY REJECTED ","color: green");
+      console.log(data);
+    }, (error)=> {
+      console.log(error);
+    });
+  }
+
   finishRequest() {
     console.log("Finish request");
     this.requestService.finishRequest(this.requestId, currentUser.id).subscribe((data)=>

@@ -12,6 +12,7 @@
         <h1 style="text-align: center;">INCOMING REQUESTS</h1>
         <app-request
           *ngFor="let request of incoming_requests"
+          (click)="goToRequest(request.id)"
           [requestTitle]="request.title"
           [requestDescription]="request.description"
           [requesterName]="request.requester.name"
