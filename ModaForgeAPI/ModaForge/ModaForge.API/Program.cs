@@ -41,6 +41,7 @@ builder.Services.AddScoped<ITopicRepository, TopicRepository>();
 builder.Services.AddScoped<ITopicService, TopicService>();
 builder.Services.AddScoped<IRatingRepository, RatingRepository>();
 builder.Services.AddScoped<IRatingService, RatingService>();
+builder.Services.AddScoped<IRegionService, RegionService>();
 //Tag Helper
 builder.Services.AddScoped<TagHelper>();
 builder.Services.AddControllers();
