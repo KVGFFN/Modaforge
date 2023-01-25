@@ -51,9 +51,9 @@ namespace ModaForge.API.Controllers
         }
         [Route("{id}")]
         [HttpDelete]
-        public IActionResult DeleteRegion([FromRoute] int id)
+        public IActionResult DeleteRegion([FromRoute] Region region)
         {
-            service.Delete(id);
+            service.Delete(region);
             return Ok();
         }
     }
