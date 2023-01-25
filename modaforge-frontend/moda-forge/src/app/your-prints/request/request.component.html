@@ -1,7 +1,7 @@
 <ion-card>
   <ion-card-header>
 
-    <ion-card-title text-center>{{requestTitle}}</ion-card-title>
+    <ion-card-title style="font-size: 20px;" text-center>{{requestTitle}}</ion-card-title>
     <ion-card-subtitle>
       Description: <b>{{ requestDescription}}</b> <br>
       Requested at: <b>{{ requestCreationDate }}</b>
@@ -19,14 +19,6 @@
   <ion-card-content>
 
     <!--  buttons   -->
-    <div class="incoming-status-buttons">
-      <ion-button (click)="acceptRequest()" color="success">
-        ACCEPT
-      </ion-button>
-      <ion-button (click)="rejectRequest()">
-        DECLINE
-      </ion-button>
-    </div>
 
 
 

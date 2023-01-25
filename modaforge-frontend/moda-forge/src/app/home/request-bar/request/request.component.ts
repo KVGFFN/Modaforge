@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class RequestComponent implements OnInit {
 
   @Input() nameModel: any;
-  @Input() namePrinter: any;
+  //@Input() namePrinter: any;
   @Input() description: any;
   @Input() requestStatus: any;
 

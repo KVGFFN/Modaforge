@@ -5,6 +5,7 @@ export interface Request
     requesterId: number;
     providerId?: number;
     modelId: number;
+    creationDate?: Date;
     regionId: number;
     tags: string;
 }

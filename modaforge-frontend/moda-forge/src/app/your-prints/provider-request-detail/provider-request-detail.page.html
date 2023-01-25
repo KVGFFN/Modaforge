@@ -1,7 +1,11 @@
 <ion-content>
   <div class="request-detail-page">
     <ion-item
-      style="border-top-right-radius: 2ch; border-top-left-radius: 2ch; background-color: #1b1b1b"
+      style="
+        border-top-right-radius: 2ch;
+        border-top-left-radius: 2ch;
+        background-color: #1b1b1b;
+      "
     >
       <h1 class="title">{{requestTitle}}</h1>
       <!--CLOSE PAGE SCREEN-->
@@ -9,34 +13,73 @@
         class="close-button"
         (click)="closeRequestDetail()"
         style="margin-left: auto; margin-right: 0px"
-        
-      ><ion-icon name="close-outline"></ion-icon></ion-button>
+        ><ion-icon name="close-outline"></ion-icon
+      ></ion-button>
     </ion-item>
-    
+
     <div class="sketchfab-embed-wrapper">
-      <iframe frameborder="0" allowfullscreen="true" loading="lazy" allow="autoplay; xr-spatial-tracking"
-        xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share
-        [src]="modelEmbed | safe" width="250px" height="400px" style="text-align: center;">
+      <iframe
+        frameborder="0"
+        allowfullscreen="true"
+        loading="lazy"
+        allow="autoplay; xr-spatial-tracking"
+        xr-spatial-tracking
+        execution-while-out-of-viewport
+        execution-while-not-rendered
+        web-share
+        [src]="modelEmbed | safe"
+        width="250px"
+        height="400px"
+        style="text-align: center"
+      >
       </iframe>
     </div>
     <ion-list>
-
       <ion-item class="status">
         <p>
           <ion-label class="main-labels">Status</ion-label>
-          <ion-badge [color]="badgeColor[requestStatus]">{{requestStatuses[requestStatus]}}</ion-badge>
+          <ion-badge [color]="badgeColor[requestStatus]"
+            >{{requestStatuses[requestStatus]}}</ion-badge>
         </p>
       </ion-item>
       <ion-item class="provider-id">
         <p>
-          <ion-label class="main-labels">Provider</ion-label>
-          {{ requestProviderName }}
+          <ion-label class="main-labels">Requester</ion-label>
+          {{ requestRequesterName }}
         </p>
       </ion-item>
-      <ion-item>
-
+      <ion-item class="provider-id">
+        <p>
+          <ion-label class="main-labels">Requester Email</ion-label>
+          {{ requestRequesterEmail }}
+        </p>
       </ion-item>
+      <ion-item *ngIf="requestStatus == 0">
+        <div class="options">
+          <ion-badge 
+            (click)="acceptRequest()"
+            class="btn" color="success" slot="start">Accept</ion-badge>
 
+          <ion-badge
+            (click)="rejectRequest()"
+            class="btn" color="primary" slot="start">Decline</ion-badge>
+        </div>
+      </ion-item>
+      <ion-item *ngIf="requestStatus == 1 || requestStatus == 2 || requestStatus == 3">
+        <div class="options">
+          <ion-badge
+            (click)="rejectRequest()"
+            class="btn" color="primary" slot="start">Decline</ion-badge>
+            
+          <ion-badge 
+            (click)="inProgressRequest()"
+            class="btn" color="warning" slot="start">Start Project</ion-badge>
+
+          <ion-badge
+            (click)="finishRequest()"
+            class="btn" color="success" slot="start">Complete Project</ion-badge>
+        </div>
+      </ion-item>
     </ion-list>
   </div>
 </ion-content>

@@ -19,7 +19,8 @@
           [requestCreationDate]="request.creationDate | date: 'dd/MM/yyyy'"
           [requestId]="request.id"
           [requestStatus]="request.status"
-        ></app-request>
+        >
+      </app-request>
       </ion-col>
 
       <!--    INTERACTED REQUESTS   -->
@@ -27,6 +28,7 @@
         <h1 style="text-align: center;">INTERACTED REQUESTS</h1>
         <app-interacted-request
           *ngFor="let request of interacted_requests"
+          (click)="goToRequest(request.id)"
           [requestTitle]="request.title"
           [requestDescription]="request.description"
           [requesterName]="request.requester.name"

@@ -36,6 +36,7 @@ export class AcceptRequestPage implements OnInit {
   // Request variables
   requestTitle: string;
   requestDescription: string;
+  creationDate: Date;
   
 
   // model variables
@@ -84,6 +85,7 @@ export class AcceptRequestPage implements OnInit {
       this.requestTitle = data["title"];
       this.requestDescription = data["description"];
       this.requestModelId = data["modelId"];
+      this.creationDate = data["creationDate"];
     });
   }
 
@@ -113,6 +115,7 @@ export class AcceptRequestPage implements OnInit {
       requesterId: this.requesterId,
       providerId: this.providerId,
       modelId: this.localModelId,
+      creationDate: this.creationDate,
       regionId: 1,                                // REGION HAS TO BE CHANGED
       tags: "test,test,test"                      // USER HAS TO GIVE IN TABS
     };

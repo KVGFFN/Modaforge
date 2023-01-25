@@ -18,8 +18,7 @@ export class InteractedRequestComponent implements OnInit {
 
   // Color of display badge
   requestStatuses = ["Pending", "Accepted", "In progress", "Finished", "Rejected"];
-  badgeColors = ["medium", "light", "warning", "success", "danger"];
-  badgeColor: any;
+  badgeColor = ["medium", "light", "warning", "success", "danger"];
 
   constructor(
     private requestService: RequestService,
@@ -41,36 +40,4 @@ export class InteractedRequestComponent implements OnInit {
     });
   }
 
-  finishRequest() {
-    console.log("Finish request");
-    this.requestService.finishRequest(this.requestId, currentUser.id).subscribe((data)=>
-    {
-      console.log("%c SUCCESFULLY FINISHED ","color: green");
-      console.log(data);
-    }, (error)=>
-    {
-      console.log(error);
-    });
-  }
-
-  inProgressRequest() {
-    console.log("In progress request");
-    this.requestService.inProgressRequest(this.requestId, currentUser.id).subscribe((data)=>
-    {
-      console.log("%c SUCCESFULLY IN PROGRESS ","color: green");
-      console.log(data);
-    }, (error)=> {
-      console.log(error);
-    });
-  }
-
-  checkStatus(status) {
-    if(status == 1) {
-      return this.badgeColors[1];
-    } else if(status == 2) {
-      return this.badgeColors[2];
-    } else if(status == 3) {
-      return this.badgeColors[3];
-    }
-  }
 }

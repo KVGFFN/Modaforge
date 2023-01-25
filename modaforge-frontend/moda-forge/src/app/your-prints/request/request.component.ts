@@ -23,27 +23,4 @@ export class RequestComponent implements OnInit {
     console.log(this.requesterName)
   }
 
-  rejectRequest() {
-    console.log("Reject request");
-    this.requestService.rejectRequest(this.requestId, currentUser.id).subscribe((data)=>
-    {
-      console.log("%c SUCCESFULLY REJECTED ","color: green");
-      console.log(data);
-    }, (error)=> {
-      console.log(error);
-    });
-  }
-
-  acceptRequest() {
-    console.log("Accept request");
-    this.requestService.acceptRequest(this.requestId, currentUser.id).subscribe((data)=>
-    {
-      console.log("%c SUCCESFULLY ACCEPTED ","color: green");
-      console.log(data);
-    }, (error)=>
-    {
-      console.log(error);
-    });
-  }
-
 }

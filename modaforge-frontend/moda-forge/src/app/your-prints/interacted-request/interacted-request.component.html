@@ -13,22 +13,10 @@
     Requested by: <b>{{ requesterName }}</b>
   </ion-card-content>
   <ion-card-content text-center>
-    <ion-badge (color)="badgeColors[1]">{{requestStatuses[requestStatus]}}</ion-badge>
+    <ion-badge [color]="badgeColor[requestStatus]">{{requestStatuses[requestStatus]}}</ion-badge>
   </ion-card-content>
 
   <ion-card-content>
-
-    <!--  buttons   -->
-    <div class="incoming-status-buttons">
-      <ion-button (click)="finishRequest()" color="success">
-        START PRINTING
-      </ion-button>
-      <ion-button (click)="rejectRequest()">
-        CANCEL
-      </ion-button>
-    </div>
-
-
 
   </ion-card-content>
   <!--ACCEPT AND DECLINE BUTTON-->

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { LocalModelService } from 'src/app/services/local.model.service';
 import { RequestService } from 'src/app/services/request.service';
+import { currentUser } from 'src/helpers/CurrentUser';
 
 @Component({
   selector: 'app-provider-request-detail',
@@ -33,8 +34,9 @@ export class ProviderRequestDetailPage implements OnInit {
   requestTitle: string;
   requestDescription: string;
   requestDate: any;
-  requestProvider: any;
-  requestProviderName: string;
+  requestRequester: any;
+  requestRequesterName: string;
+  requestRequesterEmail: string;
   requestStatus: any;
 
   requestStatuses = ["Pending", "Accepted", "In progress", "Finished", "Rejected"];
@@ -43,6 +45,54 @@ export class ProviderRequestDetailPage implements OnInit {
   ngOnInit() {
     this.getRequest().then(() => {
       this.getModel();
+    });
+  }
+
+  rejectRequest() {
+    console.log("Reject request");
+    this.requestService.rejectRequest(this.requestId, currentUser.id).subscribe((data)=>
+    {
+      console.log("%c SUCCESFULLY REJECTED ","color: green");
+      console.log(data);
+      this.router.navigate(['/your-prints'])
+    }, (error)=> {
+      console.log(error);
+    });
+  }
+
+  acceptRequest() {
+    console.log("Accept request");
+    this.requestService.acceptRequest(this.requestId, currentUser.id).subscribe((data)=>
+    {
+      console.log("%c SUCCESFULLY ACCEPTED ","color: green");
+      console.log(data);
+      this.router.navigate(['/your-prints'])
+    }, (error)=>
+    {
+      console.log(error);
+    });
+  }
+
+  finishRequest() {
+    console.log("Finish request");
+    this.requestService.finishRequest(this.requestId, currentUser.id).subscribe((data)=>
+    {
+      console.log("%c SUCCESFULLY FINISHED ","color: green");
+      console.log(data);
+    }, (error)=>
+    {
+      console.log(error);
+    });
+  }
+
+  inProgressRequest() {
+    console.log("In progress request");
+    this.requestService.inProgressRequest(this.requestId, currentUser.id).subscribe((data)=>
+    {
+      console.log("%c SUCCESFULLY IN PROGRESS ","color: green");
+      console.log(data);
+    }, (error)=> {
+      console.log(error);
     });
   }
 
@@ -68,12 +118,10 @@ export class ProviderRequestDetailPage implements OnInit {
     this.requestTitle = data.title;
     this.requestDescription = data.description;
     this.requestDate = data.date;
-    this.requestProvider = data.provider;
-    if (data.provider) {
-      this.requestProviderName = data.provider.name;
-    } else {
-      this.requestProviderName = 'No provider assigned';
-    }
+    this.requestRequester = data.requester;
+    this.requestRequesterEmail = data.requester.email;
+    this.requestStatus = data.status;
+    this.requestRequesterName = this.requestRequester.name
   }
 
   async getModel() {

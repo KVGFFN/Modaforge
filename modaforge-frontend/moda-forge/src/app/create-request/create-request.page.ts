@@ -55,6 +55,7 @@ export class CreateRequestPage implements OnInit {
   requestTitle: string;
   requestDescription: string;
   request: Request;
+  requestDate: Date;
 
 
   constructor
@@ -222,6 +223,7 @@ export class CreateRequestPage implements OnInit {
       requesterId: currentUser.id,
       providerId: this.providerid,
       modelId: this.localModelId,
+      creationDate: this.requestDate,
       regionId: 1,                                // REGION HAS TO BE CHANGED
       tags: "test,test,test"                      // USER HAS TO GIVE IN TABS
     }
