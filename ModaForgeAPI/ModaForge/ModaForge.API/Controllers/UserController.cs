@@ -24,6 +24,14 @@ namespace ModaForge.API.Controllers
             return Ok(service.GetAll(searchParameters));
         }
 
+        [Route("GetAllUsersWithRegion")]
+        [HttpGet]
+        public IActionResult GetAllUserWithRegion()
+        {
+            return Ok(service.GetAllWithRegion());
+        }
+  
+
         [Route("GetAllProviders")]
         [HttpGet]
         public IActionResult GetAllProviders()
