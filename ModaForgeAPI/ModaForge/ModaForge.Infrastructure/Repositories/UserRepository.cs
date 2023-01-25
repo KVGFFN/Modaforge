@@ -58,6 +58,14 @@ namespace ModaForge.Infrastructure.Repositories
                 .Where(User => User.ProviderRole)
                 .ToList();
         }
+        
+        public User UpdateUserDescription(int id, string description)
+        {
+            var user = context.users.FirstOrDefault(u => u.Id == id);
+            user.Description = description;
+            context.SaveChanges();
+            return user;
+        }
 
 
         public User GetById(int id)

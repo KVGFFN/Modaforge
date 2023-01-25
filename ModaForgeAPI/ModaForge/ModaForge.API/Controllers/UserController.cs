@@ -92,5 +92,12 @@ namespace ModaForge.API.Controllers
             return Ok(service.BecomeProvider(id));
         }
         
+        [Route("/UpdateDescription/{id}/{description}")]
+        [HttpPut]
+        public IActionResult UpdateDescription([FromRoute] int id, [FromRoute] string description)
+        {
+            return Ok(service.UpdateUserDescription(id, description));
+        }
+        
     }
 }
