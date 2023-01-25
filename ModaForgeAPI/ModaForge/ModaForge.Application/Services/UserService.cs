@@ -48,6 +48,11 @@ namespace ModaForge.Application.Services
             return repository.GetAll(searchParameters);
         }
 
+        public IEnumerable<User> GetAllWithRegion()
+        {
+            return repository.GetAllWithRegion(); 
+        }
+
         public IEnumerable<User> GetAllProviders()
         {
             return repository.GetAllProviders();
