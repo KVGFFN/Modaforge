@@ -68,10 +68,11 @@ export class AcceptRequestPage implements OnInit {
   ngOnInit() {
     this.setProviderInformation();
     //this.getModelInformation();
-    this.getRequestById();
+    
   }
 
-  ionViewWillEnter() {
+  async ionViewWillEnter() {
+    await this.getRequestById();
     this.getModelInformation();
   }
 
@@ -79,7 +80,7 @@ export class AcceptRequestPage implements OnInit {
     this.providerId = currentUser.id;
   }
 
-  getRequestById() {
+  async getRequestById() {
     console.log(">>>>>>>>> GET REQUEST BY ID <<<<<<<<<")
     this.requestService.getRequestById(this.requestId).subscribe((data) => {
       this.requestdata = data;
