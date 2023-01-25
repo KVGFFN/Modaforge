@@ -44,13 +44,15 @@ export class RequestBarPage implements OnInit {
   getMyRequests()
   {
     console.log("executed getmyrequests")
-    this.requestService.getMyRequests(currentUser.id).subscribe(
-      (data) => {
-        this.requests = data;
-        console.log("request data requestbar")
-        console.log(data);
-      }
-    )
+    if (currentUser.id != null) {
+      this.requestService.getMyRequests(currentUser.id).subscribe(
+        (data) => {
+          this.requests = data;
+          console.log("request data requestbar")
+          console.log(data);
+        }
+      );
+    }
   }
 
   goToCreateRequest()

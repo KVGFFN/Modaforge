@@ -162,11 +162,13 @@ export class CreateRequestPage implements OnInit {
   }
 
   getModelInformation(){
-    this.http.get(currentUser.modelURI).subscribe((data) => {
-      this.model = data;
-      console.log(data);
-      this.modelName = data["name"];
-    });
+    if (currentUser.modelURI != null) {
+      this.http.get(currentUser.modelURI).subscribe((data) => {
+        this.model = data;
+        console.log(data);
+        this.modelName = data["name"];
+      });
+    }
   }
 
   async viewCurrentModel(){
