@@ -35,6 +35,7 @@ namespace ModaForge.Infrastructure.Repositories
         public IEnumerable<User> GetAll(SearchParameters searchParameters)
         {
             return context.users
+                .Include(User => User.Region)
                 .OrderBy(User => User.Name) //TODO Needs some changes like add searchable tags
                 .Skip((searchParameters.PageNumber - 1) * searchParameters.PageSize)
                 .Take(searchParameters.PageSize)
