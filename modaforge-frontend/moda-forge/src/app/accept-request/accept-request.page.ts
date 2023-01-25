@@ -72,7 +72,7 @@ export class AcceptRequestPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.getModelInformation(this.requestModelId);
+    this.getModelInformation();
   }
 
   setProviderInformation() {
@@ -80,8 +80,10 @@ export class AcceptRequestPage implements OnInit {
   }
 
   getRequestById() {
+    console.log(">>>>>>>>> GET REQUEST BY ID <<<<<<<<<")
     this.requestService.getRequestById(this.requestId).subscribe((data) => {
       this.requestdata = data;
+      console.log(data)
       this.requestTitle = data["title"];
       this.requestDescription = data["description"];
       this.requestModelId = data["modelId"];
@@ -89,11 +91,14 @@ export class AcceptRequestPage implements OnInit {
     });
   }
 
-  getModelInformation(modelId: number) {
+  getModelInformation() {
     this.localModelService.getModelById(this.requestModelId).subscribe((data) => {
+      console.log(">>>>>>>>> GET MODEL INFORMATION <<<<<<<<<")
+      console.log(data)
       this.model = data;
       this.modelName = data["name"];
-      //this.modelEmbedURL = data["embedUrl"];
+      this.localModelId = data["id"];
+      // this.modelEmbedURL = data["embedUrl"];
     });
   }
 
@@ -126,10 +131,10 @@ export class AcceptRequestPage implements OnInit {
       console.log(error);
     });
     alert("Request has been accepted!");
-    this.router.navigate(['/print-posts'])
-    .then(() => {
-      window.location.reload();
-    });
+    // this.router.navigate(['/print-posts'])
+    // .then(() => {
+    //   window.location.reload();
+    // });
   }
 
   async acceptRequest() {
