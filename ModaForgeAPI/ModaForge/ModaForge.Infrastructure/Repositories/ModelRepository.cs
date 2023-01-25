@@ -83,6 +83,11 @@ namespace ModaForge.Infrastructure.Repositories
         {
             Model foundmodel = context.models
                 .FirstOrDefault(x => x.Id == id);
+            if (foundmodel == null)
+            {
+                throw new ArgumentNullException("Model not found with given ModelId");
+            }
+
             ModelViewModel modelView = new ModelViewModel
             {
                 Id = foundmodel.Id,

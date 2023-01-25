@@ -72,7 +72,6 @@ export class AcceptRequestPage implements OnInit {
   }
 
   async ionViewWillEnter() {
-    await this.getRequestById();
     this.getModelInformation();
   }
 
@@ -92,7 +91,8 @@ export class AcceptRequestPage implements OnInit {
     });
   }
 
-  getModelInformation() {
+  async getModelInformation() {
+    await this.getRequestById();
     this.localModelService.getModelById(this.requestModelId).subscribe((data) => {
       console.log(">>>>>>>>> GET MODEL INFORMATION <<<<<<<<<")
       console.log(data)
