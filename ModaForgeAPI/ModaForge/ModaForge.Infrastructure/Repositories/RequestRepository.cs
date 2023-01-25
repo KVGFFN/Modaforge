@@ -96,9 +96,10 @@ namespace ModaForge.Infrastructure.Repositories
 
         public Request GetById(int id)
         {
-            Request request = context.requests
+            var request = context.requests
                 .Include(r => r.Requester)
                 .Include(r => r.Provider)
+                .Include(r => r.Model)
                 .Where(t => t.Id == id)
                 .FirstOrDefault();
             return request;
@@ -119,6 +120,8 @@ namespace ModaForge.Infrastructure.Repositories
         {
             var requests = context.requests
                 .Where(r => r.ProviderId == null)
+                .Include(r => r.Requester)
+                .Include(r => r.Model)
                 .ToList();
             return requests;
         }

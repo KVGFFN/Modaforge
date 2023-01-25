@@ -10,6 +10,7 @@ import { Request } from 'src/modules/interfaces/request.interface';
 import { LocalModel } from 'src/modules/interfaces/local.model.interface';
 import { LocalModelService } from '../services/local.model.service';
 import { RequestService } from '../services/request.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-accept-request',
@@ -26,27 +27,28 @@ export class AcceptRequestPage implements OnInit {
   */
 
   // general variables
-  requestdata: Request;
-  modelSelected: boolean = false;
-  requesterId: number;
-  requestId: number;
-  providerId: number;
-  request: Request;
-
-  // Request variables
-  requestTitle: string;
-  requestDescription: string;
-  creationDate: Date;
+  // requestdata: Request;
   
 
-  // model variables
-  requestModelId: any;
-  modelName: any;
-  model: any;
-  modelEmbedURL: string;
-  modelToPost: LocalModel;
-  localModelId: number;
+  // providerId: number;
+  // request: Request;
 
+  // // Request variables
+  // requestTitle: string;
+  // requestDescription: string;
+  // creationDate: Date;
+  
+
+  // // model variables
+  // requestModelId: any;
+  // modelName: any;
+  // model: any;
+  // modelEmbedURL: string;
+  // modelToPost: LocalModel;
+  // localModelId: number;
+
+  requesterId: number;
+  requestId: number;
 
   constructor
   (
@@ -65,43 +67,16 @@ export class AcceptRequestPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.setProviderInformation();
-    //this.getModelInformation();
-    
+  incoming_request: Observable<any>;
+  update_request: Observable<any>;
+  outgoing_request: Request;
+  ionViewDidEnter(){
+    this.loadRequest();
   }
 
-  async ionViewWillEnter() {
-    this.getModelInformation();
-  }
-
-  setProviderInformation() {
-    this.providerId = currentUser.id;
-  }
-
-  async getRequestById() {
-    console.log(">>>>>>>>> GET REQUEST BY ID <<<<<<<<<")
-    this.requestService.getRequestById(this.requestId).subscribe((data) => {
-      this.requestdata = data;
-      console.log(data)
-      this.requestTitle = data["title"];
-      this.requestDescription = data["description"];
-      this.requestModelId = data["modelId"];
-      this.creationDate = data["creationDate"];
-    });
-  }
-
-  async getModelInformation() {
-    await this.getRequestById();
-    this.localModelService.getModelById(this.requestModelId).subscribe((data) => {
-      console.log(">>>>>>>>> GET MODEL INFORMATION <<<<<<<<<")
-      console.log(data)
-      this.model = data;
-      this.modelName = data["name"];
-      this.localModelId = data["id"];
-      // this.modelEmbedURL = data["embedUrl"];
-    });
-  }
+  model: any;
+  modelName: string;
+  modelSelected: boolean = false;
 
   async viewCurrentModel() {
     const modal = await this.modalCtrl.create({
@@ -113,38 +88,120 @@ export class AcceptRequestPage implements OnInit {
     });
     return await modal.present();
   }
+  
+  providerId: any;
+  requestTitle: any;
+  requestDescription: any;
 
-  async updateRequest() {
-    this.request = {
-      title: this.requestTitle,
-      description: this.requestDescription,
-      requesterId: this.requesterId,
-      providerId: this.providerId,
-      modelId: this.localModelId,
-      creationDate: this.creationDate,
-      regionId: 1,                                // REGION HAS TO BE CHANGED
-      tags: "test,test,test"                      // USER HAS TO GIVE IN TABS
-    };
-    this.requestService.updateRequest(this.request, this.requestId,).subscribe(response => {
-      console.log(response);
-    }, error => {
-      console.log("ERROR updateRequest line 122")
-      console.log(error);
+  loadRequest(){
+    this.requestService.getRequestById(this.requestId).subscribe((data) => {
+      this.model = data["model"];
+      this.modelName = data["model"]["name"];
+      this.providerId = data.providerId;
+      this.requestDescription = data.description;
+      this.requestTitle = data.title;
+    }, error => { console.log(error); });
+  }
+
+  updateRequest(){
+    this.incoming_request = this.requestService.getRequestById(this.requestId);
+    this.incoming_request.subscribe((data) => {
+
+      this.outgoing_request = {
+        title: data.title,
+        description: data.description,
+        requesterId: data.requesterId,
+        providerId: currentUser.id,
+        modelId: data.modelId,
+        creationDate: data.creationDate,
+        regionId: 1,
+        tags: "test,test,test"
+      }
+
+    }, error => { console.log(error); }).add(() => {
+      this.update_request = this.requestService.updateRequest(this.outgoing_request, this.requestId);
+      this.update_request.subscribe((data) => {
+        console.log(data);
+      }, error => {
+        console.log("ERROR updateRequest line 122")
+        console.log(error);
     });
-    alert("Request has been accepted!");
-    // this.router.navigate(['/print-posts'])
-    // .then(() => {
-    //   window.location.reload();
-    // });
+  });
+
   }
 
-  async acceptRequest() {
-    try {
-      this.updateRequest();
-    } catch(error) {
-      console.log("ERROR updateRequest")
-      console.log(error);
-    }
+    // async updateRequest() {
+  //   this.request = {
+  //     title: this.requestTitle,
+  //     description: this.requestDescription,
+  //     requesterId: this.requesterId,
+  //     providerId: this.providerId,
+  //     modelId: this.localModelId,
+  //     creationDate: this.creationDate,
+  //     regionId: 1,                                // REGION HAS TO BE CHANGED
+  //     tags: "test,test,test"                      // USER HAS TO GIVE IN TABS
+  //   };
+  //   this.requestService.updateRequest(this.request, this.requestId,).subscribe(response => {
+  //     console.log(response);
+  //   }, error => {
+  //     console.log("ERROR updateRequest line 122")
+  //     console.log(error);
+  //   });
+  //   alert("Request has been accepted!");
+  //   // this.router.navigate(['/print-posts'])
+  //   // .then(() => {
+  //   //   window.location.reload();
+  //   // });
+  // }
+
+  ngOnInit() {
+    //this.setProviderInformation();
+    //this.getModelInformation();
+    
   }
+
+  // async ionViewWillEnter() {
+  //   this.getModelInformation();
+  // }
+
+  // setProviderInformation() {
+  //   this.providerId = currentUser.id;
+  // }
+
+  // async getRequestById() {
+  //   console.log(">>>>>>>>> GET REQUEST BY ID <<<<<<<<<")
+  //   this.requestService.getRequestById(this.requestId).subscribe((data) => {
+  //     this.requestdata = data;
+  //     console.log(data)
+  //     this.requestTitle = data["title"];
+  //     this.requestDescription = data["description"];
+  //     this.requestModelId = data["modelId"];
+  //     this.creationDate = data["creationDate"];
+  //   });
+  // }
+
+  // async getModelInformation() {
+  //   await this.getRequestById();
+  //   this.localModelService.getModelById(this.requestModelId).subscribe((data) => {
+  //     console.log(">>>>>>>>> GET MODEL INFORMATION <<<<<<<<<")
+  //     console.log(data)
+  //     this.model = data;
+  //     this.modelName = data["name"];
+  //     this.localModelId = data["id"];
+  //     // this.modelEmbedURL = data["embedUrl"];
+  //   });
+  // }
+
+
+
+
+  // async acceptRequest() {
+  //   try {
+  //     this.updateRequest();
+  //   } catch(error) {
+  //     console.log("ERROR updateRequest")
+  //     console.log(error);
+  //   }
+  // }
 
 }
