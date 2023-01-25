@@ -135,4 +135,8 @@ export class YourPrintsPage implements OnInit {
     })
   }
 
+  goToProfilePage() {
+    this.router.navigate(['/profile']);
+  }
+
 }

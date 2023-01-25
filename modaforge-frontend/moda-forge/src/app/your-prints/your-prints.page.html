@@ -41,13 +41,11 @@
   </ion-grid>
 </ion-content>
 
-<!-- To Do List
-  1. check if user is provider 
-    -> if true he can see this page 
-    -> if false then he sees polite message
+<ion-content *ngIf="!providerRole">
+  <div class="center-content">
+    You must be a provider to see this information.<br>
+    If you would like to join us and become a printer, click the button below. <br>
+    <ion-button (click)="goToProfilePage()">Join us</ion-button><br>
+  </div>
+</ion-content>
 
-  2. Provider must see all his incoming requests
-  3. Provider has option to accept or decline
-  4. Page is split in 2 sections pending and other statuses
-  5. Provider has option to change status
--->

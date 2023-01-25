@@ -31,6 +31,10 @@ export class ProfilePage implements OnInit {
   picture: string;
   providerRole: boolean;
   userdata: any;
+  updatedData: any;
+  description: string;
+
+  counter = 0;
 
   userIsLoaded: boolean = false;
   requests: any[];
@@ -38,6 +42,8 @@ export class ProfilePage implements OnInit {
 
   // HTML
   badgeColor = ["medium", "light", "warning", "success", "danger"];
+
+  showDescriptionForm = false;
 
   getAllUsers() {
     try {
@@ -105,6 +111,7 @@ export class ProfilePage implements OnInit {
       this.userdata.forEach(element => {
         if (element.name == name && element.email.toLowerCase() == email) {
           this.providerRole = element.providerRole;
+          this.counter = 1;
         }
       });
     })
@@ -151,5 +158,17 @@ export class ProfilePage implements OnInit {
     this.picture = currentUser.picture;
   }
 
+  toggleDescriptionForm() {
+    this.showDescriptionForm = !this.showDescriptionForm;
+  }
+
+  updateDescription() {
+    this.userService.updateDescription(this.description, currentUser.id).subscribe(data => {
+      console.log(data);
+      this.toggleDescriptionForm();
+    }, error => {
+      console.log(error);
+    });
+  }
 
 }

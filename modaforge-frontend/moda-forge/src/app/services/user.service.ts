@@ -57,4 +57,10 @@ export class UserService {
     return this.http.put<User>(`${this.API}/api/User/BecomeProvider/${id}`, { 'headers': headers});
   }
 
+  // Update description of a user
+  updateDescription(description: string, id: number): Observable<User> {
+    const headers = { 'content-type': 'application/json' }
+    return this.http.put<User>(`${this.API}/UpdateDescription/${id}/${description}`, { 'headers': headers });
+  }
+
 }

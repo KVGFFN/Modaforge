@@ -13,6 +13,7 @@ import { APIstate } from 'src/helpers/APIstate';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-register',
@@ -181,9 +182,10 @@ export class RegisterPage implements OnInit {
         console.log('--> userService.addUser register.page.ts:77');
         console.log(data);
       });
-      this.router.navigate(['/home']).then(() => {
-        window.location.reload();
-      });;
+      
+    })
+    .then(() => {
+      this.goToSignIn();
     })
     .catch(error => {
       console.log("%c" + error, "color:red");

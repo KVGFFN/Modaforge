@@ -79,6 +79,7 @@ export class ProviderRequestDetailPage implements OnInit {
     {
       console.log("%c SUCCESFULLY FINISHED ","color: green");
       console.log(data);
+      this.router.navigate(['/your-prints'])
     }, (error)=>
     {
       console.log(error);
@@ -91,6 +92,7 @@ export class ProviderRequestDetailPage implements OnInit {
     {
       console.log("%c SUCCESFULLY IN PROGRESS ","color: green");
       console.log(data);
+      this.router.navigate(['/your-prints'])
     }, (error)=> {
       console.log(error);
     });
